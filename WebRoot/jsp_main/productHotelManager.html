@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/xieyaozhong.css"></link>
+<script type="text/javascript" src="../js/library/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/bootstrap/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/icon.css"></link>
+<script type="text/javascript" src="../js/library/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/library/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/library/common/common.js"></script>
+<script type="text/javascript" src="../js/library/common/customUi.js" defer="defer"></script>
+
+<link href="../js/library/xyzDropzone/xyzPicPreview.css" type="text/css" rel="stylesheet"></link>
+<script type="text/javascript" src="../js/library/xyzDropzone/dropzone.min.js"></script>
+<script type="text/javascript" src="../js/library/xyzDropzone/xyzDropzone.js"></script>
+<script type="text/javascript" src="../js/library/common/xyzCkeditorUploadPlug.js"></script>
+
+<script type="text/javascript" src="../js/library/ckeditor/ckeditor.js" defer="defer"></script>
+<script type="text/javascript" src="../js/library/ckeditor/adapters/jquery.js" defer="defer"></script>
+
+<script type="text/javascript" src="../js/js_main/productHotelManager.js" defer="defer"></script>
+
+<style type="text/css">
+body{
+	margin: 0;padding: 0;border: 0;font-size: 14px;
+}
+div{
+	margin: 0;padding: 0;border: 0;
+}
+</style>
+</head>
+<body>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+				<td>
+					商品名称【模】
+				</td>
+				<td>
+					<input type="text" id="nameCn" style="width:120px;"/>
+				</td>
+				<td>
+					供应商
+				</td>
+				<td>
+					<input type="text" id="providerLoadForm" style="width:120px;"/>
+				</td>
+				</tr>  
+			</tbody>
+		</table>
+	</div>		
+
+		<div style="z-index: 100;position: fixed;left: 800px;">
+			<a href="javascript:void(0);" class="easyui-linkbutton" 
+				data-options="iconCls:'icon-search'"
+				id="productButton"
+			>查询</a>	
+		</div>	
+
+	<table id="productHotelManagerTable"></table>
+</body>
+</html>

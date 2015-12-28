@@ -1,0 +1,59 @@
+
+一、
+xyzuiCombobox使用方法
+1、初始化组件
+$("#id").xyzuiCombobox({
+	valueField:'value',//对应需要翻译的value（与数据中的字段名对应）
+	textField:'text',//对应需要翻译的text（与数据中的字段名对应）
+	editable:true,//是否允许input可输入
+	disabled:false,//是否禁用（禁用优先级高于editable）
+	data:[{value:"myValue1",text:"myText1"},{value:"myValue2",text:"myText2"},{value:"myValue3",text:"myText3"}],//数据必须是json对象数组
+	onSelect:function(id, itemObject){//当被选中时需要额外做的处理
+		alert(JSON.stringify("控件id="+id+";;;item="+itemObject));
+	},
+	onBlur:function(id, text){//控件中的input框失去焦点后触发，返回input框中显示的文本。（注意：onBlur在editable=false时不被触发）
+		alert("控件id="+id+";;;text="+text);
+	}
+});
+2、取值
+$("#id").xyzuiCombobox('getValue');
+3、取输入框中显示的内容
+$("#id").xyzuiCombobox('getText');
+4、赋值：有匹配的值将被选中
+$("#id").xyzuiCombobox('setValue');
+5、赋文本：将添加到文本框（有匹配文本的将被选中）
+$("#id").xyzuiCombobox('setText');
+6、重新加载数据（覆盖）
+$("#id").xyzuiCombobox('loadData',[{value:"myValue1",text:"myText1"},{value:"myValue2",text:"myText2"},{value:"myValue3",text:"myText3"}]);
+7、追加数据（在末尾追加）
+$("#id").xyzuiCombobox('appendData',[{value:"myValue1",text:"myText1"},{value:"myValue2",text:"myText2"},{value:"myValue3",text:"myText3"}]);
+8、设置是否禁用组件
+$('#id').xyzuiCombobox('setDisabled',true);
+9、设置组件input框是否允许编辑
+$('#id').xyzuiCombobox('setEditable',false);
+
+
+二、
+xyzuiDatebox使用方法
+1、初始化 （这里是全配置，使用时根据自己情况初始化）
+$('#id').xyzuiDatebox({
+	format:'yyyy-MM-dd', //日期格式 （默认yyyy-MM-dd）
+	current:'2015-10-15', //初始化时赋一个初始值 （默认为空）
+	editable:true,//是否允许input可输入
+	disabled:false,//是否禁用（禁用优先级高于editable）
+	onSelect:function(id, date){ //当用户点选某个日期时触发 （参数为Date类型）
+		alert('控件id='+id+'你选中了'+date);
+	},
+	validator:function(date){ //禁选匹配 return true;//不可选  return false;//正常可选 （注意：被禁选的日期即使强制赋值('setValue')也是无效的）
+		（参数为Date类型）
+		return (date.valueOf() < new Date().valueOf()-86400000) || (date.valueOf() > new Date().valueOf()+864000000);
+	}
+});
+2、取值 
+$('#id').xyzuiDatebox('getValue');//return String
+3、赋值
+$('#id').xyzuiDatebox('setValue', '2015-10-15');//参数为日期字符串类型（不支持Date类型）
+4、设置控件是否禁用
+$('#id').xyzuiDatebox('setDisabled',false);
+5、设置控件是否允许input框可编辑
+$('#id').xyzuiDatebox('setEditable',false);

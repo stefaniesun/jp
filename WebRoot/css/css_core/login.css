@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0px;
+	padding:0px;
+	background-image:url(../../image/login/bg.jpg);
+	background-repeat:repeat-x;
+	background-color:#cce8f4;
+	}
+#container{
+	margin:0px auto;
+	background-image:url(../../image/login/pberp.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	height:471px;
+	margin-top:50px;
+	border-top:1px solid;
+	border-color:transparent;
+	}
+#container>div{
+	width:462px;
+	margin:0px auto;
+	height:320px;
+	margin-top:100px;
+	border-top:1px solid;
+	border-color:transparent;
+	}
+#container>div>div{
+	margin-top:79px;
+	margin-left:40px;
+	position:relative;
+	margin-right:30px;
+	}
+.inp input{
+	outline:none;
+	width:206px;
+	border:none;
+	}
+label{
+	font-size:14px;
+	}
+label span{
+	display:inline-block;
+	width:10px;
+	}
+.inp{
+	margin-bottom:14px;
+
+	height:21px;
+	padding-top:7px;
+	}
+.login1{
+	position:absolute;
+	width:79px;
+	height:72px;
+	line-height:37px;
+	text-align:center;
+	right:9px;
+	top:6px;
+	cursor:pointer;
+	font-size:14px;
+	color:white;
+	font-weight:bold;
+	}
+.login2{
+	position:absolute;
+	width:79px;
+	height:36px;
+	line-height:38px;
+	text-align:center;
+	right:9px;
+	top:42px;
+	cursor:pointer;
+	font-size:14px;
+	color:white;
+	font-weight:bold;
+	}
+.check{
+	margin-left:-6px;
+	position:relative;
+	margin-bottom:10px;
+	}
+.check .num{
+	cursor:pointer;
+	}
+.check .out{
+	margin-left:15px;
+	height:48px;
+	line-height:50px;
+	display:inline-block;
+	
+	position:absolute;
+	}
+.check .checkbox{
+	
+	margin-right:10px;
+	}
+.check .checkbox input{
+	vertical-align:middle;
+	}
+.check .checkbox label{
+	vertical-align:middle;
+	font-weight:bold;
+	}
+#container .attachment{
+	margin-left:-10px;
+	margin-right:-20px;
+	margin-bottom:3px;
+	}
+#container .attachment input{
+	vertical-align:middle;
+	margin-right:3px;
+	}
+#container .attachment label{
+	font-size:12px;
+	vertical-align:middle;
+	}
+.bottom{
+	width:auto;
+	text-align:center;
+	font-size:12px;
+	color:#325974;
+	margin-top:100px;
+	padding-bottom:10px;
+	}
+.bottom p{
+	padding:0px;
+	margin:0px;
+	margin-bottom:5px;
+	}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #container>div>div{
+	margin-top:78px;
+	margin-left:41px;
+	}
+	.inp{
+		padding-top:7px;
+		height:20px;
+		}
+	
+}
+@-moz-document url-prefix() {
+	#container>div>div{
+	margin-top:78px;
+	margin-left:41px;
+	}
+	.inp{
+		padding-top:8px;
+		height:20px;
+		}
+	}

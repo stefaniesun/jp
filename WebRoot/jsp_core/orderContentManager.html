@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/xieyaozhong.css"></link>
+<script type="text/javascript" src="../js/library/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/bootstrap/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/icon.css"></link>
+<script type="text/javascript" src="../js/library/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/library/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/library/common/common.js"></script>
+<script type="text/javascript" src="../js/library/common/customUi.js" defer="defer"></script>
+
+<link href="../js/library/xyzDropzone/xyzPicPreview.css" type="text/css" rel="stylesheet"></link>
+<script type="text/javascript" src="../js/library/xyzDropzone/dropzone.min.js"></script>
+<script type="text/javascript" src="../js/library/xyzDropzone/xyzDropzone.js"></script>
+<script type="text/javascript" src="../js/library/common/xyzCkeditorUploadPlug.js"></script>
+
+<script type="text/javascript" src="../js/library/ckeditor/ckeditor.js" defer="defer"></script>
+<script type="text/javascript" src="../js/library/ckeditor/adapters/jquery.js" defer="defer"></script>
+
+<script type="text/javascript" src="../js/js_core/orderContentManager.js" defer="defer"></script>
+
+<style type="text/css">
+body{
+	margin: 0;padding: 0;border: 0;font-size: 14px;
+}
+div{
+	margin: 0;padding: 0;border: 0;
+}
+</style>
+</head>
+<body>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+				<td>
+					订单编号
+				</td>
+				<td>
+					<input type="text" id="orderNum" style="width:120px;"/>
+				</td>
+				<td>
+					订单状态
+				</td>
+				<td>
+					<input type="text" id="flagStr" style="width:120px;" class="easyui-combobox" value="noClient"
+					data-options="valueField: 'value',textField: 'text',multiple:true,
+					data: [{value: 'noPay',text: '未支付'},
+					{value: 'yesPay',text: '已支付'},
+					{value: 'noClient',text: '未出票'},
+					{value: 'yesClient',text: '已出票'},
+					{value: 'noUse',text: '未使用'},
+					{value: 'yesUse',text: '已使用'},
+					{value: 'noApply',text: '无申请退款'},
+					{value: 'yesApply',text: '有申请退款'},
+					{value: 'noRefund',text: '未退票'},
+					{value: 'yesRefund',text: '已退票'},
+					{value: 'noOver',text: '未冻结'},
+					{value: 'yesOver',text: '已冻结'}]" />
+				</td>
+				<td>
+					买家账号
+				</td>
+				<td>
+					<input type="text" id="buyer" style="width:120px;"/>
+				</td>
+				<td>
+					<input type="text" id="dateStr" style="width:100px;" class="easyui-combobox" value="addDate"
+					data-options="valueField: 'value',textField: 'text',data:[
+					{value: 'payDate',text: '支付日期'},
+					{value: 'dateInfo',text: '出行日期'},
+					{value: 'addDate',text: '录单日期'},
+					{value: 'clientDate',text: '出票日期'},
+					{value: 'useDate',text: '使用日期'},
+					{value: 'applyDate',text: '申请退票日期'},
+					{value: 'refundDate',text: '退票日期'},
+					{value: 'overDate',text: '冻结日期'},
+					{value: 'cleanDate',text: '清洗时间'},
+					{value: 'alterDate',text: '最后修改日期'}]"/>
+				</td>
+				<td>
+					<input type="text" id="dateStart" style="width:88px;"
+					class="easyui-datebox" data-options="tipPosition:'left'"/>
+					~<input type="text" id="dateEnd" style="width:88px;"
+					class="easyui-datebox" data-options="tipPosition:'left'"/>
+				</td>
+				
+				<td>
+					<input type="text" id="remarkStr" style="width:88px;" class="easyui-combobox" value="orderRemark"
+					data-options="valueField: 'value',textField: 'text',data:[
+					{value: 'orderRemark',text: '票单备注'},
+					{value: 'flagRemark',text: '备注状态'},
+					{value: 'remarkBuy',text: '买家备注'}]"/>
+				</td>
+				<td>
+					<input type="text" id="remark" style="width:120px;"/>
+				</td>
+				</tr>  
+				<tr>
+				<td>
+					产品名称
+				</td>
+				<td>
+					<input type="text" id="productNameCn" style="width:120px;"/>
+				</td>
+				<td>
+					供应商名称
+				</td>
+				<td>
+					<input type="text" id="providerNameCn" style="width:120px;"/>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>		
+
+		<div style="z-index: 100;position: fixed;left: 800px;">
+			<a href="javascript:void(0);" class="easyui-linkbutton" 
+				data-options="iconCls:'icon-search'"
+				id="orderContentButton"
+			>查询</a>	
+		</div>	
+
+	<table id="orderContentManagerTable"></table>
+</body>
+</html>

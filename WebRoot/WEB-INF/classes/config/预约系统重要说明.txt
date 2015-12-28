@@ -1,0 +1,16 @@
+姚成成：
+我把LoginInfoForKehuSvc.java接口以及实现类都删了，方法直接加入了orderYueSvc
+具体替换接口如下：
+getOrderTb = mergeLoginInfoOper        添加普通订单的时候验证
+getOrderTbForBuchajia = mergeBuchajiaLoginInfoOper   添加补差价订单的时候验证
+addOrderTbForBuchajia = mergeBuchajiaForOrderYueLoginInfoOper  事后补差价
+getOrderYueInfo = decideLogin 获取预约信息，包括groupTitle和groupTypeList
+统一登录接口 = loginOper
+
+代预约更改：
+删除  addQueryOrderYueTsl，依靠OrderYueSvc的getOrderTb
+删除 addBuchajiaSystemOrder 依靠OrderYueSvc的addOrderTbForBuchajia
+删除addQuerySuperOrderYueTsl+addSuperOrderYue
+setOrderYueConfirmFlagForSotckTemp 与 setOrderYueConfirmFlag 合二为一
+editSystemOrderSubTitleAndDateInfo 改为 editOrderYueContent
+加上 mergeOrderYueOper

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	
+	<function isApi="0" groupCn="管理员" numberCode="a_userManager" nameCn="用户管理" url="/xyzsecurity/a_userManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151214155700" nameCn="查询用户列表" url="/AdminUserWS/queryUserList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155701" nameCn="新增用户" url="/AdminUserWS/addUser.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155702" nameCn="编辑用户" url="/AdminUserWS/editUser.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155703" nameCn="删除用户" url="/AdminUserWS/deleteUser.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155704" nameCn="重设密码" url="/AdminUserWS/editUserPassword.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155705" nameCn="开关用户" url="/AdminUserWS/editUserEnabled.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155706" nameCn="设置用户岗位" url="/AdminUserWS/setUserPosition.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155707" nameCn="设置用户令牌" url="/AdminUserWS/setUserOtp.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151214155708" nameCn="获取岗位" url="/AdminUserWS/getAllPosition.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214155709" nameCn="给用户设置资源组" url="/AdminUserWS/setUserPossessor.do"/>
+	</function>
+	
+	<function isApi="0" groupCn="管理员" numberCode="positionManager" nameCn="岗位管理" url="/xyzsecurity/a_positionManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_y20141231101619" nameCn="查询岗位列表" url="/AdminPositionWS/queryPositionList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="新增岗位" url="/AdminPositionWS/addPosition.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="编辑岗位" url="/AdminPositionWS/editPosition.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="删除岗位" url="/AdminPositionWS/deletePosition.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_y20141231101619" nameCn="查询岗位内功能" url="/AdminPositionWS/queryPositionFunctionTrueList.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_y20141231101619" nameCn="查询岗位外功能" url="/AdminPositionWS/queryPositionFunctionFalseList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="添加功能进岗位" url="/AdminPositionWS/addPositionFunction.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="删除岗位内功能" url="/AdminPositionWS/deletePositionFunction.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_y20141231101619" nameCn="查询岗位内操作" url="/AdminPositionWS/queryPositionButtonTrueList.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_y20141231101619" nameCn="查询岗位外操作" url="/AdminPositionWS/queryPositionButtonFalseList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="添加操作进岗位" url="/AdminPositionWS/addPositionButton.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_y20141231101619" nameCn="删除岗位内操作" url="/AdminPositionWS/deletePositionButton.do"/>
+	</function>
+	
+	<function isApi="0"  groupCn="应用" numberCode="orderContentManager" nameCn="订单处理" url="/jsp_core/orderContentManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_w20151218120200" nameCn="订单列表" url="/OrderContentWS/queryOrderContentList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_w20151221155601" nameCn="出票" url="/OrderContentWS/updateOrderContentForFlagClient.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_w20151221155602" nameCn="退款" url="/OrderContentWS/updateOrderContentForFlagRefund.do"/>
+	</function>
+	
+	<function isApi="0" groupCn="资源" numberCode="providerManager" nameCn="供应商" url="/jsp_main/providerManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_w20151215174400" nameCn="供应商列表" url="/ProviderWS/queryProviderList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_w20151215174401" nameCn="添加供应商" url="/ProviderWS/addProvider.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_w20151215174402" nameCn="编辑供应商" url="/ProviderWS/editProvider.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_w20151215174403" nameCn="删除供应商" url="/ProviderWS/deleteProvider.do"/>
+	</function>
+	<function isApi="0" groupCn="资源" numberCode="productScenicManager" nameCn="产品--景点" url="/jsp_main/productScenicManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151214181000" nameCn="景点产品列表" url="/ProductScenicWS/queryProductScenicList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214181001" nameCn="新增景点产品" url="/ProductScenicWS/addProductScenic.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214181002" nameCn="编辑景点产品" url="/ProductScenicWS/editProductScenic.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151214181003" nameCn="删除景点产品" url="/ProductScenicWS/deleteProductScenic.do"/>
+	</function>
+	
+	<function isApi="0" groupCn="资源" numberCode="productHotelManager" nameCn="产品--酒店" url="/jsp_main/productHotelManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151215093700" nameCn="酒店产品列表" url="/ProductHotelWS/queryProductHotelList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151215093701" nameCn="新增酒店产品" url="/ProductHotelWS/addProductHotel.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151215093702" nameCn="编辑酒店产品" url="/ProductHotelWS/editProductHotel.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20151215093703" nameCn="删除酒店产品" url="/ProductHotelWS/deleteProductHotel.do"/>
+	</function>
+	
+	
+	
+	
+	<function isApi="1" groupCn="资源方" numberCode="sellerManager" nameCn="资源方功能" >
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151222101300" nameCn="获取景点产品列表" url="/SellerScenicWS/queryProductScenicList.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20151222101301" nameCn="获取酒店产品列表" url="/SellerHotelWS/queryProductHotelList.do"/>
+	</function>
+	
+	
+	
+	
+	<list>
+		<api flagServer="0" isWork="0" nameCn="下拉框--获取指定供应商" url="/ListWS/getProviderList.do"/>
+	</list>
+	
+	<list>
+		<api flagServer="0" isWork="1" nameCn="安全退出" url="/LoginWS/safeQuit.do"/>
+		<api flagServer="0" isWork="1" nameCn="登录验证" url="/LoginWS/decideLogin.do"/>
+	</list>
+	
+
+	
+</root>

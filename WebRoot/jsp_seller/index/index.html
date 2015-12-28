@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西藏旅游数据中心</title>
+<link rel="shortcut icon" href="http://www.aidaxiang.cn/favicon.ico"/>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/css_seller/font-awesome.css" rel="stylesheet"/>
+<link href="../../css/css_seller/animate.css" rel="stylesheet"/>
+<link href="../../css/css_seller/style.css" rel="stylesheet"/>
+<!-- 全局js -->
+<script type="text/javascript" src="../../js/library/jquery-1.7.2.js"></script>	
+<script type="text/javascript" src="../../js/library/cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../js/library/common/cookie.js"></script>
+<script type="text/javascript" src="../../js/library/common/cookieB2B.js"></script>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg">
+ <div id="wrapper">
+        <!--左侧导航栏-->
+        <!--#include virtual="../index/lefter.html"-->
+        
+         <div id="page-wrapper" class="gray-bg dashbard-1">
+            <!--右侧顶部栏-->
+               <!--#include virtual="../index/header.html"-->
+               
+             <div class="row J_mainContent" id="content-main">
+             	<iframe class="J_iframe">
+             	</iframe>
+             </div>
+         </div>
+         
+         <!--购物车-->
+         <div class="small-chat-box fadeInRight animated">
+
+            <div class="heading" draggable="true">
+                 购物车
+            </div>
+
+            <div class="slimScrollDiv" style="position: relative; width: auto; height: 234px;">
+            	<div class="content" style="width: auto; height: 234px;">
+					<ul class="rcart-list">
+					
+					</ul>
+            	</div>
+            <div class="slimScrollBar" style="width: 7px; position: absolute; top: 113px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 120.607929515419px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.4; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+            <div class="form-chat">
+                <div class="input-group input-group-sm">
+                    已选<span class="total-count"></span>件商品   <span class="totalPrice symbol-rmb"></span>
+                    <span class="input-group-btn"> 
+                    <button id="shopping-cart-button" class="btn btn-primary" type="button">结算 </button>
+                 </span>
+                </div>
+            </div>
+
+        </div>
+         
+         
+          <div id="flyItem" class="fly_item" data-center="1096,-258" style="left: 767px; top: 665px; visibility: hidden; -webkit-transform: translate(1096px, -258.5px);"><img src="../index/image/item-pic.jpg" width="40" height="40"/></div>
+         
+         <div id="small-chat">
+            <span class="badge badge-warning pull-right"></span>
+            <a class="open-small-chat">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+        </div>
+         
+ </div>
+ 
+<!-- 全局js -->
+<script type="text/javascript" src="../../js/library/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/library/metisMenu/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="../../js/library/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src='../../js/library/layer/layer.js' ></script>
+<script type="text/javascript"  src="../../js/library/hplus.js"></script>
+<script type="text/javascript"  src="../../js/library/contabs.js"></script>
+<script type="text/javascript"  src="../../js/js_seller/index/index.js"></script>
+
+<script>
+    // 顶部菜单固定
+    $('#fixednavbar').click(function () {
+        if ($('#fixednavbar').is(':checked')) {
+            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $("body").removeClass('boxed-layout');
+            $("body").addClass('fixed-nav');
+            $('#boxedlayout').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout",'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar",'on');
+            }
+        } else {
+            $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $("body").removeClass('fixed-nav');
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar",'off');
+            }
+        }
+    });
+
+    // 收起左侧菜单
+    $('#collapsemenu').click(function () {
+        if ($('#collapsemenu').is(':checked')) {
+            $("body").addClass('mini-navbar');
+            SmoothlyMenu();
+
+            if (localStorageSupport) {
+                localStorage.setItem("collapse_menu",'on');
+            }
+
+        } else {
+            $("body").removeClass('mini-navbar');
+            SmoothlyMenu();
+
+            if (localStorageSupport) {
+                localStorage.setItem("collapse_menu",'off');
+            }
+        }
+    });
+
+    // 固定宽度
+    $('#boxedlayout').click(function () {
+        if ($('#boxedlayout').is(':checked')) {
+            $("body").addClass('boxed-layout');
+            $('#fixednavbar').prop('checked', false);
+            $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $("body").removeClass('fixed-nav');
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar",'off');
+            }
+
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout",'on');
+            }
+        } else {
+            $("body").removeClass('boxed-layout');
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout",'off');
+            }
+        }
+    });
+    
+</script>
+ 
+</body>
+</html>

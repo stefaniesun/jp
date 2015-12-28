@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta name="renderer" content="webkit"/>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<title>西藏旅游数据中心</title>
+<link href="css/css_core/login.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/library/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="js/library/easyui/themes/bootstrap/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="js/library/easyui/themes/icon.css"></link>
+<script type="text/javascript" src="js/library/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/library/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/library/cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/library/common/cookie.js"></script>
+<script type="text/javascript" src="js/library/common/common.js"></script>
+<script type="text/javascript" src="js/library/md5/jquery.md5.js"></script>
+
+<script type="text/javascript" src="js/library/common/customUi.js" defer="defer"></script>
+<script type="text/javascript" src="xyzsecurity/js/login.js" defer="defer"></script>
+
+</head>
+
+<body>
+	<div id='container'>
+		<div>
+			<div>
+				<form id="loginForm">
+					<div class='inp'><label>用<span></span>户：</label><input type='text' id="usernameForm"/></div>
+					<div class='inp'><label>密<span></span>码：</label><input type="password" id="passwordForm"/></div>
+					<div class='inp'><label>口<span></span>令：</label><input type='password' id="otpCodeForm"/></div>
+					<p class='login1' onclick="login();">登&nbsp;陆</p>
+					<p class='login2' onclick="loginFast();">快捷登录</p>
+					<div class="check">
+	                    <span class="num">
+	                    	<span style="width: 50px;height: 50px;">
+								<span id="checkCodeDiv" style="width: 50px;height: 50px;position:absolute ;
+								font-size: 50px;text-align: center;z-index:0 ">
+								</span>
+								<span id="checkCodeFont" style="width: 50px;height: 50px;position:absolute ;z-index:1000;
+								background-color: yellow;opacity:0.1; filter:alpha(opacity=10);">
+								</span>
+								<span style="width: 50px;height: 50px;display:inline-block ;"></span>
+							</span>
+	                    </span>
+	                    <span class="out">
+	                    	<span class="checkbox">
+	                    		<input type="checkbox" name="checkCodeForm" value="1"/>
+	                    		<label>1</label>
+	                    	</span>
+	                    	<span class="checkbox">
+	                    		<input type="checkbox" name="checkCodeForm" value="2"/>
+	                    		<label>2</label>
+	                    	</span>
+	                    	<span class="checkbox">
+	                    		<input type="checkbox" name="checkCodeForm" value="4"/>
+	                    		<label>4</label>
+	                    	</span>
+	                    	<span class="checkbox">
+	                    		<input type="checkbox" name="checkCodeForm" value="8"/>
+	                    		<label>8</label>
+	                    	</span>
+	                    </span>
+					</div>
+					<div class='attachment'>
+                  		<label>提示：不关闭浏览器，45分钟之内可快捷登录</label>
+                  		<label style="margin-left: 80px;"><a href="javascript:void(0)" style="color: red;" id="alterPasswordButton">修改密码</a></label>
+					</div>
+					<div class='attachment'>
+                  		<input type="checkbox" name="otpIsSynchForm" value="1"/>
+                  		<label>同步（提示：正常登录请勿选中，必要时请在运营商的指导下使用）</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class='bottom'><p></p><p>沪ICP备14042262号-1</p></div><!-- 上海潘博网络科技有限公司 -->
+</body>
+</html>

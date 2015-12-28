@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- 用户登录表 -->
+		<mapping class="xyz.model.security.LogOper"></mapping>
+		<mapping class="xyz.model.security.SecurityApi"></mapping>
+		<mapping class="xyz.model.security.SecurityFunction"></mapping>
+		<mapping class="xyz.model.security.SecurityLogin"></mapping>
+		<mapping class="xyz.model.security.SecurityPosition"></mapping>
+		<mapping class="xyz.model.security.SecurityPositionButton"></mapping>
+		<mapping class="xyz.model.security.SecurityUser"></mapping>
+		<mapping class="xyz.model.security.TokenInfo"></mapping>
+		
+		<!-- 公共 -->
+		<mapping class="xyz.model.base.Sms"></mapping>
+		<mapping class="xyz.model.base.LogWork"></mapping>
+		<mapping class="xyz.model.base.PlanWork"></mapping>
+		<mapping class="xyz.model.base.PlanWorkLog"></mapping>
+		<mapping class="xyz.model.base.Possessor"></mapping>
+		<mapping class="xyz.model.sql.SystemSql"></mapping> 
+		
+		
+		<!-- 产品 -->
+		<mapping class="xyz.model.main.ProductHotel"></mapping>
+		<mapping class="xyz.model.main.ProductScenic"></mapping>
+		<mapping class="xyz.model.main.Provider"></mapping>
+		<mapping class="xyz.model.main.Stock"></mapping>
+		<mapping class="xyz.model.core.OrderContent"></mapping>
+		<mapping class="xyz.model.core.OrderWorkInfo"></mapping>
+		
+		<!-- 用户 -->
+		<mapping class="xyz.model.member.Customer"></mapping>
+		
+	</session-factory>
+</hibernate-configuration>
+  

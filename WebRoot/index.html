@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script type="text/javascript">
+function xyzIsNull(obj){
+	if(obj==undefined || obj==null || (obj+"".trim())==="" ||  (obj+"".trim())===''){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function getUrlParameters(){
+	var result ={};
+	var q = location.search.substr(1);   
+	 var qs = q.split("&");   
+	 if (qs) {   
+	 for (var i=0;i<qs.length;i++) {
+		 var key = qs[i].substring(0,qs[i].indexOf("="));
+		 result[key] = qs[i].substring(qs[i].indexOf("=")+1);
+	  }   
+	 }   
+	 return result;
+}
+var ym = window.location.hostname;
+if(ym=="www.aaaa.com" || ym=="aaaa.com"){
+	window.location.href="http://www.aaaa.com/login.html";
+}else if(ym=="localhost"){
+	window.location.href="http://localhost:8080/xztrip/login.html";
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

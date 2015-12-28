@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>西藏旅游</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<style>
+		html,
+		body {
+			background-color: #efeff4;
+		}
+	</style>
+</head>
+<body>
+<!-- 	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 id="title" class="mui-title">西藏旅游</h1>
+	</header> -->
+	<nav class="mui-bar mui-bar-tab">
+		<a id="homeTab" class="mui-tab-item mui-active" href="page/home.html">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item" href="page/order.html">
+			<span class="mui-icon mui-icon-bars"></span>
+			<span class="mui-tab-label">订单</span>
+		</a>
+		<a class="mui-tab-item" href="page/me.html">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+	<script src="js/mui.min.js"></script>
+	<script src="js/xyzCommon.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+			swipeBack: false,//右滑返回功能
+			statusBarBackground: '#f7f7f7',//状态栏背景色（ios有效）
+			gestureConfig: {//配置手势监听
+			   tap: true, //单击屏幕，默认为true
+			   doubletap: false, //双击屏幕，默认为false
+			   longtap: false, //长按屏幕，默认为false
+			   swipe: false, //滑动，默认为true
+			   drag: false, //拖动，默认为true
+			   hold:false,//按住屏幕，默认为false，不监听
+			   release:false//离开屏幕，默认为false，不监听
+			},
+			preloadPages:[{
+				url:xyz.getFullurl('page/login.html'),
+				id:'page/login.html'
+			}]
+		});
+		//预定义每个tab的子页面
+		var subpages = ['page/home.html', 'page/order.html', 'page/me.html'];
+		var subpage_style = {
+			top: '0px',
+			bottom: '51px'
+		};
+		
+		var aniShow = {};
+		
+		 //创建子页面，首个选项卡页面显示，其它均隐藏；
+		mui.plusReady(function() {
+			//仅支持竖屏显示
+			plus.screen.lockOrientation("portrait-primary");
+			//重写mui.menu方法，Android版本menu按键按下不做任何事
+			mui.menu = function(){};
+			//首页返回键处理
+			//处理逻辑：2秒内，连续两次按返回键，则退出应用；
+			var first = false;
+			mui.back = function() {
+				if(!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function(){
+						first = false;
+					},1000);
+				}else{
+					if(new Date().getTime() - first < 2000){
+						plus.runtime.quit();
+					}
+				}
+			};
+			var self = plus.webview.currentWebview();
+			for (var i = 0; i < 4; i++) {
+				var temp = {};
+				var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+				if (i > 0) {
+					sub.hide();
+				}else{
+					temp[subpages[i]] = "true";
+					mui.extend(aniShow,temp);
+				}
+				self.append(sub);
+			}
+		});
+		 //当前激活选项
+		var activeTab = subpages[0];
+		var title = document.getElementById("title");
+		 //选项卡点击事件
+		mui('.mui-bar-tab').on('tap', 'a', function(e) {
+			var targetTab = this.getAttribute('href');
+			if (targetTab == activeTab) {
+				return;
+			}
+			if(targetTab==subpages[1] || targetTab==subpages[2]){
+				if(!isLogin()){
+					mui.trigger(document.getElementById("homeTab"), 'tap');
+					//跳转登陆界面
+					plus.webview.getWebviewById('page/login.html').show("slide-in-right", 300);
+					return ;
+				}
+			}
+			//更换标题
+			//title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+			//显示目标选项卡
+			//若为iOS平台或非首次显示，则直接显示
+			if(mui.os.ios||aniShow[targetTab]){
+				plus.webview.show(targetTab);
+			}else{
+				//否则，使用fade-in动画，且保存变量
+				var temp = {};
+				temp[targetTab] = "true";
+				mui.extend(aniShow,temp);
+				plus.webview.show(targetTab,"fade-in",300);
+			}
+			//隐藏当前;
+			plus.webview.hide(activeTab);
+			//更改当前活跃的选项卡
+			activeTab = targetTab;
+		});
+		 //自定义事件，模拟点击“首页选项卡”
+		document.addEventListener('gohome', function() {
+			var homeTab = document.getElementById("homeTab");
+			//模拟首页点击
+			mui.trigger(homeTab, 'tap');
+			//切换选项卡高亮
+			var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+			if (homeTab !== current) {
+				current.classList.remove('mui-active');
+				homeTab.classList.add('mui-active');
+			}
+		});
+		 
+		 //判断用户是否登陆
+		 function isLogin(){
+			//判断本地登录数据
+			var localLoginInfo = false;
+			try{
+				localLoginInfo = xyz.isNull(window.localStorage.localLoginInfo)?false:JSON.parse(window.localStorage.localLoginInfo);
+			}catch(e){
+				return false;
+			}
+			if(localLoginInfo && localLoginInfo.username && localLoginInfo.password && localLoginInfo.expTime){
+				//检查过期时间并验证登录
+				if(new Date().getTime()<localLoginInfo.expTime){//自动登陆
+					return true;
+				}else{
+					//已过期
+					return false;
+				}
+			}else{//跳转到登录页
+				return false;
+			}
+		 }
+	</script>
+</body>
+</html>

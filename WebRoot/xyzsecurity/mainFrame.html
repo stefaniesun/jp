@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<!-- <meta name="renderer" content="webkit"/> -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<title>上海端易签证管理中心</title>
+<link rel="stylesheet" type="text/css" href="../css/xieyaozhong.css"></link>
+<script type="text/javascript" src="../js/library/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/bootstrap/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="../js/library/easyui/themes/icon.css"></link>
+<script type="text/javascript" src="../js/library/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/library/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/library/cookie/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/library/common/cookie.js"></script>
+<script type="text/javascript" src="../js/library/common/common.js"></script>
+<script type="text/javascript" src="../js/library/md5/jquery.md5.js"></script>
+<script type="text/javascript" src="../js/library/common/customUi.js" defer="defer"></script>
+
+<script type="text/javascript" src="../xyzsecurity/js/mainFrame.js" defer="defer"></script>
+<script type="text/javascript">
+/* console.log(window); */
+</script>
+<style type="text/css"></style>	 
+</head>
+<body style="overflow-y:hidden;overflow-x:scroll;
+		background-image: url(../image/login/bg.jpg);background-repeat:repeat-x;
+		background-color:#cce8f4;">
+	<div id="mainShadeDiv"
+	style="width: 100%;height: 100%;position: absolute;z-index: 1000;top:0px;left: 0px;
+	background-color:white;color: black;text-align: center;">载入中……</div>
+	
+	<!-- 主框架 -->
+	<div id="mainDiv" style="display:block;margin:0 auto;padding: 0;border: 0;background-color:black;width:1600px;;height: 800px; ">
+		<!-- 布局 -->
+		<div id="layoutMainDiv" class="easyui-layout" data-options="fit:true"> 
+		    
+		    <!-- 底部  -->
+		    <!-- <div data-options="region:'south',split:false,border:false" 
+		    style="height:30px;width: 100%;background-color:#cce8f4;">
+		    	<div style="text-align: center;">
+		    	滇ICP备13005090号/ --><!-- 技术支持电话：023-67301290
+		    	</div>
+		    </div> -->
+		    
+		    <!-- 左侧帮助区 -->
+		    <div id="helpDiv" data-options="region:'west',split:false,border:false" style="width:150px;">
+		    	<div id="helpGreatDiv" class="easyui-accordion" data-options="fit:true,animate:false,selected:100">
+				</div>
+		    </div>
+		    
+		    <div data-options="region:'center',split:false,border:false" 
+		    style="padding-left: 5px;background-image: url(../image/login/bg.jpg);
+		    background-repeat:repeat-x;background-color:#cce8f4;">
+		    
+			    <div class="easyui-layout" data-options="fit:true,border:false">
+				    <div data-options="region:'north',border:false"
+				    style="height:30px;background-image: url(../image/login/bg.jpg);
+				    background-repeat:repeat-x;background-color:#cce8f4;">
+					    <div style="width:400px;overflow:hidden;white-space:nowrap;
+					    float: left;">
+					    	<div>
+					    		<font style="font-size: 20px;font-family:Microsoft YaHei;font-weight: 900;" >出行预约协同系统</font>
+							</div>
+					    </div>   
+					    <div style="float:left ; 
+					    display: block;height: 20px;width:150px;margin-top: 5px;">
+							<div style="text-align: center;overflow:hidden;white-space:nowrap;float: left;">
+								<a id="safeQuitButton" href="javascript:void(0);" style="text-decoration: none;">安全退出</a> |
+								<font style="margin-left: 30px;overflow: hidden;white-space: nowrap;">当前用户：</font>
+								<font id="currentUser"></font>
+							</div>
+							<div style="display: none;">
+								<input type="hidden" id="currentUsername"/>
+							</div>
+					    </div>
+					    <div style="float:right;margin-top: 5px;">沪ICP备14042262号-1</div>
+				    </div>
+			    
+				    <div id="operState" data-options="region:'center',border:false" style="background:#eee;">
+				    	<div id="centerContentTabs" class="easyui-tabs" data-options="fit:true,border:false">
+						</div>
+						<div id="promptDiv" style="position:fixed;top:75px;width:95%;
+				    	opacity:0.5; filter:alpha(opacity=50);">
+				    		<div style="width:95%;position: absolute;">
+								<div style="margin-top: 10px;">
+								
+								 	<font style="font-family: cursive;font-size: 50px;
+								 	font-style: oblique;font-weight: 600;color: blue;
+								 	">
+									 	尊敬的用户，欢迎您！<br />
+									 	我们推荐的浏览器是：<br />
+								 	</font>
+								</div>
+								<div style="display: block;width: 90%;margin-left: 50px;">
+									<font style="font-family:Microsoft YaHei;font-size: 50px;
+								 	font-weight: 600;color: blue;
+								 	">
+									 	Mozilla FireFox(火狐)
+								 	</font>
+								</div>
+								<div style="margin-top: 10px;">
+								
+								 	<font style="font-family: cursive;font-size: 50px;
+								 	font-style: oblique;font-weight: 600;color: blue;
+								 	">
+									 	另外，下列浏览器我们也做了适配<br/>
+								 	</font>
+								</div>
+								<div style="display: block;width: 90%;margin-left: 50px;">
+									<font style="font-family:Microsoft YaHei;font-size: 50px;
+								 	font-weight: 600;color: blue;
+								 	">
+									 	谷歌浏览器
+								 	</font>
+								</div>
+								<div style="display: block;width: 90%;margin-left: 50px;">
+									<font style="font-family:Microsoft YaHei;font-size: 50px;
+								 	font-weight: 600;color: blue;
+								 	">
+									 	IE9
+								 	</font>
+								</div>
+								<div style="display: block;width: 90%;margin-left: 50px;">
+									<font style="font-family:Microsoft YaHei;font-size: 50px;
+								 	font-weight: 600;color: blue;
+								 	">
+									 	360安全浏览器
+								 	</font>
+								</div>
+				    		</div>
+						</div>
+				    </div>
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div id="remarkTopDialogDiv">
+		<div id="remarkTopDiv">
+  				<div><span id="remarkTop" style="color: blue;"></span></div>
+  		</div>
+  	</div>
+</body>
+</html>

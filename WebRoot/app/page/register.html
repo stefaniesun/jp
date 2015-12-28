@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>立即注册</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<style>
+		.area {
+			margin: 20px auto 0px auto;
+		}
+		.mui-input-group {
+			margin-top: 10px;
+		}
+		.mui-input-group:first-child {
+			margin-top: 20px;
+		}
+		.mui-input-group label {
+			width: 40%;
+		}
+		.mui-input-row label~input,
+		.mui-input-row label~select,
+		.mui-input-row label~textarea {
+			width: 60%;
+		}
+		.mui-checkbox input[type=checkbox],
+		.mui-radio input[type=radio] {
+			top: 6px;
+		}
+		.mui-content-padded {
+			margin-top: 25px;
+		}
+		.mui-btn {
+			padding: 10px;
+		}
+		.link-area {
+			display: block;
+			margin-top: 25px;
+			text-align: center;
+		}
+		.spliter {
+			color: #bbb;
+			padding: 0px 8px;
+		}
+		.oauth-area {
+			position: absolute;
+			bottom: 20px;
+			left: 0px;
+			text-align: center;
+			width: 100%;
+			padding: 0px;
+			margin: 0px;
+		}
+		.oauth-area .oauth-btn {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background-size: 30px 30px;
+			background-position: center center;
+			background-repeat: no-repeat;
+			margin: 0px 20px;
+			/*-webkit-filter: grayscale(100%); */
+			
+			border: solid 1px #ddd;
+			border-radius: 25px;
+		}
+		.oauth-area .oauth-btn:active {
+			border: solid 1px #aaa;
+		}
+		.yzm_btn{
+			position:absolute;
+			right:2px;
+			top: 4px;
+			font-size: 10px;;
+		}
+		.validateCode .mui-input-clear~.mui-icon-clear{
+			right: 86px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">立即注册</h1>
+	</header>
+	<div class="mui-content">
+		<div id="setup1">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input id='phoneNum' type="text" class="mui-input-clear mui-input" placeholder="请输入手机号">
+				</div>
+				<div class="mui-input-row validateCode">
+					<label>验证码</label>
+					<input id='validateCode' type="text" class="mui-input-clear mui-input" placeholder="验证码">
+					<button type="button" class="yzm_btn" id="sendValidateCodeBtn" data-isDisabled="true">发送验证码</button>
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='nextSetupBtn' class="mui-btn mui-btn-block mui-btn-primary">下一步</button>
+			</div>
+		</div>
+		<div id="setup2" style="display:none;">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号</label>
+					<label id="account"></label>
+				</div>
+				<div class="mui-input-row">
+					<label>输入密码</label>
+					<input id='password' type="password" class="mui-input-password mui-input" placeholder="请输入密码">
+				</div>
+				<div class="mui-input-row">
+					<label>重复密码</label>
+					<input id='repassword' type="password" class="mui-input-password mui-input" placeholder="请重复输入密码">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='registerBtn' class="mui-btn mui-btn-block mui-btn-primary">立即注册</button>
+			</div>
+		</div>
+	</div>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.md5.js"></script>
+	<script type="text/javascript" src="../js/xyzCommon.js"></script>
+	<script type="text/javascript">
+	mui.init();
+	//发送验证码
+	xyz.id('sendValidateCodeBtn').addEventListener('tap', function() {
+		var isDisabled = this.getAttribute("data-isDisabled");
+		if(isDisabled!='true'){
+			return;
+		}
+		var phoneNum = xyz.id("phoneNum").value;
+		if(xyz.isNull(phoneNum)){
+			alert('请填写手机号');
+			return;
+		}
+		if(phoneNum.length!=11){
+			alert('请填写11位正确的手机号码（仅支持中国大陆手机号）');
+			return;
+		}
+		xyz.ajax({
+			url:'CustomerWS/getRandCode.app',//获取验证码的连接
+			data:{
+				phone:phoneNum
+			},
+			success:function(data){
+				if(data.status==1){
+					//发送成功开始计时30秒后才允许重发
+					window.intervalTimeIndex = 0;
+					window.intervalIndex = setInterval("intervalFuc()", 1000);
+					mui.toast("验证码已发送，注意查收");
+					//验证码获取成功
+				}else{
+					alert(data.msg);
+				}
+			}
+		});
+	});
+	
+	//控制按钮倒计时
+	function intervalFuc(){
+		intervalTimeIndex++;
+		if(intervalTimeIndex>=60){
+			xyz.id('sendValidateCodeBtn').setAttribute("data-isDisabled","true");
+			xyz.id('sendValidateCodeBtn').innerText="发送验证码";
+			window.clearInterval(window.intervalIndex);
+		}else{
+			xyz.id('sendValidateCodeBtn').innerText="发送验证码（"+(60-window.intervalTimeIndex)+"）";
+			xyz.id('sendValidateCodeBtn').setAttribute("data-isDisabled","false");
+		}
+	}
+	
+	//下一步按钮
+	xyz.id('nextSetupBtn').addEventListener('tap', function() {
+		var phoneNum = xyz.id("phoneNum").value;
+		var validateCode = xyz.id("validateCode").value;
+		if(xyz.isNull(phoneNum)){
+			alert('请填写手机号');
+			return;
+		}
+		if(phoneNum.length!=11){
+			alert('请填写11位正确的手机号码（仅支持中国大陆手机号）');
+			return;
+		}
+		if(xyz.isNull(validateCode)){
+			alert('请填写验证码');
+			return;
+		}
+		xyz.ajax({
+			url:'CustomerWS/verifyRandCode.app',
+			data:{
+				phone:phoneNum,//17091924118
+				randCode:validateCode//126169
+			},
+			success:function(data){
+				if(data.status==1){
+					xyz.id('account').innerText = phoneNum;
+					xyz.id('setup1').style.display='none';
+					xyz.id('setup2').style.display='block';
+				}else{
+					alert(data.msg);
+				}
+			}
+		});
+	});
+	
+	//注册
+	xyz.id('registerBtn').addEventListener('tap', function() {
+		var username = xyz.id('account').innerText;
+		var password = xyz.id('password').value;
+		var repassword = xyz.id('repassword').value;
+		if(xyz.isNull(username)){
+			alert('账号不能为空');
+			return;
+		}
+		if(xyz.isNull(password)){
+			alert('密码不能为空');
+			return;
+		}
+		if(xyz.isNull(repassword)){
+			alert('重复密码不能为空');
+			return;
+		}
+		if(password.length<3 || password.length>16){
+			alert('密码需要3到16为字符');
+			return;
+		}
+		if(password!=repassword){
+			alert('两次输入的密码不匹配');
+			return;
+		}
+		var md5password = md5(password).substr(8,16);
+		xyz.ajax({
+			url:'CustomerWS/register.app',
+			data:{
+				phone:username,
+				password:md5password
+			},
+			success:function(data){
+				if(data.status==1){
+					mui.toast("注册成功");
+					mui.back();
+				}else{
+					alert(data.msg);
+				}
+			}
+		});
+	});
+	mui.plusReady(function(){
+		//仅支持竖屏显示
+		plus.screen.lockOrientation("portrait-primary");
+	});
+	</script>
+</body>
+</html>
