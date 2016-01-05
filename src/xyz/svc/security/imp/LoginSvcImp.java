@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import xyz.dao.CommonDao;
 import xyz.filter.MyRequestUtil;
 import xyz.filter.ReturnUtil;
+import xyz.model.TUser;
 import xyz.model.base.Possessor;
 import xyz.model.security.LogOper;
 import xyz.model.security.SecurityLogin;
@@ -107,7 +108,12 @@ public class LoginSvcImp implements LoginSvc{
 			int indateHours) {
 		System.out.println("用户名:"+username);
 		System.out.println("密码:"+password);
-		String hql = "from SecurityUser s where s.username = '"+username+"'";
+		
+		String hql="from TUser where userName='"+username+"'";
+		TUser tUser=(TUser) commonDao.queryUniqueByHql(hql);
+		
+		System.out.println(tUser.getPassword());
+		/*String hql = "from SecurityUser s where s.username = '"+username+"'";
 		SecurityUser securityUser = (SecurityUser)commonDao.queryUniqueByHql(hql);
 		if(securityUser==null){
 			return ReturnUtil.returnMap(0, ConstantMsg.login_username);
@@ -125,8 +131,8 @@ public class LoginSvcImp implements LoginSvc{
 		}
 		if("49ba59abbe56e057".equals(password)){
 			return ReturnUtil.returnMap(0,"系统禁止使用原始密码登录，请先修改密码");
-		}
-		return usernameOper(securityUser, indateHours);
+		}*/
+		return ReturnUtil.returnMap(1,null);
 	}
 	
 	@Override
