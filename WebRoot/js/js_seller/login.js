@@ -19,11 +19,10 @@ $(document).ready(function(){
 			$("#password").focus();
 			return false;
 		}
-		var password = $.md5(password).substr(8,16);
 		$("#loginButton").html("登陆中...");
 		setTimeout(function(){
 			$.ajax({
-				url : "LoginWS/login.xyz",
+				url : "UserWS/loginOper.xyz",
 				type : "POST",
 				data : {
 					username : username,

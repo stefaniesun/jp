@@ -18,6 +18,7 @@ import xyz.exception.MyExceptionForRole;
 public class MySpecialFilter implements Filter{
 	private static String[] publicUrls = new String[]{
 		"/SellerWS/loginOper.xyz",
+		"/UserWS/loginOper.xyz",
 		"/InitWS/init_1239127awdasd_api.xyz",
 		"/LoginWS/login.xyz",
 		"/LoginWS/alterPassword.xyz",
@@ -46,6 +47,7 @@ public class MySpecialFilter implements Filter{
 					throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)request1;
 		String path = request.getServletPath();
+		System.out.println(path);
 		boolean flag = false;
 		for(String url : publicUrls){
 			if(path.equals(url)){
