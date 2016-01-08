@@ -19,18 +19,8 @@ public class MySpecialFilter implements Filter{
 	private static String[] publicUrls = new String[]{
 		"/SellerWS/loginOper.xyz",
 		"/UserWS/loginOper.xyz",
+		"/UserWS/logout.xyz",
 		"/InitWS/init_1239127awdasd_api.xyz",
-		"/LoginWS/login.xyz",
-		"/LoginWS/alterPassword.xyz",
-		"/BuyerScenicWS/queryScenicList.app",
-		"/BuyerHotelWS/queryHotelList.app",
-		"/CustomerWS/login.app",
-		"/CustomerWS/decideLogin.app",
-		"/CustomerWS/exit.app",
-		"/CustomerWS/getRandCode.app",
-		"/CustomerWS/verifyRandCode.app",
-		"/CustomerWS/register.app",
-		"/CustomerWS/alterPassword.app",
 		"/CustomerWS/recoverPassword.app",
 	};
 	

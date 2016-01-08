@@ -22,7 +22,7 @@ public class ReturnUtil {
 		}else{
 			map.put(Constant.result_status, 0);
 			if(object!=null){
-				map.put(Constant.result_msg,"操作失败："+object.toString());
+				map.put(Constant.result_msg,object.toString());
 			}
 			if(TransactionSynchronizationManager.getCurrentTransactionName()!=null){
 				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

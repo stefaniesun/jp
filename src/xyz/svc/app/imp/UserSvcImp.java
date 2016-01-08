@@ -29,28 +29,14 @@ public class UserSvcImp implements UserSvc {
 		}
 		String passwordSe = EncryptionUtil.md5(password);
 		if(!passwordSe.equals(user.getPassword())){
-			return ReturnUtil.returnMap(0, "登陆密码正确");
+			return ReturnUtil.returnMap(0, "登陆密码不正确");
 		}
-		/*String hql = "from SecurityUser s where s.username = '"+username+"'";
-		SecurityUser securityUser = (SecurityUser)commonDao.queryUniqueByHql(hql);
-		if(securityUser==null){
-			return ReturnUtil.returnMap(0, ConstantMsg.login_username);
-		}
-		String passwordSe = EncryptionUtil.md5(password+"{"+username+"}");
-		if(!passwordSe.equals(securityUser.getPassword())){
-			return ReturnUtil.returnMap(0, ConstantMsg.login_password);
-		}
-		if(securityUser.getEnabled()!=1){
-			return ReturnUtil.returnMap(0, ConstantMsg.login_enabled);
-		}
-		if(securityUser.getIsRepeat()==0){
-			hql = "delete SecurityLogin s where s.username = '"+securityUser.getUsername()+"'";
-			commonDao.updateByHql(hql);
-		}
-		if("49ba59abbe56e057".equals(password)){
-			return ReturnUtil.returnMap(0,"系统禁止使用原始密码登录，请先修改密码");
-		}*/
-		return ReturnUtil.returnMap(1,null);
+		return ReturnUtil.returnMap(1,user);
+	}
+
+	@Override
+	public Map<String, Object> logout(String username) {
+		return ReturnUtil.returnMap(1,0);
 	}
 
 }

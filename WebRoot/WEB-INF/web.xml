@@ -11,7 +11,7 @@
   -->
   <context-param>  
        <param-name>webAppRootKey</param-name>  
-       <param-value>webapp.xztrip</param-value>
+       <param-value>webapp.Jp</param-value>
   </context-param>
   <context-param>
     <param-name>contextConfigLocation</param-name>

@@ -22,4 +22,11 @@ public class UserWS {
 	public Map<String, Object> loginOper(String username,String password){
 		return userSvc.loginOper(username,password);
 	}
+	
+	
+	@RequestMapping(value="logout")
+	@ResponseBody
+	public Map<String, Object> logout(String username){
+		return userSvc.logout(username);
+	}
 }

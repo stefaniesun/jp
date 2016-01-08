@@ -24,6 +24,10 @@ public class TUser {
 	
 	@Column(name="Pass")
 	private String password;
+	
+	@Column(name="NickName")
+	private String nickName;
+	
 
 	public int getUserID() {
 		return userID;
@@ -47,6 +51,14 @@ public class TUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	

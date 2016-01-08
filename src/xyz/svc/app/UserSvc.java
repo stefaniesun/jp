@@ -9,4 +9,6 @@ public interface UserSvc {
 
 	Map<String, Object> loginOper(String username, String password);
 
+	Map<String, Object> logout(String username);
+
 }
