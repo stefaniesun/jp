@@ -149,7 +149,7 @@ function xyzAjax(p){
 
 function xyzGetFullUrl(url){
 	var port = window.location.port==""?"":":"+window.location.port;
-	var targetServer = window.location.protocol+"//"+window.location.hostname+port+"/xztrip/";
+	var targetServer = window.location.protocol+"//"+window.location.hostname+port+"/Jp/";
 	return targetServer+url;
 };
 

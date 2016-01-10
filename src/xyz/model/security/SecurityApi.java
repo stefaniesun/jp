@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="Security_api",
+@Table(name="security_api",
 	uniqueConstraints = {
 		@UniqueConstraint(columnNames={"function","name_cn"})
 	})

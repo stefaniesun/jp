@@ -17,6 +17,7 @@ import xyz.exception.MyExceptionForRole;
 @Component
 public class MySpecialFilter implements Filter{
 	private static String[] publicUrls = new String[]{
+		"/LoginWS/login.xyz",
 		"/SellerWS/loginOper.xyz",
 		"/UserWS/loginOper.xyz",
 		"/UserWS/logout.xyz",

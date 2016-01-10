@@ -5,7 +5,15 @@
 
 <hibernate-configuration>
 	<session-factory>
-			<mapping class="xyz.model.TUser"></mapping>
+		<!-- 	<mapping class="xyz.model.TUser"></mapping> -->
+		
+		<mapping class="xyz.model.security.SecurityUser"></mapping>
+		<mapping class="xyz.model.security.SecurityApi"></mapping>
+		<mapping class="xyz.model.security.SecurityFunction"></mapping>
+		<mapping class="xyz.model.security.SecurityLogin"></mapping>
+		<mapping class="xyz.model.security.LogOper"></mapping>
+		<mapping class="xyz.model.security.SecurityPosition"></mapping>
+		<mapping class="xyz.model.security.SecurityPositionButton"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>
