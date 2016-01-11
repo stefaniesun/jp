@@ -1,0 +1,256 @@
+.login_box {background-color:#FFFFFF; display:inline-block;padding:0 20px; width: 530px; margin:15px 0;}
+.login_box a {color: #FFB851;}
+.login_box .BoxL {border-right:1px solid #DDDDDD; float: left;width: 315px;}
+.login_box .BoxR {float: left; padding:0; width: 207px;}
+.login_box .BoxL .errinfo {background: url("http://misc1.techan.com/public/images/loginBox_btn.gif") no-repeat scroll -180px 0 rgba(0, 0, 0, 0); color: #FF0000; font-weight: bold;height: 40px;padding: 9px 0 0 29px; position: absolute;width: 227px;}
+.hide {display: none;}
+.login_box .BoxL .ztit {color: #333333; font-size: 12px; font-style: normal;font-weight: normal;height: 45px;line-height: 1.8em;}
+.login_box .BoxL .ztit strong {font-size: 18px;}
+.login_box .BoxL .L1 {height: 32px; padding:15px 0 0 0;}
+.login_box .BoxL .L1 input {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none; -moz-border-top-colors: none; border:1px solid #ddd; color:#666;font: 14px/30px Verdana,"Microsoft Yahei"; height:30px;padding:0 10px; width: 248px;}
+.login_box .BoxL .L2 {height:30px;padding:20px 0 0 0;}
+.login_box .BoxL .L2 .c_R,.login_box .BoxL .L2 .c_L,.login_box .BoxL .L2 .getpassword{ display:inline-block; float:left; padding:0 13px 0 0;line-height:25px;font-weight: normal; font-size:13px;}  
+.login_box .BoxL .L2 .c_L {}
+.login_box .BoxL .L2 .c_R {color: #AAAAAA;}
+.login_box .BoxL .L2 input {margin-right: 5px; vertical-align: middle;}
+.login_box .BoxL .L2 .loginBtn {background: url("http://misc1.techan.com/public/images/loginBox_btn.gif") no-repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    height: 26px;
+    line-height: 200px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -9999px;
+    width: 62px;
+}
+.login_box .BoxL .L2 .regBtn{
+	background: url("http://misc1.techan.com/public/images/loginBox_btn.gif") no-repeat scroll -78px 0;
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    line-height: 200px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -9999px;
+    width: 94px;
+}
+.login_box .BoxL .L2 .loginBtn:hover {
+    background-position: 0 -50px;
+}
+.login_box .BoxL .L2 .regBtn:hover {
+    background-position: -78px -50px;
+}
+.login_box .BoxL .L2 lable {
+    border: 0 none;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+}
+.login_box .BoxL .L2 a.getpassword {
+    font-weight: normal;
+    margin-left: 3px;
+}
+.login_box .BoxL .L2 .getpassword {
+    font-size: 12px;
+
+}
+.login_box .BoxL .L3 {
+    height: 45px;
+    padding-top: 19px;
+}
+.login_box .BoxL .L3 input {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #AAAAAA #DDDDDD #DDDDDD #AAAAAA;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #999999;
+    font: 12px/22px Verdana,"Microsoft Yahei";
+    height: 23px;
+    padding: 2px 0 0 5px;
+    width: 70px;
+}
+.login_box .BoxR .Reg {
+    color: #333333;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    height: 28px;
+    padding: 10px 0 0 35px;
+}
+.login_box .BoxR .ztit {
+    color: #333333;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    height: 28px;
+    padding: 15px 0 10px 35px;
+}
+.login_box .BoxR .Connect {
+    padding-left: 35px;
+}
+.login_box .BoxR .Connect a {
+    border: 1px solid #D7D7D7;
+    border-radius: 3px;
+    color: #999999;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 23px;
+    line-height: 23px;
+    margin: 0 8px 10px 0;
+    padding: 0 5px 0 22px;
+    width: 50px;
+}
+.login_box .BoxR .Connect a:hover {
+    border: 1px solid #E58A00;
+    color: #E58A00;
+    text-decoration: none;
+}
+.login_box .BoxR .Connect a.sina {
+    background: url("http://misc1.techan.com/public/images/ico_sina.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.qq {
+    background: url("http://misc1.techan.com/public/images/ico_qq.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.renren {
+    background: url("http://misc1.techan.com/public/images/xiaoneilogo.png") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.msn {
+    background: url("http://misc1.techan.com/public/images/ico_msn.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.kaixin {
+    background: url("http://misc1.techan.com/public/images/ico_kaixin001.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.sohu {
+    background: url("http://misc1.techan.com/public/images/ico_sohu.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .Connect a.anquan {
+    background: url("http://misc1.techan.com/public/images/ico_360.gif") no-repeat scroll 4px 4px rgba(0, 0, 0, 0);
+}
+.login_box .BoxR .connect {
+    padding: 0 0 0 20px;
+}
+.login_box .BoxR .connect a {
+    background-color: #FF9934;
+    border-bottom: 1px solid #FF7F00;
+    border-radius: 2px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 auto 10px;
+    text-align: left;
+    width: 135px;
+}
+.login_box .BoxR .connect a:hover {
+    background-color: #FFBE2F;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.login_box .BoxR .connect a i {
+		background: url("/misc/tc1015/image/lc-icon.png?2") no-repeat scroll 0 0;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    margin: 6px 6px 0 9px;
+    width: 25px;
+}
+.login_box .BoxR .connect a.qq i {
+    background-position: 0 0;
+}
+.login_box .BoxR .connect a.ali i {
+    background-position: 0 -61px;
+}
+.login_box .BoxR .connect a.weibo i {
+    background-position: 0 -21px;
+}
+.login_box .BoxR .connect a.renren i {
+    background-position: 0 -42px;
+}
+.login_box .BoxR .rBtn {
+    color: #999999;
+    font-weight: normal;
+    padding: 0 0 0 45px;
+}
+.login_box .BoxR .rBtn a {
+    background: url("http://misc1.techan.com/public/images/loginBox_btn.gif") no-repeat scroll -79px 0 rgba(0, 0, 0, 0);
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 100px;
+    overflow: hidden;
+    width: 92px;
+}
+.login_box .BoxR .rBtn a:hover {
+    background-position: -79px -50px;
+}
+.login_box .BoxR .rBtn2 {
+    clear: both;
+    color: #999999;
+    font-weight: normal;
+    padding: 10px 0 0 45px;
+}
+.login_box .BoxR .rBtn2 a {
+    background: url("http://misc1.techan.com/public/images/c_sina2.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    float: left;
+    height: 25px;
+    line-height: 100px;
+    overflow: hidden;
+    width: 92px;
+}
+/*意见反馈*/
+#huifu a{
+	background-color:#47BD1F;
+	border:0 none;
+	border-radius:5px;
+	color:#FFFFFF;
+	display:inline-block;
+	font-size:14px;
+	font-weight:bold;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	width:78px;
+}
+#huifu a:hover{
+	background-color:#060;
+	text-decoration:none;
+}
+#messageFeedback{
+	border:1px solid #aebacd;
+	font-size:14px;height:150px;
+	line-height:20px;
+	margin-bottom:10px;
+	padding:4px;
+	resize:none;
+	width:560px;
+	color:#666
+}
+#msg{
+	color:#ff0000;
+	margin-left:20px;
+	font-size:14px;
+}
+#yijian{ 
+	color:#333333; 
+	font-style:normal;
+	line-height:1.8em;
+	font-weight:bold;
+}
+#FeedDesc{
+	color:#666666;
+	font-size:14px;
+	font-weight:normal;
+	line-height:24px;
+	padding:8px 0 1px;
+}

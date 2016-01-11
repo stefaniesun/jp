@@ -1,0 +1,84 @@
+.searchBtn,
+.cartNum a,
+.navMenu h3,
+.navList ul em{background-image:url(../image/header.gif);}
+
+.top{background:#F4F4F4;color:#999;height:40px;line-height:40px;font-size:12px;overflow:hidden;}
+.top a:link,
+.top a:visited{color:#999;margin:0 10px;font-size:12px;}
+.top a:hover{color:#333;}
+.top .fl{font-size:12px;}
+.top .fr{color:#DDD;}
+.header{height:110px;}
+.logo:link,
+.logo:visited{float:left;display:block;outline:none;width:400px;height:110px;text-indent:-9999px;background:url(../image/logo/default.gif);}
+
+.searchForm{float:right;border:2px solid #DDD;width:360px;height:36px;margin-top:35px;}
+.searchFormFocus{border:2px solid #CCC;}
+.searchFormFocus .searchBtn{background-color:#F4F4F4;background-position:-40px 0;}
+.searchInput{float:left;border:0;width:300px;height:36px;line-height:36px;padding:0 10px;outline:none;}
+.searchBtn{float:right;width:40px;height:36px;border:none;cursor:pointer;background-color:#FFF;transition:all 0.2s;-moz-transition:all 0.2s;-webkit-transition:all 0.2s;-o-transition:all 0.2s;}
+.searchBtn:hover{background-color:#EEE;background-position:-40px 0;}
+
+.cart{float:right;margin-left:30px;margin-top:35px;position:relative;z-index:998;}
+.cartNum a:link,
+.cartNum a:visited{float:left;color:#FFF;display:block;padding-right:20px;height:36px;line-height:36px;background-color:#FF9934;text-indent:50px;font-size:14px;background-position:0 -40px;border:2px solid #FF9934;position:relative;top:0;right:0;z-index:999;}
+.cartFocus .cartNum a:link,
+.cartFocus .cartNum a:visited{height:38px;color:#FF7F00;background-color:#FFF;border:2px solid #FF7F00;border-bottom:0;background-position:-150px -40px;}
+.cartList{border:2px solid #FF7F00;background:#FFF;position:absolute;width:332px;top:38px;right:0;z-index:998;display:none;padding:20px;color:#999;}
+.cartList p{text-align:center;font-size:12px;}
+.cartList li{border-bottom:1px solid #EEE;clear:both;height:66px;overflow:hidden;padding:6px 6px 0 6px;}
+.cartList li img{float:left;width:60px;height:60px;}
+.cartList li h4{width:130px;float:left;line-height:20px;margin:8px 0 0 5px;height:40px;overflow:hidden;}
+.cartList li h4 a:link,
+.cartList li h4 a:visited{font-size:12px;font-weight:normal;}
+.cartList li h4 a:hover{color:#FF7F00}
+.cartList li span{float:left;font-size:12px;width:90px;line-height:22px;margin:8px 0 0 5px;height:40px;overflow:hidden;text-align:right;}
+.cartList li em{float:right;width:20px;margin:8px 0 0 0;text-align:right;}
+.cartTotal{clear:both;margin-top:16px;*margin-top:12px;height:40px;overflow:hidden;}
+.cartTotal span{float:left;clear:both;font-size:12px;color:#999;line-height:20px;}
+.cartTotal span strong{display:block;clear:both;font-size:12px;color:#333;}
+.cartTotal span strong em{color:#FF7F00;font-size:12px;}
+.cartBtn:link,
+.cartBtn:visited{float:right;display:block;text-align:center;width:150px;height:35px;line-height:35px;background:#FF9934;color:#FFF;margin:auto;margin-top:2px;}
+.cartBtn:hover{background:#FF7F00;}
+
+.nav{background:#1AC14B;height:45px;}
+.navMenu{float:left;position:relative;z-index:999;}
+.navMenu h3{width:200px;background-color:#17B043;height:45px;font-weight:normal;line-height:45px;font-size:18px;color:#FFF;padding:0 20px;background-position:490px -80px;cursor:pointer;transition:all 0.2s;-moz-transition:all 0.2s;-webkit-transition:all 0.2s;-o-transition:all 0.2s;}
+.navMenu .navMenuFocus{background-position:490px -125px;background-color:#14A33C;}
+.navTop li{float:left;}
+.navTop li a:link,
+.navTop li a:visited{float:left;display:block;font-size:18px;height:45px;line-height:45px;color:#FFF;padding:0 25px;}
+.navTop li a:hover{background:#18B746}
+
+.navList{position:absolute;left:0;top:45px;border-right:1px solid #DDD;background-color:#FFF;display:none;}
+.navList ul{width:240px;}
+.navList ul li{float:left;width:223px;height:66px;padding:16px 0 0 16px;*padding:13px 0 0 16px;border-bottom:1px solid #DDD;border-left:1px solid #DDD;}
+.navList ul li:hover{background:#F6F6F6;border-left:1px solid #1AC14B;}
+.navList ul em{float:left;display:block;width:24px;height:24px;overflow:hidden;margin-right:5px;}
+.navList ul h4{float:left;margin-top:3px;font-weight:normal;}
+.navList ul h4 a:link,
+.navList ul h4 a:visited{color:#1AC14B;}
+.navList ul p{clear:both;float:left;width:210px;margin-top:3px;height:20px;overflow:hidden;}
+.navList ul p a:link,
+.navList ul p a:visited{color:#888;margin-right:8px;}
+.navList ul p a:hover{color:#666;text-decoration:underline;}
+.navList-1{background-position:0 -175px;}
+.navList-2{background-position:-24px -175px;}
+.navList-3{background-position:-48px -175px;}
+.navList-4{background-position:-72px -175px;}
+.navList-5{background-position:-96px -175px;}
+.navList-6{background-position:-120px -175px;}
+.navList-7{background-position:-144px -175px;}
+
+.navListMore{left:240px;position:absolute;width:400px;background:#FFF;border:1px solid #DDD;display:none;padding-top:20px;-moz-box-shadow:0px 0px 20px rgba(0,0,0,0.2);-webkit-box-shadow:0px 0px 20px rgba(0,0,0,0.2);box-shadow:0px 0px 20px rgba(0,0,0,0.2);}
+.navListMore span{float:left;display:inline-block;float:left;margin:0 20px 15px 20px;}
+.navListMore h5{color:#888;clear:both;text-indent:10px;margin:0 0 10px 0;}
+.navListMore span a:link,
+.navListMore span a:visited{display:block;float:left;padding:0 10px;border-right:1px solid #DDD;margin-bottom:10px;font-size:14px;color:#888;}
+.navListMore span a:hover{color:#666;text-decoration:underline;}
+.navListImg{float:left;margin-top:5px;}
+.navListImg img{float:left;width:400px;}
+.navListMoreT{top:0px;}
+.navListMoreB{bottom:0px;}

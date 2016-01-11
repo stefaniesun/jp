@@ -109,11 +109,8 @@ public class LoginSvcImp implements LoginSvc{
 		System.out.println("用户名:"+username);
 		System.out.println("密码:"+password);
 		
-		String hql="from TUser where userName='"+username+"'";
-		TUser tUser=(TUser) commonDao.queryUniqueByHql(hql);
-		
-		System.out.println(tUser.getPassword());
-		/*String hql = "from SecurityUser s where s.username = '"+username+"'";
+	
+		String hql = "from SecurityUser s where s.username = '"+username+"'";
 		SecurityUser securityUser = (SecurityUser)commonDao.queryUniqueByHql(hql);
 		if(securityUser==null){
 			return ReturnUtil.returnMap(0, ConstantMsg.login_username);
@@ -125,14 +122,12 @@ public class LoginSvcImp implements LoginSvc{
 		if(securityUser.getEnabled()!=1){
 			return ReturnUtil.returnMap(0, ConstantMsg.login_enabled);
 		}
-		if(securityUser.getIsRepeat()==0){
+		if(securityUser.getIsRepeat()==1){
 			hql = "delete SecurityLogin s where s.username = '"+securityUser.getUsername()+"'";
 			commonDao.updateByHql(hql);
 		}
-		if("49ba59abbe56e057".equals(password)){
-			return ReturnUtil.returnMap(0,"系统禁止使用原始密码登录，请先修改密码");
-		}*/
-		return ReturnUtil.returnMap(1,null);
+
+		return usernameOper(securityUser,indateHours);
 	}
 	
 	@Override
@@ -174,6 +169,7 @@ public class LoginSvcImp implements LoginSvc{
 		
 		String apikey = UUIDUtil.getUUIDStringFor32();
 		securityLogin.setApikey(apikey);
+		System.out.println("apikey"+apikey);
 		commonDao.save(securityLogin);
 		
 		return ReturnUtil.returnMap(1,securityLogin);

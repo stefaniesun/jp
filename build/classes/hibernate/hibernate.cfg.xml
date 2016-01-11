@@ -7,6 +7,12 @@
 	<session-factory>
 		<!-- 	<mapping class="xyz.model.TUser"></mapping> -->
 		
+		<mapping class="xyz.model.base.LogWork"></mapping>
+		<mapping class="xyz.model.base.PlanWork"></mapping>
+		<mapping class="xyz.model.base.PlanWorkLog"></mapping>
+		<mapping class="xyz.model.base.Possessor"></mapping>
+		<mapping class="xyz.model.base.Sms"></mapping>
+		
 		<mapping class="xyz.model.security.SecurityUser"></mapping>
 		<mapping class="xyz.model.security.SecurityApi"></mapping>
 		<mapping class="xyz.model.security.SecurityFunction"></mapping>
@@ -14,6 +20,9 @@
 		<mapping class="xyz.model.security.LogOper"></mapping>
 		<mapping class="xyz.model.security.SecurityPosition"></mapping>
 		<mapping class="xyz.model.security.SecurityPositionButton"></mapping>
+		
+		
+		<mapping class="xyz.model.main.Product"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>

@@ -1,0 +1,52 @@
+.footerIcon em,
+.footerInfoIcon a,
+.footerNav ul span a{background-image:url(../image/footer.gif);}
+
+.footer{background:url(../image/footer-bg.gif) no-repeat top center;height:660px;margin-top:20px;}
+.footerIcon{padding-top:200px;height:90px;}
+.footerIcon li{float:left;width:270px;padding-left:30px;}
+.footerIcon h4{float:left;width:190px;color:#1AC14B;font-size:18px;font-weight:normal;margin-top:5px;}
+.footerIcon span{float:left;width:190px;color:#999;}
+.footerIcon em{float:left;display:block;width:52px;height:52px;margin-right:10px;}
+.footerIcon-2{background-position:-52px 0;}
+.footerIcon-3{background-position:-104px 0;}
+.footerIcon-4{background-position:-156px 0;}
+
+.footerNav{border-top:1px solid #DDD;border-bottom:1px solid #DDD;height:195px;}
+.footerNav ul{float:left;width:150px;height:140px;border-right:1px solid #E5E5E5;margin:30px 0 0 30px;_display:inline;line-height:22px;}
+.footerNav ul strong{display:block;_display:inline;margin-bottom:5px;font-size:16px;font-weight:normal;}
+.footerNav ul a:link,
+.footerNav ul a:visited{font-size:12px;color:#999;}
+.footerNav ul a:hover{text-decoration:underline;color:#666;}
+.footerNav ul span a:link,
+.footerNav ul span a:visited{display:block;float:left;width:24px;height:24px;text-indent:-9999px;overflow:hidden;outline:none;margin-right:5px;}
+.footerNavFollow-1{background-position:0 -52px;}
+.footerNavFollow-2{background-position:-24px -52px;}
+.footerNavFollow-3{background-position:-48px -52px;}
+.footerNavFollow-4{background-position:-72px -52px;}
+
+.footerContact{float:left;width:290px;text-align:center;margin-top:30px;}
+.footerContact h4{font-size:27px;font-family:Arial;margin-bottom:5px;}
+.footerContact span{color:#999;}
+.footerContactBtn:link,
+.footerContactBtn:visited{display:block;width:150px;height:35px;line-height:35px;background:#FF9934;color:#FFF;margin:auto;margin-top:10px;}
+.footerContactBtn:hover{background:#FF7F00;}
+
+.footerLink{height:45px;line-height:45px;overflow:hidden;}
+.footerLink ul{height: 20px;margin: 12px 0 0;overflow: hidden;}
+.footerLink ul li{height:22px;line-height:22px;overflow:hidden;}
+.footerLink span{margin-right:30px;color:#666;text-indent:30px;}
+.footerLink span strong{color:#1BC14C;}
+.footerLink a:link,
+.footerLink a:visited{margin-right:10px;font-size:12px;color:#666;}
+.footerLink a:hover{color:#15AB43}
+
+.footerInfo{margin-top:30px;height:140px;text-align:center;color:#999;font-size:12px;}
+.footerInfoIcon{width:585px;height:40px;overflow:hidden;margin:auto;margin-top:20px;}
+.footerInfoIcon a:link,
+.footerInfoIcon a:visited{float:left;margin:0 4px 0 4px;display:block;width:108px;height:40px;text-indent:-9999px;outline:none;}
+.footerInfo-1{background-position:0 -76px;}
+.footerInfo-2{background-position:0 -116px;}
+.footerInfo-3{background-position:0 -156px;}
+.footerInfo-4{background-position:0 -196px;}
+.footerInfo-5{background-position:0 -236px;}
