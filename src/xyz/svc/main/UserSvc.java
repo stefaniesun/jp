@@ -1,4 +1,4 @@
-package xyz.svc.app;
+package xyz.svc.main;
 
 import java.util.Map;
 
@@ -8,7 +8,5 @@ import org.springframework.stereotype.Service;
 public interface UserSvc {
 
 	Map<String, Object> loginOper(String username, String password);
-
-	Map<String, Object> logout(String username);
 
 }

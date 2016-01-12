@@ -1,4 +1,4 @@
-package xyz.model;
+package xyz.model.main;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="TUsers")
-public class TUser {
+public class User {
 
 	
 	@Id

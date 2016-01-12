@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import xyz.dao.CommonDao;
 import xyz.filter.MyRequestUtil;
 import xyz.filter.ReturnUtil;
-import xyz.model.TUser;
 import xyz.model.base.Possessor;
 import xyz.model.security.LogOper;
 import xyz.model.security.SecurityLogin;

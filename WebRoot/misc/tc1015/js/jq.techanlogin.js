@@ -64,14 +64,30 @@ techanuserlogin.dologin = function(e){
 		er.style.display = "block";
         er.innerHTML = '信息处理中...';
 	}
-	var url = 'http://' + techanuserlogin.domain + '/login.html';
+	/*var url = 'http://' + techanuserlogin.domain + '/login.html';
     var data = 'act=signin&username=' + encodeURIComponent(u)
         + '&password=' + encodeURIComponent(p)
         + '&cookietime=' + encodeURIComponent($("input[name='cookietime']").val())
         + '&loginsubmit=1'
         + '&callback=techanuserlogin.cblogin'
         + '&r=' + (new Date().getTime());
-    techanuserlogin.post(url + '?' + data);
+    techanuserlogin.post(url + '?' + data);*/
+    
+    xyzAjax({
+		url : "UserWS/loginOper.web",
+		data : {
+			username:u,
+			password:p
+		},
+		success : function(data) {
+			if(data.status==1){
+				
+			}else{
+				 er.innerHTML = data.msg;
+			      return;
+			}
+		}
+	});
 }
 techanuserlogin.cblogin = function (data) {
     if (data.error == 0) {

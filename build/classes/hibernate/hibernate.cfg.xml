@@ -23,6 +23,7 @@
 		
 		
 		<mapping class="xyz.model.main.Product"></mapping>
+		<mapping class="xyz.model.main.User"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>
