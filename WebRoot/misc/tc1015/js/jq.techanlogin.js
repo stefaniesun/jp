@@ -1,4 +1,3 @@
-/* $Id : jq.techanlogin.js 2014-03-13 09:04:10 zhike $ */
 $(function(){
 	$.prompt.setDefaults({
 		opacity:0.4,
@@ -9,7 +8,7 @@ $(function(){
 
 var techanuserlogin = window.techanuserlogin || function () { };
 
-techanuserlogin.domain = "www.jp6887.com";
+techanuserlogin.domain = "http://localhost:8080/Jp";
 techanuserlogin.doing = false;
 techanuserlogin.$ = function (id) {
     return document.getElementById(id);
@@ -64,15 +63,8 @@ techanuserlogin.dologin = function(e){
 		er.style.display = "block";
         er.innerHTML = '信息处理中...';
 	}
-	/*var url = 'http://' + techanuserlogin.domain + '/login.html';
-    var data = 'act=signin&username=' + encodeURIComponent(u)
-        + '&password=' + encodeURIComponent(p)
-        + '&cookietime=' + encodeURIComponent($("input[name='cookietime']").val())
-        + '&loginsubmit=1'
-        + '&callback=techanuserlogin.cblogin'
-        + '&r=' + (new Date().getTime());
-    techanuserlogin.post(url + '?' + data);*/
-    
+	var url = 'http://localhost:8080/Jp/UserWS/loginOper.web';
+
     xyzAjax({
 		url : "UserWS/loginOper.web",
 		data : {
@@ -81,7 +73,9 @@ techanuserlogin.dologin = function(e){
 		},
 		success : function(data) {
 			if(data.status==1){
-				
+				addCookie("JP_LOGIN_KEY",data.content.apikey,7);
+				addCookie("JP_LOGIN_NAME",data.content.username,7);
+				$.prompt.close(),setTimeout(function(){window.location.reload()},300);
 			}else{
 				 er.innerHTML = data.msg;
 			      return;
@@ -166,7 +160,7 @@ techanuserlogin.post = function (url, callback) {
         if (sc.onload) sc.onload = callback;
         else sc.onreadystatechange = callback;
     }
-    document.body.appendChild(sc);
+    //document.body.appendChild(sc);
 };
 techanuserlogin.changeDoInit = function () {
     var _minibox = $("div.login_box");

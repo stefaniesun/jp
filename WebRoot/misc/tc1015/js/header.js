@@ -1,4 +1,17 @@
 $(function(){
+	var username = getCookie("JP_LOGIN_NAME");
+	if(!xyzIsNull(username)){
+		var html='<a href="/myhome.html" rel="nofollow">我的特产</a>|';
+		html+='<a href="http://www.techan.com/notpayorder.html" rel="nofollow">我的订单</a>|';
+		html+='	<a href="#" id="logout" rel="nofollow">退出</a>';
+		$(".uInfo").html(html);	
+		
+		$("#logout").click(function(){
+			deleteCookie("JP_LOGIN_KEY");
+			deleteCookie("JP_LOGIN_NAME");
+			window.location.href="index.html";
+		});
+	}
 	cartFocus();
 	searchFocus();
 	navListShow();

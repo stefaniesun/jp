@@ -31,8 +31,8 @@ function addCookie(cookieKey,cookieName,days){
 	}
 }
 
-function deleteLoginCookie(){
-	$.cookie('XZTRIP_LOGIN_KEY',null,
+function deleteCookie(key){
+	$.cookie(key,null,
 		{
 			path : '/'
 		}

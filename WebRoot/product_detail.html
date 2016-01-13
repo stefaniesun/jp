@@ -10,32 +10,14 @@
 <link href="misc/tc1015/css/impromptu.css" rel="stylesheet" type="text/css" />
 <link href="misc/tc1015/css/loginbox.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/library/common/common.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/global.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/header.js"></script>
 </head>
 <body>
-<div class="top">
-	<div class="wrap">
-		<div class="fl">您好,欢迎光临聚派商城！</div>
-		<div class="fr uInfo">	<a class="login" href="javascript:;" rel="nofollow">登录</a>|<a class="reg" href="javascript:;" rel="nofollow">注册</a>
-</div>
-	</div>
-</div>
-<div class="wrap header">
-	<a href="/" class="logo">特产优联</a>
-	<div class="cart">
-		<div class="cartNum"><a href="/showcart.html">购物车 (0)</a></div>
-		<div class="cartList">
-			<p id="cartloading"><img src='/themes/techan/pic/trend-loading.gif' /></p>
-		</div>
-	</div>
-	<div class="search">
-		<form class="searchForm" id="searchForm" action="/plugins/newSearchAction.php" method="get">
-			<input name="keywords" id="searchKey" type="text" value="" placeholder="请输入关键字，如：牛轧糖" class="searchInput" />
-			<input name="" type="submit" class="searchBtn" value="" />
-		</form>
-	</div>
-</div>
+
+  <!--#include virtual="header.html"-->
+
 <div class="wrap nav">
 	<div class="navMenu hide">
 		<h3>所有商品分类</h3>
@@ -549,57 +531,11 @@
 		</ul>
 	</div>
 </div>
-<div class="wrap footer">
-	<ul class="footerIcon">
-		<li><em class="footerIcon-1"></em><h4>100%原产地直采</h4><span>确保产品的原汁原味</span></li>
-		<li><em class="footerIcon-2"></em><h4>严筛精选 品质保证</h4><span>用心为您挑选产品</span></li>
-		<li><em class="footerIcon-3"></em><h4>七天免费退换货</h4><span>网购不再有任何担忧</span></li>
-		<li><em class="footerIcon-4"></em><h4>7x9小时在线客服</h4><span>为您提供优质售后保证</span></li>
-	</ul>
-	<div class="footerNav">
-		<ul>
-			<li><strong>购物保障</strong></li>
-			<li><a target="_blank" href="http://www.techan.com/help/57.html">商品退换货流程</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/58.html">退换货政策</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/48.html">条款承诺</a></li>
-		</ul>
-		<ul>
-			<li><strong>新手上路</strong></li>
-			<li><a target="_blank" href="http://www.techan.com/help/9.html">新用户注册</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/10.html">用户登录</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/11.html">找回密码</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/9.html">帮助中心</a></li>
-		</ul>
-		<ul>
-			<li><strong>物流配送</strong></li>
-			<li><a target="_blank" href="http://www.techan.com/help/22.html">配送标准</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/55.html">包裹查询</a></li>
-			<li><a target="_blank" href="http://www.techan.com/help/56.html">送货方式</a></li>
-		</ul>
-		<ul>
-			<li><strong>关于我们</strong></li>
-			<li><a target="_blank" href="http://www.techan.com/article/52.html">关于特产优联</a></li>
-			<li><a target="_blank" href="http://www.techan.com/article/cat-18.html">联系我们</a></li>
-			<li><a target="_blank" href="http://www.techan.com/article/cat-19.html">诚聘英才</a></li>
-			<li><a target="_blank" href="http://www.techan.com/join.html">市场合作</a></li>
-		</ul>
-		<ul>
-			<li><strong>关注我们</strong></li>
-			<li style="margin: 10px 50px 0px 0px; float: left;">
-				<span><img alt="特产优联手机端" src="/misc/tc1015/upfiles/Mtechan.gif"></span>
-			</li>
-		</ul>
-		<div class="footerContact">
-			<h4>4000-200-666</h4>
-			<span>周一至周五 9:00-18:00<br />（仅收市话费）</span>
-			<a href="javascript:;" onclick="javascript:window.open('http://p.qiao.baidu.com//im/index?siteid=7989233&ucid=8095678', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" class="footerContactBtn">咨询在线客服</a>
-		</div>
-	</div>
-	<div class="footerInfo">
-		Copyright © 2006-2013渝ICP备15004338号-1
-	</div>
-</div>
-<div style="display:none;"><script src="http://s5.cnzz.com/stat.php?id=1929781&web_id=1929781" language="JavaScript"></script><script src="http://s23.cnzz.com/stat.php?id=5826425&web_id=5826425" language="JavaScript"></script></div>
+
+
+  <!--#include virtual="footer.html"-->
+
+
 <script type="text/javascript">
 $(function(){
 	var a = $(".itemCommentInfo");
