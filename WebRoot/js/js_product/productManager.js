@@ -88,8 +88,8 @@ function addProductButton(title){
 		title : title,
 	    href : '../jsp_product/addProduct.html',
 	    fit:false,
-	    height:300,
-	    width:600,
+	    height:700,
+	    width:800,
 	    buttons:[{
 			text:'确定',
 			handler:function(){

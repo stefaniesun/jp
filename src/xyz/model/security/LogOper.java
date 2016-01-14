@@ -38,7 +38,7 @@ public class LogOper {
 	@Column(name="flag_result")
 	private int flagResult;//结果
 	
-	@Column(name="data_content",length=20000)
+	@Column(name="data_content",length=8000)
 	private String dataContent;//内容
 	
 	@Column(name="add_date")

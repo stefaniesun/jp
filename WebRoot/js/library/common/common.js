@@ -153,4 +153,10 @@ function xyzGetFullUrl(url){
 	return targetServer+url;
 };
 
+function xyzLogout(){
+	deleteCookie("JP_LOGIN_KEY");
+	deleteCookie("JP_LOGIN_NAME");
+	window.location.href="index.html";
+}
+
 

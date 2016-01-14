@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import xyz.dao.CommonDao;
+import xyz.filter.MyRequestUtil;
 import xyz.filter.ReturnUtil;
 import xyz.model.main.User;
 import xyz.model.member.XyzSessionLogin;
@@ -45,6 +46,26 @@ public class UserSvcImp implements UserSvc {
 		XyzSessionUtil.logins.put(apikey, xyzSessionLogin);
 		
 		return ReturnUtil.returnMap(1, xyzSessionLogin);
+	}
+
+	@Override
+	public Map<String, Object> editPassword(String oldPassword,
+			String newPassword) {
+		XyzSessionLogin xyzSessionLogin = MyRequestUtil.getXyzSessionLogin();
+		
+		String passwordSe = EncryptionUtil.md5(oldPassword);
+
+		String hql ="from User  where username='"+xyzSessionLogin.getUsername()+"' and password='"+passwordSe+"'";
+		User user =  (User) commonDao.queryUniqueByHql(hql);
+		if(user==null){
+			return ReturnUtil.returnMap(0,"旧密码错误");
+		}
+		
+		String newPasswordSe = EncryptionUtil.md5(newPassword);
+		user.setPassword(newPasswordSe);
+		commonDao.save(user);
+		
+		return ReturnUtil.returnMap(1,null);
 	}
 
 }

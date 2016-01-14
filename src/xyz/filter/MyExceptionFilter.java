@@ -79,7 +79,11 @@ public class MyExceptionFilter implements Filter{
 				isAjax = true;
 			}
 			if (isAjax) {
-				map.put(Constant.result_status, 0);
+				if(exString.contains("MyExceptionForLogin")){
+					map.put(Constant.result_status, -1);
+				}else{
+					map.put(Constant.result_status, 0);
+				}
 				PrintWriter pw = null;
 				try {
 					if(response!=null){

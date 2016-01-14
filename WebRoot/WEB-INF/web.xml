@@ -84,6 +84,16 @@
     <filter-name>myLoginFilter</filter-name>
     <url-pattern>*.rar</url-pattern>
   </filter-mapping>
+  
+  
+  <filter>
+  	<filter-name>myLoginCustomerFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+   <filter-mapping>
+    <filter-name>myLoginCustomerFilter</filter-name>
+    <url-pattern>*.cus</url-pattern>
+  </filter-mapping>
 
   <!-- 同一个request只有一个session，且在进service事务之前就主动打开一个session模式,g所以配置此项后可以支持jsp中查询数据库 -->
   <!-- <filter>
@@ -165,6 +175,10 @@
   	<servlet-mapping>
     	<servlet-name>springmvc</servlet-name>
     	<url-pattern>*.web</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>springmvc</servlet-name>
+    	<url-pattern>*.cus</url-pattern>
   	</servlet-mapping>
   	
   	<servlet-mapping>

@@ -4,6 +4,7 @@ package xyz.exception;
 public class MyExceptionForLogin extends RuntimeException{
 	private static final long serialVersionUID = -4606084306118628275L;
 	private String  message;
+	private int value=0;
 	public MyExceptionForLogin(){
 		this.message = "请重新登录！";
 	}

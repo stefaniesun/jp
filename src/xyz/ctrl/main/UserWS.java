@@ -26,4 +26,14 @@ public class UserWS {
 	public Map<String,Object> loginOper(String username,String password){
 		return userSvc.loginOper(username,password);
 	}
+	
+	
+	/**
+	 * 修改密码
+	 */
+	@RequestMapping(value="editPassword")
+	@ResponseBody
+	public Map<String,Object> editPassword(String oldPassword,String newPassword){
+		return userSvc.editPassword(oldPassword,newPassword);
+	}
 }

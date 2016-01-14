@@ -16,7 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="security_api",
 	uniqueConstraints = {
-		@UniqueConstraint(columnNames={"function","name_cn"})
+		@UniqueConstraint(columnNames={"func","name_cn"})
 	})
 public class SecurityApi {
 	@Id
@@ -25,7 +25,7 @@ public class SecurityApi {
     @GenericGenerator(name = "paymentableGenerator", strategy = "identity")
 	private int iidd;//主键
 	
-	@Column(name="function")
+	@Column(name="func")
 	private String function;//编号
 	
 	@Column(name="name_cn")

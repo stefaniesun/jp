@@ -1,0 +1,113 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员中心_我的订单</title>
+<link href="misc/tc1015/css/index.css" rel="stylesheet" type="text/css" />
+<link href="misc/tc1015/css/loginbox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/header.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/ht_index.js"></script>
+</head>
+
+<body>
+<!--#include virtual="header.html"-->
+
+<div class="wrap"> 
+<div class="wrap position"><a href="#">首页</a>/<a href="#">收货信息</a></div>
+	
+	<div class="ht_left">
+	<ul>
+		<li><a  href="mine.html" >个人中心</a></li>
+		<li><a  href="order_list.html">我的订单</a></li>
+		<li><a  href="editPassword.html">修改密码</a></li>
+		<li><a  class="cta" href="address.html">收货信息</a></li>
+	</ul>
+	<ul>
+			</ul>
+</div>	 
+	
+<div class="ht_right"> 
+		 
+		
+		<div class="order">
+			<div class="order_title order_bottom"> <a href="##" class="tjdz" onclick="address_bt_add();">+添加地址</a><a href="javasicrp" class="cta">常用地址</a></div>
+		</div>
+<div class=" clear"></div>
+
+
+		
+
+<div class="add_adds" style="display:block;" id="adress_add">
+<form id="theForm" onsubmit="return checkConsignee(this);" name="theForm" method="post" action="/myhome.html">
+<div id="test1"><span>省市县</span>
+	<input id="provinceIdValue" class="dizhi" type="hidden" value="">
+	<input id="cityIdValue" class="dizhi" type="hidden" value="">
+	<input id="districtIdValue" class="dizhi" type="hidden" value="">
+	<select name="province" id="provinceId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择省</option><option value="3">安徽</option><option value="34">澳门</option><option value="2">北京</option><option value="4">福建</option><option value="5">甘肃</option><option value="6">广东</option><option value="7">广西</option><option value="8">贵州</option><option value="9">海南</option><option value="10">河北</option><option value="11">河南</option><option value="12">黑龙江</option><option value="13">湖北</option><option value="14">湖南</option><option value="15">吉林</option><option value="16">江苏</option><option value="17">江西</option><option value="18">辽宁</option><option value="19">内蒙古</option><option value="20">宁夏</option><option value="21">青海</option><option value="22">山东</option><option value="23">山西</option><option value="24">陕西</option><option value="25">上海</option><option value="26">四川</option><option value="27">天津</option><option value="35">台湾</option><option value="28">西藏</option><option value="29">新疆</option><option value="33">香港</option><option value="30">云南</option><option value="31">浙江</option><option value="32">重庆</option></select>
+	<select name="city" id="cityId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择城市</option></select>
+	<select name="district" id="districtId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择区县</option></select>
+</div>
+<div class="clear"></div>
+<ul>
+<li><span>街道地址</span><input id="address" name="address" type="text" class="chang"><font id="addressTip" class="onError">不能为空</font></li>
+<li><span>姓 名</span><input id="linkname" name="consignee" type="text"><font id="realnameTip" class="onShow">请输入收货人</font></li>
+<li><span>联系电话</span><input id="mobile" name="mobile" type="text"><font id="mobileTip" class="onShow">请输入手机号码</font></li>
+<li><span>邮箱</span><input name="email" id="ye_email" type="text"><font id="emailTip" class="onShow">请输入邮箱</font></li>
+<li><span>邮政编码</span><input name="zipcode" id="zipcode" type="text"><font id="zipcodeTip" class="onShow">可以为空</font></li>
+</ul>
+	<div class="add_adds_btn">
+	<input type="hidden" value="act_edit_address" name="act">
+	<input type="submit" value="保存地址" class="userBtn">
+		<a href="/myaddress.html" class="sc">取消</a>
+	</div>	
+</form>
+</div>		
+		
+		
+	</div>		
+		
+	<div class="clear"></div>	
+	</div>
+	
+
+
+<!--#include virtual="footer.html"-->
+	
+ <script type="text/javascript">
+address_bt_add = function(){
+	$("#adress_add").toggle();
+	$(".order").toggle();
+};
+$(document).ready(function() {
+	
+	$.formValidator.initConfig({formid:"theForm",debug:false,submitonce:true,
+		onerror:function(msg,obj,errorlist){
+			//$.map(errorlist,function(msg1){alert(msg1)});
+			alert(msg);
+			return false;
+		}
+	});
+	//$.formValidator.initConfig({formid:"theForm",alertmessage:true,onerror:function(msg){alert(msg)}});  
+	  
+	$("#linkname").formValidator({tipid:"realnameTip",empty:false,onshow:"请输入收货人",onfocus:"请输入中文汉字"}).inputValidator({min:2,max:8,onerrormin:"收货人不能为空！",onerror:"收货人名在四个字以内"}).regexValidator({regexp:"chinese",datatype:"enum",onerror:"收货人名必须是汉字"});
+	
+	$("#sign_building").formValidator({tipid:"sign_buildingTip",empty:true,onshow:" 如：家里、公司",onfocus:" 如：家里、公司，四个字以内"}).inputValidator({min:2,max:8,onerrormin:"地址标签错误！",onerror:"地址标签在四个字以内"}).regexValidator({regexp:"chinese",datatype:"enum",onerror:"地址标签错误"});
+	
+	$("#mobile").formValidator({tipid:"mobileTip",empty:false,onshow:"请输入手机号码",onfocus:"请正确填写手机号码！",oncorrect:"手机号正确"}).inputValidator({min:1,max:18,onerrormin:"请输入手机号码",onerror:"手机的格式不正确！"}).regexValidator({regexp:"mobile",datatype:"enum",onerror:"手机的格式不正确！"});
+
+
+	$("#phone").formValidator({tipid:"phoneTip",empty:true,onshow:"请输入电话号码",onfocus:"例：086-0755-33258666",oncorrect:"电话号正确"}).inputValidator({min:6,max:18,onerror:"电话号的格式不正确！"}).regexValidator({regexp:"tel",datatype:"enum",onerror:"电话号的格式不正确！"});
+
+$("#ye_email").formValidator({tipid:"emailTip",empty:false,onshow:"请输入邮箱",onfocus:"邮箱不能为空！",oncorrect:"输入正确"}).inputValidator({min:1,max:50,onerrormin:"请填写您的邮箱",onerror:"邮箱格式不正确！"}).regexValidator({regexp:"email",datatype:"enum",onerror:"邮箱格式不正确！"});
+	
+	$("#zipcode").formValidator({tipid:"zipcodeTip",empty:true,onshow:"可以为空",onfocus:"只能为数字！",oncorrect:"输入正确"}).regexValidator({regexp:"decmal1",datatype:"enum",onerror:"邮政编码错误！"});
+    
+	$("#address").formValidator({tipid:"addressTip",empty:false,onshow:"不能为空",onfocus:"详细地址",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"不能为空"});
+	
+  });
+</script>
+ 
+</body>
+</html>

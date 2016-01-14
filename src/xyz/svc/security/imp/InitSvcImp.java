@@ -119,7 +119,7 @@ public class InitSvcImp implements InitSvc{
 		
 		String sql = "select count(DISTINCT t.button_code) from security_api t where t.is_decide = 1";
 		Number num1 = (Number)commonDao.getSqlQuery(sql).uniqueResult();
-		sql = "select count(DISTINCT t.function,t.button_code) from security_api t where t.is_decide = 1";
+		sql = "select count(DISTINCT t.button_code) from security_api t where t.is_decide = 1";
 		Number num2 = (Number)commonDao.getSqlQuery(sql).uniqueResult();
 		if(num1.intValue()!=num2.intValue()){
 			sql = "select t1.button_code from security_api t1 inner join security_api t2 on t1.button_code = t2.button_code and t1.function != t2.function where t1.is_decide = 1 and t2.is_decide = 1";
@@ -129,7 +129,7 @@ public class InitSvcImp implements InitSvc{
 		
 		sql = "select count(DISTINCT t.url) from security_api t where t.url is not null and t.url != ''";
 		Number num3 = (Number)commonDao.getSqlQuery(sql).uniqueResult();
-		sql = "select count(DISTINCT t.url,t.is_decide,t.is_work,t.flag_server) from security_api t where t.url is not null and t.url != ''";
+		sql = "select count(DISTINCT t.url) from security_api t where t.url is not null and t.url != ''";
 		Number num4 = (Number)commonDao.getSqlQuery(sql).uniqueResult();
 		if(num3.intValue()!=num4.intValue()){
 			sql = "select t1.url from security_api t1 inner join security_api t2 on t1.url = t2.url and t1.url is not null and t2.url is not null and t1.url!='' and t2.url !='' and (t1.is_decide != t2.is_decide or t1.is_work!= t2.is_work or t1.flag_server != t2.flag_server) where t1.is_decide = 1 and t2.is_decide = 1";

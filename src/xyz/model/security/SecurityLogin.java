@@ -35,7 +35,7 @@ public class SecurityLogin {
 	@Column(name="position")
 	private String position;//岗位
 	
-	@Column(name="decide_str",length=100000)
+	@Column(name="decide_str",length=8000)
 	private String decideStr;//行级别控制
 	
 	@Column(name="add_date")
