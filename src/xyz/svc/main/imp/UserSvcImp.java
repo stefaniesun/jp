@@ -68,4 +68,28 @@ public class UserSvcImp implements UserSvc {
 		return ReturnUtil.returnMap(1,null);
 	}
 
+	@Override
+	public Map<String, Object> registerOper(String username, String password) {
+		
+		String hql ="from User  where username='"+username+"'";
+		User user =  (User) commonDao.queryUniqueByHql(hql);
+		if(user!=null){
+			return ReturnUtil.returnMap(0,"用户名已存在");
+		}
+		String passwordSe = EncryptionUtil.md5(password);
+		user.setUserName(username);
+		user.setPassword(passwordSe);
+		commonDao.save(user);
+		
+		String apikey = UUIDUtil.getUUIDStringFor32();
+		XyzSessionLogin xyzSessionLogin = new XyzSessionLogin();
+		xyzSessionLogin.setApikey(apikey);
+		xyzSessionLogin.setExpireDate(new Date(new Date().getTime()+Constant.sessionTimes));
+		xyzSessionLogin.setUsername(username);
+		
+		XyzSessionUtil.logins.put(apikey, xyzSessionLogin);
+		
+		return ReturnUtil.returnMap(1, xyzSessionLogin);
+	}
+
 }

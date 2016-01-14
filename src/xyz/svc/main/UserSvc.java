@@ -11,4 +11,6 @@ public interface UserSvc {
 
 	Map<String, Object> editPassword(String oldPassword, String newPassword);
 
+	Map<String, Object> registerOper(String username, String password);
+
 }

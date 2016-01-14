@@ -29,6 +29,16 @@ public class UserWS {
 	
 	
 	/**
+	 * 用户注册
+	 */
+	@RequestMapping(value="registerOper")
+	@ResponseBody
+	public Map<String,Object> registerOper(String username,String password){
+		return userSvc.registerOper(username,password);
+	}
+	
+	
+	/**
 	 * 修改密码
 	 */
 	@RequestMapping(value="editPassword")

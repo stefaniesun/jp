@@ -11,7 +11,7 @@
 .top .fr{color:#DDD;}
 .header{height:110px;}
 .logo:link,
-.logo:visited{float:left;display:block;outline:none;width:400px;height:110px;text-indent:-9999px;background:url(../image/logo/default.gif);}
+.logo:visited{float:left;display:block;outline:none;width:400px;height:110px;text-indent:-9999px;background:url(../image/logo/default.jpg);}
 
 .searchForm{float:right;border:2px solid #DDD;width:360px;height:36px;margin-top:35px;}
 .searchFormFocus{border:2px solid #CCC;}
