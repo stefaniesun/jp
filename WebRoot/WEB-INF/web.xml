@@ -132,10 +132,6 @@
     <filter-name>mySpecialFilter</filter-name>
     <url-pattern>*.xyz</url-pattern>
   </filter-mapping>
-  <filter-mapping>
-    <filter-name>mySpecialFilter</filter-name>
-    <url-pattern>*.app</url-pattern>
-  </filter-mapping>
   
   <filter>
   	<filter-name>myReleaseFilter</filter-name>
@@ -179,6 +175,10 @@
   	<servlet-mapping>
     	<servlet-name>springmvc</servlet-name>
     	<url-pattern>*.cus</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>springmvc</servlet-name>
+    	<url-pattern>*.app</url-pattern>
   	</servlet-mapping>
   	
   	<servlet-mapping>

@@ -37,6 +37,11 @@
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173004" nameCn="产品图片上传" url="/UploadWS/uploadImage.do"/>
 	</function>
 	
+	
+	<function isApi="0"  groupCn="模块" numberCode="modelManager" nameCn="App模块" url="/jsp_model/appModelManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160115171300" nameCn="查询APP关联模块" url="/AppModelWS/editIndexSliderImage.do"/>
+	</function>
+	
 
 
 	
