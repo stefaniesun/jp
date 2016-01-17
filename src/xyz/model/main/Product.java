@@ -35,6 +35,9 @@ public class Product {
 	
 	@Column(name="stock")
 	private int stock;
+	
+	@Column(name="product_content")
+	private String content;
 
 	public String getIidd() {
 		return iidd;
@@ -82,6 +85,14 @@ public class Product {
 
 	public void setNumberCode(String numberCode) {
 		this.numberCode = numberCode;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	

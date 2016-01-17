@@ -38,11 +38,14 @@
 	</function>
 	
 	
-	<function isApi="0"  groupCn="模块" numberCode="modelManager" nameCn="App模块" url="/jsp_model/appModelManager.html">
-		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160115171300" nameCn="查询APP关联模块" url="/AppModelWS/editIndexSliderImage.do"/>
+	<function isApi="0"  groupCn="模块" numberCode="appModelManager" nameCn="App模块" url="/jsp_model/appModelManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160115171300" nameCn="查询APP关联模块" url="/AppModelWS/queryModelList.do"/>
 	</function>
 	
 
+	<function isApi="0"  groupCn="模块" numberCode="webModelManager" nameCn="Web模块" url="/jsp_model/webModelManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160117134100" nameCn="查询WEB关联模块" url="/WebModelWS/queryModelList.do"/>
+	</function>
 
 	
 	

@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 import xyz.dao.CommonDao;
 import xyz.filter.ReturnUtil;
 import xyz.model.main.Product;
-import xyz.model.main.ProductHotel;
-import xyz.model.main.ProductScenic;
 import xyz.svc.main.ProductSvc;
 import xyz.util.StringUtil;
 import xyz.util.UUIDUtil;
@@ -44,7 +42,7 @@ public class ProductSvcImp implements ProductSvc {
 		query.setMaxResults(pagesize);
 		query.setFirstResult(offset);
 		@SuppressWarnings("unchecked")
-		List<ProductHotel> productHotelList=query.list();
+		List<Product> productHotelList=query.list();
 		Map<String,Object> mapContent=new HashMap<String, Object>();
 		mapContent.put("total", count);
 		mapContent.put("rows",productHotelList);
@@ -53,16 +51,28 @@ public class ProductSvcImp implements ProductSvc {
 	}
 
 	@Override
-	public Map<String, Object> addProduct(String name, String type, BigDecimal price, int stock) {
+	public Map<String, Object> addProduct(String name, String type, BigDecimal price, int stock,String content) {
 		Product product =new Product();
 		product.setNumberCode(UUIDUtil.getUUIDStringFor32());
 		product.setName(name);
 		product.setType(type);
 		product.setPrice(price);
 		product.setStock(stock);
+		product.setContent(content);
+		System.out.println("----------"+content);
 		commonDao.save(product);
 		return ReturnUtil.returnMap(1, null);
 	
+	}
+
+	@Override
+	public Map<String, Object> deleteProduct(String numberCode) {
+		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
+		if(product==null){
+			return ReturnUtil.returnMap(0, "产品不存在");
+		}
+		commonDao.delete(product);
+		return ReturnUtil.returnMap(1, null);
 	}
 
 }

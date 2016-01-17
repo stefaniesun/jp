@@ -39,9 +39,20 @@ public class ProductWS{
 	@ResponseBody
 	public Map<String,Object> addProduct(String name,String type,
 			BigDecimal price,
-			int stock){
-		return productSvc.addProduct(name,type, price,stock);
+			int stock,String content){
+		System.out.println("----------22222------"+content);
+		return productSvc.addProduct(name,type, price,stock,content);
 	}
+	
+	
+	@RequestMapping(value="deleteProduct")
+	@ResponseBody
+	public Map<String,Object> deleteProduct(String numberCode){
+		return productSvc.deleteProduct(numberCode);
+	}
+	
+	
+	
 	
 	
 }

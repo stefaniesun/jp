@@ -52,6 +52,7 @@ function initTable(){
 		idField : 'numberCode',
 		height:'auto',
 		columns : [[
+            {field:'checkboxTemp',checkbox:true},
 			{field:'numberCode',title:'产品编号',hidden:true},
 			{field:'name',title:'产品名称',width:500},
 			{field:'type',title:'产品类别',width:100,
@@ -89,7 +90,7 @@ function addProductButton(title){
 	    href : '../jsp_product/addProduct.html',
 	    fit:false,
 	    height:700,
-	    width:800,
+	    width:1000,
 	    buttons:[{
 			text:'确定',
 			handler:function(){
@@ -101,14 +102,7 @@ function addProductButton(title){
 				$("#dialogFormDiv_addProduct").dialog("destroy");
 			}
 		}],onLoad:function(){
-			xyzCombobox({
-				combobox : 'providerForm',
-				url : '../ListWS/getProviderList.do',
-				required:true,
-				onBeforeLoad: function(param){
-					param.providerType = "SC";
-				}
-			});
+			
 		}
 	});
 	
@@ -162,16 +156,21 @@ function addProductSubmit(){
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
 	var stock=$("#stockForm").val();
+/*	var content=UM.getEditor('editor').getContent();*/
+	alert(UM.getEditor('editor').getAllHtml());
+	alert(UM.getEditor('editor').getContent());
+
 	if(!$("form").form('validate')){
 		return;
 	}
-	xyzAjax({
+	/*xyzAjax({
 		url:"../ProductWS/addProduct.do",
 		data:{
 			name:name,
 			type:type,
 			price:price,
-			stock:stock
+			stock:stock,
+			content:content
 		},
 		success:function(data){
 			if(data.status==1){
@@ -182,7 +181,7 @@ function addProductSubmit(){
 				top.$.messager.alert("警告",data.msg,"warning");
 			}
 		}
-	});
+	});*/
 }
 
 function editProductSubmit(numberCode){
@@ -214,8 +213,8 @@ function editProductSubmit(numberCode){
 }
 
 function deleteProductButton(){
-	var products = $.map($("#productManagerTable").datagrid("getChecked"),function(p){return p.numberCode;}).join(",");
-	if(products == null || products == ''){
+	var product = $.map($("#productManagerTable").datagrid("getChecked"),function(p){return p.numberCode;}).join(",");
+	if(product == null || product == ''){
 		top.$.messager.alert("提示","请先选中需要删除的对象！","info");
 		return;
 	}
@@ -226,7 +225,7 @@ function deleteProductButton(){
 	xyzAjax({
 		url : '../ProductWS/deleteProduct.do',
 		data : {
-			numberCodes : products
+			numberCode : product
 		},
 		success : function(data) {
 			if(data.status==1){
