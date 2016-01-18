@@ -35,13 +35,26 @@ public class ProductWS{
 		return productSvc.queryProductList(nameCn,offset, pagesize);
 	}
 	
+	@RequestMapping(value="getProduct")
+	@ResponseBody
+	public Map<String,Object> getProduct(String numberCode){
+		return productSvc.getProduct(numberCode);
+	}
+	
 	@RequestMapping(value="addProduct")
 	@ResponseBody
 	public Map<String,Object> addProduct(String name,String type,
 			BigDecimal price,
 			int stock,String content){
-		System.out.println("----------22222------"+content);
 		return productSvc.addProduct(name,type, price,stock,content);
+	}
+	
+	@RequestMapping(value="editProduct")
+	@ResponseBody
+	public Map<String,Object> editProduct(String numberCode,String name,String type,
+			BigDecimal price,
+			int stock,String content){
+		return productSvc.editProduct(numberCode,name,type, price,stock,content);
 	}
 	
 	

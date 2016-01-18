@@ -59,7 +59,6 @@ public class ProductSvcImp implements ProductSvc {
 		product.setPrice(price);
 		product.setStock(stock);
 		product.setContent(content);
-		System.out.println("----------"+content);
 		commonDao.save(product);
 		return ReturnUtil.returnMap(1, null);
 	
@@ -73,6 +72,31 @@ public class ProductSvcImp implements ProductSvc {
 		}
 		commonDao.delete(product);
 		return ReturnUtil.returnMap(1, null);
+	}
+
+	@Override
+	public Map<String, Object> editProduct(String numberCode, String name,
+			String type, BigDecimal price, int stock, String content) {
+		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
+		if(product==null){
+			return ReturnUtil.returnMap(0, "产品不存在");
+		}
+		product.setName(name);
+		product.setType(type);
+		product.setPrice(price);
+		product.setStock(stock);
+		product.setContent(content);
+		commonDao.update(product);
+		return ReturnUtil.returnMap(1, null);
+	}
+
+	@Override
+	public Map<String, Object> getProduct(String numberCode) {
+		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
+		if(product==null){
+			return ReturnUtil.returnMap(0, "产品不存在");
+		}
+		return ReturnUtil.returnMap(1, product);
 	}
 
 }

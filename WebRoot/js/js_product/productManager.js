@@ -4,8 +4,6 @@ $(document).ready(function() {
 		loadTable();
 	});
 	
-	
-	
 	initTable();
 	
 });
@@ -116,14 +114,13 @@ function editProductButton(title){
 		return;
 	}
 	var row = product[0];
-	
 	xyzdialog({
 		dialog : 'dialogFormDiv_editProduct',
 		title : title,
-	    href : '../jsp_main/editProduct.html',
+	    href : '../jsp_product/editProduct.html',
 	    fit:false,
-	    height:300,
-	    width:600,
+	    height:700,
+	    width:1000,
 	    buttons:[{
 			text:'确定',
 			handler:function(){
@@ -135,18 +132,28 @@ function editProductButton(title){
 				$("#dialogFormDiv_editProduct").dialog("destroy");
 			}
 		}],
-		onLoad:function(){
-			xyzCombobox({
-				combobox : 'providerForm',
-				url : '../ListWS/getProviderList.do',
-				required:true,
-				lazy:false,
-				onBeforeLoad: function(param){
-					param.providerType = "SC";
+		onOpen:function(){
+			xyzAjax({
+				url:"../ProductWS/getProduct.do",
+				data:{
+					numberCode:row.numberCode
+				},
+				success:function(data){
+					if(data.status==1){
+						$("#nameForm").val(data.content.name);
+						$("#typeForm").val(data.content.type);
+						$("#priceForm").val(data.content.price);
+						$("#stockForm").val(data.content.stock);
+						/*UE.getEditor('editor').setContent('欢迎使用umeditor',true);*/
+				
+						
+					}else{
+						top.$.messager.alert("警告",data.msg,"warning");
+					}
 				}
 			});
-			$("#nameCnForm").val(row.nameCn);
-			$("#providerForm").combobox("setValue",row.provider);
+			
+		
 		}
 	});
 }
@@ -156,14 +163,17 @@ function addProductSubmit(){
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
 	var stock=$("#stockForm").val();
-/*	var content=UM.getEditor('editor').getContent();*/
-	alert(UM.getEditor('editor').getAllHtml());
-	alert(UM.getEditor('editor').getContent());
+	var images="";
+	$(".filelist li").each(function(){
+		images+=$(this).attr("code");
+	});
+	
+	var content=UE.getEditor('editor').getContent();
 
 	if(!$("form").form('validate')){
 		return;
 	}
-	/*xyzAjax({
+	xyzAjax({
 		url:"../ProductWS/addProduct.do",
 		data:{
 			name:name,
@@ -181,7 +191,7 @@ function addProductSubmit(){
 				top.$.messager.alert("警告",data.msg,"warning");
 			}
 		}
-	});*/
+	});
 }
 
 function editProductSubmit(numberCode){
@@ -189,15 +199,21 @@ function editProductSubmit(numberCode){
 	if(!$("form").form('validate')){
 		return;
 	}
-	var nameCn=$("#nameCnForm").val();
-	var provider=$("#providerForm").combobox("getValue");
+	var name=$("#nameForm").val();
+	var type=$("#typeForm").val();
+	var price=$("#priceForm").val();
+	var stock=$("#stockForm").val();
+	var content=UE.getEditor('editor').getContent();
 
 	xyzAjax({
 		url:"../ProductWS/editProduct.do",
 		data:{
 			numberCode:numberCode,
-			nameCn:nameCn,
-			provider:provider
+			name:name,
+			type:type,
+			price:price,
+			stock:stock,
+			content:content
 		},
 		success:function(data){
 			if(data.status==1){

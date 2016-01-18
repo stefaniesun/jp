@@ -31,6 +31,7 @@
 	
 	<function isApi="0"  groupCn="产品" numberCode="productManager" nameCn="产品" url="/jsp_product/productManager.html">
 		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160111173000" nameCn="产品列表" url="/ProductWS/queryProductList.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160111173000" nameCn="产品详情" url="/ProductWS/getProduct.do"/>
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173001" nameCn="新增产品" url="/ProductWS/addProduct.do"/>
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173002" nameCn="编辑产品" url="/ProductWS/editProduct.do"/>
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173003" nameCn="删除产品" url="/ProductWS/deleteProduct.do"/>

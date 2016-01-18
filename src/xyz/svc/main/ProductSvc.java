@@ -14,4 +14,9 @@ public interface ProductSvc {
 
 	Map<String, Object> deleteProduct(String numberCode);
 
+	Map<String, Object> editProduct(String numberCode, String name,
+			String type, BigDecimal price, int stock, String content);
+
+	Map<String, Object> getProduct(String numberCode);
+
 }
