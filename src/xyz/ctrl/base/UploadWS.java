@@ -70,4 +70,44 @@ public class UploadWS {
   
     	return ReturnUtil.returnMap(0,null);
     }  
+	
+	
+	
+	@RequestMapping(value="uploadContentImage")
+	  public Map<String, Object> uploadContentImage(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request,HttpServletResponse response) {  
+
+      String path = request.getSession().getServletContext().getRealPath("upload/productImage");  
+      String fileName = file.getOriginalFilename();  
+
+      String type=fileName.substring(fileName.indexOf("."));
+      SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmm"); 
+      fileName=format.format(new Date())+StringUtil.getRandomStr(4)+type;
+
+      File targetFile = new File(path, fileName);  
+      if(!targetFile.exists()){  
+          targetFile.mkdirs();  
+      }  
+      //保存  
+      try {  
+          file.transferTo(targetFile);
+        
+          response.setContentType("text/html;charset=utf-8");  
+          response.setStatus(200);
+		    PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.print("success");  
+				out.flush();  
+			} catch (IOException e) {
+				e.printStackTrace();
+			}finally{
+			    out.close();
+			}  
+          return ReturnUtil.returnMap(1,null);
+      } catch (Exception e) {  
+          e.printStackTrace();  
+      }  
+
+  	return ReturnUtil.returnMap(0,null);
+  } 
 }

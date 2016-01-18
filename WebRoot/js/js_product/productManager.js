@@ -144,9 +144,7 @@ function editProductButton(title){
 						$("#typeForm").val(data.content.type);
 						$("#priceForm").val(data.content.price);
 						$("#stockForm").val(data.content.stock);
-						/*UE.getEditor('editor').setContent('欢迎使用umeditor',true);*/
-				
-						
+						UM.getEditor('editor').setContent(data.content.content, true);
 					}else{
 						top.$.messager.alert("警告",data.msg,"warning");
 					}
@@ -163,13 +161,12 @@ function addProductSubmit(){
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
 	var stock=$("#stockForm").val();
+	var content=UM.getEditor('editor').getContent();
 	var images="";
 	$(".filelist li").each(function(){
 		images+=$(this).attr("code");
 	});
 	
-	var content=UE.getEditor('editor').getContent();
-
 	if(!$("form").form('validate')){
 		return;
 	}
@@ -180,7 +177,8 @@ function addProductSubmit(){
 			type:type,
 			price:price,
 			stock:stock,
-			content:content
+			content:content,
+			images:images
 		},
 		success:function(data){
 			if(data.status==1){
@@ -203,7 +201,11 @@ function editProductSubmit(numberCode){
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
 	var stock=$("#stockForm").val();
-	var content=UE.getEditor('editor').getContent();
+	var content=UM.getEditor('editor').getContent();
+	var images="";
+	$(".filelist li").each(function(){
+		images+=$(this).attr("code");
+	});
 
 	xyzAjax({
 		url:"../ProductWS/editProduct.do",
@@ -213,7 +215,8 @@ function editProductSubmit(numberCode){
 			type:type,
 			price:price,
 			stock:stock,
-			content:content
+			content:content,
+			images:images
 		},
 		success:function(data){
 			if(data.status==1){

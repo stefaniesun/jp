@@ -36,6 +36,7 @@
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173002" nameCn="编辑产品" url="/ProductWS/editProduct.do"/>
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173003" nameCn="删除产品" url="/ProductWS/deleteProduct.do"/>
 		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173004" nameCn="产品图片上传" url="/UploadWS/uploadImage.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160111173005" nameCn="产品介绍图片上传" url="/UploadWS/uploadContentImage.do"/>
 	</function>
 	
 	

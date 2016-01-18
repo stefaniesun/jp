@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import xyz.dao.CommonDao;
 import xyz.filter.ReturnUtil;
 import xyz.model.main.Product;
+import xyz.model.main.ProductImage;
 import xyz.svc.main.ProductSvc;
 import xyz.util.StringUtil;
 import xyz.util.UUIDUtil;
@@ -51,7 +52,7 @@ public class ProductSvcImp implements ProductSvc {
 	}
 
 	@Override
-	public Map<String, Object> addProduct(String name, String type, BigDecimal price, int stock,String content) {
+	public Map<String, Object> addProduct(String name, String type, BigDecimal price, int stock,String content,String images) {
 		Product product =new Product();
 		product.setNumberCode(UUIDUtil.getUUIDStringFor32());
 		product.setName(name);
@@ -60,6 +61,17 @@ public class ProductSvcImp implements ProductSvc {
 		product.setStock(stock);
 		product.setContent(content);
 		commonDao.save(product);
+		
+		if(images!=null&&!images.equals("")){
+			for(String image:images.split(",")){
+				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", image);
+				productImage.setProduct(product.getNumberCode());
+				commonDao.update(productImage);
+			}
+		}
+		
+		
+		
 		return ReturnUtil.returnMap(1, null);
 	
 	}
@@ -76,7 +88,7 @@ public class ProductSvcImp implements ProductSvc {
 
 	@Override
 	public Map<String, Object> editProduct(String numberCode, String name,
-			String type, BigDecimal price, int stock, String content) {
+			String type, BigDecimal price, int stock, String content,String images) {
 		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
 		if(product==null){
 			return ReturnUtil.returnMap(0, "产品不存在");
@@ -87,6 +99,17 @@ public class ProductSvcImp implements ProductSvc {
 		product.setStock(stock);
 		product.setContent(content);
 		commonDao.update(product);
+		
+		
+		if(images!=null&&!images.equals("")){
+			for(String image:images.split(",")){
+				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", image);
+				productImage.setProduct(product.getNumberCode());
+				commonDao.update(productImage);
+			}
+		}
+		
+		
 		return ReturnUtil.returnMap(1, null);
 	}
 
