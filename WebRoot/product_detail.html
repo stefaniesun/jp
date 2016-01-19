@@ -21,18 +21,10 @@
 <div class="wrap position"><a href="index.html">首页</a>/<a href="http://www.techan.com/plugins/newCategory.php?id=2003">南北干货</a>/<a href="javascript:;">2015年新货 吐鲁番野生黑桑椹干 500g</a></div>
 <div class="wrap itemInfo">
 	<div class="itemImg">
-		<div class="itemImgBig"><a href="#"><img src="upload/product/1.jpg" /></a></div>
+		<div class="itemImgBig"><a href="#"><img id="firstImage"  /></a></div>
 		<ul class="itemImgList">			
-						<li class="itemImgListFocus">
-			<a href="javascript:void(0);"><img src="upload/product/1.jpg"  data-src="upload/product/1.jpg" data-full="upload/product/1.jpg" /></a>
-			</li>
-						<li >
-			<a href="javascript:void(0);"><img src="upload/product/2.jpg"  data-src="upload/product/2.jpg" data-full="upload/product/2.jpg" /></a>
-			</li>
-						<li >
-			<a href="javascript:void(0);"><img src="upload/product/3.jpg" data-src="upload/product/3.jpg" data-full="upload/product/3.jpg" /></a>
-			</li>
-					</ul>
+						
+		</ul>
 		<div class="itemImgFull"><img src="upload/product/1.jpg" /><a href="javascript:void(0);" class="btnClose" data-target="itemImgFull">关闭</a></div>
 	</div>
 	<div class="itemDetail">
@@ -91,15 +83,9 @@
 			<li data-position="D3"><a href="javascript:void(0);">评价 <em>(813)</em></a></li>
 			<li data-position="D4"><a href="javascript:void(0);">售后服务</a></li> -->
 		</ul>
-		<div class="itemDesc">
-			<p style="text-align: center;"><span style="font-size: large;color:red;"><strong>此商品纯天然无污染， 没有任何农药和加工；当下天气炎热容易长虫， 请收到此宝贝后放入冰箱保存。</strong></span></p>
-<p style="text-align: center;"><img alt="" src="http://www.techan.com/uploadfiles/usergoods/06/19/20141106/14152639756926.jpg" _src="http://www.techan.com/uploadfiles/usergoods/06/19/20141106/14152639756926.jpg" style="" /></p>
-<p style="text-align: center;"><img alt="" src="http://www.techan.com/uploadfiles/usergoods/41/9c/20141106/14152639765706.jpg" _src="http://www.techan.com/uploadfiles/usergoods/41/9c/20141106/14152639765706.jpg" style="" /></p>
-<p style="text-align: center;"><img alt="" src="http://www.techan.com/uploadfiles/usergoods/20/a2/20141106/14152639778610.jpg" _src="http://www.techan.com/uploadfiles/usergoods/20/a2/20141106/14152639778610.jpg" style="" /></p>
-<p style="text-align: center;"><img alt="" src="http://www.techan.com/uploadfiles/usergoods/ff/c9/20141106/14152639797221.jpg" _src="http://www.techan.com/uploadfiles/usergoods/ff/c9/20141106/14152639797221.jpg" style="" /></p>
-<p style="text-align: center;"><img alt="" src="http://www.techan.com/uploadfiles/usergoods/d7/b7/20141106/14152639803024.jpg" _src="http://www.techan.com/uploadfiles/usergoods/d7/b7/20141106/14152639803024.jpg" style="" /></p>
-<p style="text-align: center;">&nbsp;</p>		</div>
-		<div class="itemSpan" id="D2">
+		<div id="content" class="itemDesc">
+		</div>
+		<!-- <div class="itemSpan" id="D2">
 			<h4>规格参数</h4>
 			<div class="itemDesc">
 				<table>
@@ -129,7 +115,7 @@
 					</tr>
 									</table>
 			</div>
-		</div>
+		</div> -->
 		
 		<div class="itemSpan" id="D4">
 			<h4>售后服务 / 常见问题</h4>
@@ -199,9 +185,9 @@ var TECHAN_ITEM_INFO = {
 <script type="text/javascript" src="misc/tc1015/js/jq.techanlogin.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/item.js"></script>
 <script type="text/javascript">
-var product=$.getUrlParam('product');
+var product=getUrlParam('product');
 xyzAjax({
-	url:"../ProductWS/getProduct.do",
+	url:"/ProductWS/getProduct.web",
 	data:{
 		numberCode:product
 	},
@@ -209,10 +195,19 @@ xyzAjax({
 		if(data.status==1){
 			$("#productName").html(data.content.name);
 			$("#productSpecial").html(data.content.special);
-			$("#price").html("￥"+data.content.price);
+			$("#price").html(data.content.price);
 			$("#basePrice").html("￥"+data.content.basePrice);
-			$("#stock").val(data.content.stock);
-			$(".itemDesc").html(data.content.content);
+			$("#stock").html(data.content.stock);
+			$("#content").html(data.content.content);
+			
+			var images=eval("{"+data.content.images+"}"); 
+			var html="";
+			for(var i=0;i<images.length;i++){
+				html+='<li class="itemImgListFocus"><a href="javascript:void(0);"><img src="upload/productImage/'+images[i].url+'"  data-src="upload/productImage/'+images[i].url+'" data-full="upload/productImage/'+images[i].url+'" /></a></li>';
+			}
+			$(".itemImgList").html(html);
+			$("#firstImage").attr("src","upload/productImage/'+images[i].url+'");
+			
 		}else{
 			top.$.messager.alert("警告",data.msg,"warning");
 		}
