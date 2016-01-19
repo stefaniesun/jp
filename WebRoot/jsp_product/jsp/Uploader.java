@@ -84,6 +84,8 @@ public class Uploader {
 					this.fileName = this.getName(this.originalName);
 					this.type = this.getFileExt(this.fileName);
 					this.url = savePath + "/" + this.fileName;
+					
+					System.out.println("--------"+this.url);
 					BufferedInputStream in = new BufferedInputStream(fis.openStream());
 					File file = new File(this.getPhysicalPath(this.url));
 					FileOutputStream out = new FileOutputStream( file );
@@ -130,6 +132,8 @@ public class Uploader {
 		String base64Data = this.request.getParameter(fieldName);
 		this.fileName = this.getName("test.png");
 		this.url = savePath + "/" + this.fileName;
+		
+		System.out.println("--------"+this.url);
 		BASE64Decoder decoder = new BASE64Decoder();
 		try {
 			File outFile = new File(this.getPhysicalPath(this.url));

@@ -43,18 +43,18 @@ public class ProductWS{
 	
 	@RequestMapping(value="addProduct")
 	@ResponseBody
-	public Map<String,Object> addProduct(String name,String type,
-			BigDecimal price,
+	public Map<String,Object> addProduct(String name,String special,String type,
+			BigDecimal price,BigDecimal basePrice,
 			int stock,String content,String images){
-		return productSvc.addProduct(name,type, price,stock,content,images);
+		return productSvc.addProduct(name,special,type, price,basePrice,stock,content,images);
 	}
 	
 	@RequestMapping(value="editProduct")
 	@ResponseBody
-	public Map<String,Object> editProduct(String numberCode,String name,String type,
-			BigDecimal price,
-			int stock,String content,String images){
-		return productSvc.editProduct(numberCode,name,type, price,stock,content,images);
+	public Map<String,Object> editProduct(String numberCode,String name,String special,String type,
+			BigDecimal price,BigDecimal basePrice,
+			int stock,String content,String images,String deleteImages){
+		return productSvc.editProduct(numberCode,name,special,type, price,basePrice,stock,content,images,deleteImages);
 	}
 	
 	

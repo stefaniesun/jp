@@ -52,7 +52,8 @@ function initTable(){
 		columns : [[
             {field:'checkboxTemp',checkbox:true},
 			{field:'numberCode',title:'产品编号',hidden:true},
-			{field:'name',title:'产品名称',width:500},
+			{field:'name',title:'产品名称',width:200},
+			{field:'special',title:'产品特色',width:100},
 			{field:'type',title:'产品类别',width:100,
 				formatter:function(val,rec){
 					if(val=="1"){
@@ -65,6 +66,7 @@ function initTable(){
 				}
 			},
 			{field:'price',title:'单价',width:100},
+			{field:'basePrice',title:'原价',width:100},
 			{field:'stock',title:'剩余库存',width:100}
 		]]
 	});
@@ -141,10 +143,23 @@ function editProductButton(title){
 				success:function(data){
 					if(data.status==1){
 						$("#nameForm").val(data.content.name);
+						$("#specialForm").val(data.content.special);
 						$("#typeForm").val(data.content.type);
 						$("#priceForm").val(data.content.price);
+						$("#basePriceForm").val(data.content.basePrice);
 						$("#stockForm").val(data.content.stock);
 						UM.getEditor('editor').setContent(data.content.content, true);
+					
+						var images=eval("{"+data.content.images+"}"); 
+						var html="";
+						for(var i=0;i<images.length;i++){
+							html+='<span id="'+images[i].numberCode+'"><img width="100px" height="100px"  src="../upload/productImage/'+images[i].url+'"></img><a style="cursor:pointer">删除</a></span>';
+						}
+						$("#imageList").html(html);
+						$("#imageList a").click(function(){
+							$(this).parent("span").css("display","none");
+						});
+						
 					}else{
 						top.$.messager.alert("警告",data.msg,"warning");
 					}
@@ -158,13 +173,15 @@ function editProductButton(title){
 
 function addProductSubmit(){
 	var name=$("#nameForm").val();
+	var special=$("#specialForm").val();
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
+	var basePrice=$("#basePriceForm").val();
 	var stock=$("#stockForm").val();
 	var content=UM.getEditor('editor').getContent();
 	var images="";
-	$(".filelist li").each(function(){
-		images+=$(this).attr("code");
+	$(".filelist li[class='state-complete']").each(function(){
+		images+=$(this).attr("code")+",";
 	});
 	
 	if(!$("form").form('validate')){
@@ -174,8 +191,10 @@ function addProductSubmit(){
 		url:"../ProductWS/addProduct.do",
 		data:{
 			name:name,
+			special:special,
 			type:type,
 			price:price,
+			basePrice:basePrice,
 			stock:stock,
 			content:content,
 			images:images
@@ -198,13 +217,21 @@ function editProductSubmit(numberCode){
 		return;
 	}
 	var name=$("#nameForm").val();
+	var special=$("#specialForm").val();
 	var type=$("#typeForm").val();
 	var price=$("#priceForm").val();
+	var basePrice=$("#basePriceForm").val();
 	var stock=$("#stockForm").val();
 	var content=UM.getEditor('editor').getContent();
 	var images="";
-	$(".filelist li").each(function(){
-		images+=$(this).attr("code");
+	$(".filelist li[class='state-complete']").each(function(){
+		images+=$(this).attr("code")+",";
+	});
+	var deleteImages="";
+	$("#imageList span").each(function(){
+		if($(this).css("display")=="none"){
+			deleteImages+=$(this).attr("id")+",";
+		}
 	});
 
 	xyzAjax({
@@ -212,11 +239,14 @@ function editProductSubmit(numberCode){
 		data:{
 			numberCode:numberCode,
 			name:name,
+			special:special,
 			type:type,
 			price:price,
+			basePrice:basePrice,
 			stock:stock,
 			content:content,
-			images:images
+			images:images,
+			deleteImages:deleteImages
 		},
 		success:function(data){
 			if(data.status==1){

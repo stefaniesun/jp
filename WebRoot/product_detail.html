@@ -37,14 +37,14 @@
 	</div>
 	<div class="itemDetail">
 		<div class="itemTitle">
-			<h2>2015年新货 吐鲁番野生黑桑椹干 500g</h2>
-			<h3>2014新货 特级黑桑葚子 新疆特产</h3>
+			<h2 id="productName"></h2>
+			<h3 id="productSpecial"></h3>
 					</div>
 		<div class="itemPanel">
-			<h2><strong>39.00</strong>元</h2>
+			<h2><strong id="price">39.00</strong>元</h2>
 			<em>￥54.60</em>
 			<div class="itemStore"><p>聚派商城</p></div>
-			<span class="itemMoreInfo"><strong>浏览 36 次</strong>|<a href="javascript:;" rel="nofollow">2 人购买</a>|<a href="javascript:;" rel="nofollow">0 人评价</a></span>
+			<!-- <span class="itemMoreInfo"><strong>浏览 36 次</strong>|<a href="javascript:;" rel="nofollow">2 人购买</a>|<a href="javascript:;" rel="nofollow">0 人评价</a></span> -->
 		</div>
 		<div class="itemProp">
 					<span>数量</span>
@@ -53,7 +53,7 @@
 				<input id="buyNumber" value="1" onkeyup="setAmount.modify('#buyNumber');" />
 				<a href="javascript:;" onclick="setAmount.add('#buyNumber');" class="itemStockUp">+</a>
 			</div>
-			<p class="itemStockNum">库存 <em>164</em> 件</p>
+			<p class="itemStockNum">库存 <em id="stock"></em> 件</p>
 			<div class="itemBuy" id="itemBuy">
 							<a href="addToCart.html" class="btn-append itemAddCart" id="InitCartUrl">加入购物车</a>
 							<a href="javascript:void(0);" class="itemAddFavor noLoginAddFa" >收藏</a>
@@ -198,5 +198,26 @@ var TECHAN_ITEM_INFO = {
 <script type="text/javascript" src="misc/tc1015/js/impromptu.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/jq.techanlogin.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/item.js"></script>
+<script type="text/javascript">
+var product=$.getUrlParam('product');
+xyzAjax({
+	url:"../ProductWS/getProduct.do",
+	data:{
+		numberCode:product
+	},
+	success:function(data){
+		if(data.status==1){
+			$("#productName").html(data.content.name);
+			$("#productSpecial").html(data.content.special);
+			$("#price").html("￥"+data.content.price);
+			$("#basePrice").html("￥"+data.content.basePrice);
+			$("#stock").val(data.content.stock);
+			$(".itemDesc").html(data.content.content);
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+</script>
 </body>
 </html>

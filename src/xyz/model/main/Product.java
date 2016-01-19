@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -27,17 +28,26 @@ public class Product {
 	@Column(name="name")
 	private String name;
 	
+	@Column(name="special")
+	private String special;
+	
 	@Column(name="type")
 	private String type;
 	
 	@Column(name="price")
 	private BigDecimal price;
 	
+	@Column(name="basePrice")
+	private BigDecimal basePrice;
+	
 	@Column(name="stock")
 	private int stock;
 	
 	@Column(name="product_content")
 	private String content;
+	
+	@Transient
+	private String images;
 
 	public String getIidd() {
 		return iidd;
@@ -93,6 +103,30 @@ public class Product {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	public String getSpecial() {
+		return special;
+	}
+
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+
+	public BigDecimal getBasePrice() {
+		return basePrice;
+	}
+
+	public void setBasePrice(BigDecimal basePrice) {
+		this.basePrice = basePrice;
 	}
 	
 	

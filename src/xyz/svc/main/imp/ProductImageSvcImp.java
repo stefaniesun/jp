@@ -26,7 +26,7 @@ public class ProductImageSvcImp implements ProductImageSvc {
 		
 		image.setNumberCode(UUIDUtil.getUUIDStringFor32());
 		image.setAddDate(new Date());
-		image.setUrl(targetFile.getAbsolutePath());
+		image.setUrl(targetFile.getName());
 		commonDao.save(image);
 		return image;
 	}
