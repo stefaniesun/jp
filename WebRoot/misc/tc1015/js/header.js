@@ -29,7 +29,7 @@ function cartFocus(){
 		clearTimeout(cartListTimeout);
 		_obj.attr('class','cart cartFocus');
 		_obj.children('.cartList').show();
-		(i==0) &&
+		/*(i==0) &&
 		$.ajax({
 			type: "GET",
 			url: "/plugins/tcActionMini.php",
@@ -37,7 +37,7 @@ function cartFocus(){
 			dataType: "jsonp",
 			async: false,
 			success: function(m){i=1,_obj.children('.cartList').html( m.memberfloatcart ),_obj.children('.cartNum').html(m.membercart),delegateCartDel();}
-		});
+		});*/
 	}).mouseleave(function(){
 		obj = $(this),i=0;
 		cartListTimeout = setTimeout(function(){

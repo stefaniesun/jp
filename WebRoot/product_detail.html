@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>2015年新货 吐鲁番野生黑桑椹干 500g(500g)【原产地 土特产 正品 品牌 价格】2014新货 特级黑桑葚子 新疆特产 - 特产网</title>
+<title id="title"></title>
 <meta name="Keywords" content="吐鲁番野生黑桑椹干 500g" />
 <meta name="Description" content="特产优联提供：吐鲁番野生黑桑椹干 500g。" />
 <link href="misc/tc1015/css/item.css" rel="stylesheet" type="text/css" />
@@ -18,7 +18,7 @@
 
   <!--#include virtual="header.html"-->
 
-<div class="wrap position"><a href="index.html">首页</a>/<a href="http://www.techan.com/plugins/newCategory.php?id=2003">南北干货</a>/<a href="javascript:;">2015年新货 吐鲁番野生黑桑椹干 500g</a></div>
+<div class="wrap position"><a href="index.html">首页</a>/<a href="javascript:;" id="linkType"></a>/<a href="javascript:;" id="linkname"></a></div>
 <div class="wrap itemInfo">
 	<div class="itemImg">
 		<div class="itemImgBig"><a href="#"><img id="firstImage"  /></a></div>
@@ -33,8 +33,8 @@
 			<h3 id="productSpecial"></h3>
 					</div>
 		<div class="itemPanel">
-			<h2><strong id="price">39.00</strong>元</h2>
-			<em>￥54.60</em>
+			<h2><strong id="price"></strong>元</h2>
+			<em id="basePrice"></em>
 			<div class="itemStore"><p>聚派商城</p></div>
 			<!-- <span class="itemMoreInfo"><strong>浏览 36 次</strong>|<a href="javascript:;" rel="nofollow">2 人购买</a>|<a href="javascript:;" rel="nofollow">0 人评价</a></span> -->
 		</div>
@@ -47,7 +47,7 @@
 			</div>
 			<p class="itemStockNum">库存 <em id="stock"></em> 件</p>
 			<div class="itemBuy" id="itemBuy">
-							<a href="addToCart.html" class="btn-append itemAddCart" id="InitCartUrl">加入购物车</a>
+							<a href="javascript:void(0);" class="btn-append itemAddCart" id="InitCartUrl">加入购物车</a>
 							<a href="javascript:void(0);" class="itemAddFavor noLoginAddFa" >收藏</a>
 				<div class="itemAddCartAnimate"><img src="/uploadfiles/usergoods/85/dd/1415263371923374092.jpg?70x70" /></div>
 			</div>
@@ -192,7 +192,19 @@ xyzAjax({
 		numberCode:product
 	},
 	success:function(data){
+	
 		if(data.status==1){
+			var linkType="";
+			if(data.content.type==1){
+				linkType="海鲜肉类";
+			}else if(data.content.type==2){
+				linkType="南北干货";
+			}else if(data.content.type==3){
+				linkType="酒水饮料";
+			}
+			$("#title").html(data.content.name);
+			$("#linkType").html(linkType);
+			$("#linkname").html(data.content.name);
 			$("#productName").html(data.content.name);
 			$("#productSpecial").html(data.content.special);
 			$("#price").html(data.content.price);
@@ -206,7 +218,7 @@ xyzAjax({
 				html+='<li class="itemImgListFocus"><a href="javascript:void(0);"><img src="upload/productImage/'+images[i].url+'"  data-src="upload/productImage/'+images[i].url+'" data-full="upload/productImage/'+images[i].url+'" /></a></li>';
 			}
 			$(".itemImgList").html(html);
-			$("#firstImage").attr("src","upload/productImage/'+images[i].url+'");
+			$("#firstImage").attr("src","upload/productImage/"+images[0].url);
 			
 		}else{
 			top.$.messager.alert("警告",data.msg,"warning");

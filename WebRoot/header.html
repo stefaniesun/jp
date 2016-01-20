@@ -15,9 +15,10 @@
 <div class="wrap header">
 	<a href="index.html" class="logo">特产优联</a>
 	<div class="cart">
-		<div class="cartNum"><a href="/showcart.html">购物车 (0)</a></div>
+		<div class="cartNum"><a href="/showcart.html">购物车 (<span id="cartNum">0</span>)</a></div>
 		<div class="cartList">
-			<p id="cartloading"><img src='misc/tc1015/image/trend-loading.gif' /></p>
+			<p>购物车内暂无商品，赶紧选购吧</p>
+			<!-- <p id="cartloading"><img src='misc/tc1015/image/trend-loading.gif' /></p> -->
 		</div>
 	</div>
 	<div class="search">
@@ -153,3 +154,69 @@
 		<li><a href="index.html" title="酒水饮料">酒水饮料</a></li> 
 	</ul>
 </div>
+
+<script type="text/javascript">
+if(!xyzIsNull(getCookie("JP_LOGIN_NAME"))){
+	if(!xyzIsNull(getCookie("JP_SHOPPING_CART"))){
+		initShoppingCartHtml();
+	}else{
+		initShoppingCartCookie();
+	}
+}
+
+function initShoppingCartCookie(){
+	xyzAjax({
+		url:"/ShoppingCartWS/queryShoppingCartList.cus",
+		success:function(data){
+			if(data.status==1){
+				var carts=JSON.stringify(data.content.rows);
+				addCookie("JP_SHOPPING_CART",carts,7); 
+				initShoppingCartHtml();
+			}else{
+				top.$.messager.alert("警告",data.msg,"warning");
+			}
+		}
+	});
+}
+
+function initShoppingCartHtml(){
+	var carts=eval(getCookie("JP_SHOPPING_CART"));
+	if(carts.length>0){
+		var count=0;
+		var total=0;
+		var html='<ul>';
+		for(var i=0;i<carts.length;i++){
+			html+='<li>';
+			html+='<a href="product_detail.html?product='+carts[i].product+'" target="_blank"><img src="'+carts[i].image+'" title="'+carts[i].productName+'" alt="'+carts[i].productName+'"></a>';
+			html+='<h4><a href="product_detail.html?product='+carts[i].product+'" target="_blank" title="'+carts[i].productName+'">'+carts[i].productName+'</a></h4>';
+			html+='<span>'+carts[i].price.toFixed(2)+'×'+carts[i].count+'</span><em><a class="delete" data-numberCode="'+carts[i].numberCode+'" data-type="RemoveProduct" href="javascript:;">×</a></em></li>';
+			count+=carts[i].count;
+			total+=carts[i].price*carts[i].count;
+		}
+		$("#cartNum").html(count);
+		html+='<div class="cartTotal">';
+		html+='<span>共计 '+count+' 件商品<strong>合计：<em>'+total.toFixed(2)+'元</em></strong></span>';
+		html+='<a href="/showcart.html" class="cartBtn">去购物车结算</a>	';
+		html+='</div></ul>';
+		$(".cartList").html(html);
+		$(".cartList li .delete").click(function(){
+			xyzAjax({
+				url:"/ShoppingCartWS/deleteShoppingCart.cus",
+				data:{
+					numberCode:$(this).data("numbercode")
+				},
+				success:function(data){
+					if(data.status==1){
+						initShoppingCartCookie();
+					}else{
+						top.$.messager.alert("警告",data.msg,"warning");
+					}
+				}
+			});
+		});
+	}else{
+		$("#cartNum").html("0");
+		$(".cartList").html("<p>购物车内暂无商品，赶紧选购吧</p>");
+	}
+}
+</script>

@@ -222,6 +222,7 @@ function editProductSubmit(numberCode){
 	var price=$("#priceForm").val();
 	var basePrice=$("#basePriceForm").val();
 	var stock=$("#stockForm").val();
+	var image=$("#imageForm").val();
 	var content=UM.getEditor('editor').getContent();
 	var images="";
 	$(".filelist li[class='state-complete']").each(function(){
@@ -244,6 +245,7 @@ function editProductSubmit(numberCode){
 			price:price,
 			basePrice:basePrice,
 			stock:stock,
+			image:image,
 			content:content,
 			images:images,
 			deleteImages:deleteImages

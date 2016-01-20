@@ -2,6 +2,9 @@
 .cartNum a,
 .navMenu h3,
 .navList ul em{background-image:url(../image/header.gif);}
+.hide {
+display: none;
+}
 
 .top{background:#F4F4F4;color:#999;height:40px;line-height:40px;font-size:12px;overflow:hidden;}
 .top a:link,

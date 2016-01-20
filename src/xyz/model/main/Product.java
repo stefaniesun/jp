@@ -46,6 +46,9 @@ public class Product {
 	@Column(name="product_content")
 	private String content;
 	
+	@Column(name="image")
+	private String image;
+	
 	@Transient
 	private String images;
 
@@ -127,6 +130,14 @@ public class Product {
 
 	public void setBasePrice(BigDecimal basePrice) {
 		this.basePrice = basePrice;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

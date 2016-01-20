@@ -25,6 +25,7 @@
 		<mapping class="xyz.model.main.User"></mapping>
 		<mapping class="xyz.model.main.Model"></mapping>
 		<mapping class="xyz.model.main.ProductImage"></mapping>
+		<mapping class="xyz.model.main.ShoppingCart"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>

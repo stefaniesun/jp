@@ -53,8 +53,8 @@ public class ProductWS{
 	@ResponseBody
 	public Map<String,Object> editProduct(String numberCode,String name,String special,String type,
 			BigDecimal price,BigDecimal basePrice,
-			int stock,String content,String images,String deleteImages){
-		return productSvc.editProduct(numberCode,name,special,type, price,basePrice,stock,content,images,deleteImages);
+			int stock,String image,String content,String images,String deleteImages){
+		return productSvc.editProduct(numberCode,name,special,type, price,basePrice,stock,image,content,images,deleteImages);
 	}
 	
 	

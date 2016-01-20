@@ -40,7 +40,7 @@
                     <h3>商品已成功加入购物车！</h3>
                     <span id="flashBuy" style="display:none">商品数量有限，请您尽快下单并付款！</span>
                 </div>
-            <span id="initCart_next_go"><a id="GotoShoppingCart" href="#" class="btn-pay">去结算</a><a href="javascript:history.back();" class="btn-continue">继续购物</a></span></div>
+            <span id="initCart_next_go"><a id="GotoShoppingCart" href="#" class="btn-pay">去结算</a><a href="index.html" class="btn-continue">继续购物</a></span></div>
 			
 		</div>
 
@@ -76,21 +76,16 @@
 
 
 			<h3>刚加入购物车的商品</h3>
-						<dl class="new">
-				<dt class="p-img"><a href="http://www.techan.com/i/11993.html" target"_blank"=""><img src="http://www.techan.com/uploadfiles/usergoods/85/dd/1415263371923374092.jpg" alt="" width="50" height="50"></a></dt>
-				<dd class="p-info">
-					<div class="p-name"><a href="http://www.techan.com/i/11993.html" target"_blank"="">2015年新货 吐鲁番野生黑桑椹干 500g</a></div>
-					<div class="p-price"><span style="font-weight:bold;color:red">39.00</span>×6</div>
-				</dd>
-			</dl>
+				
+			<div id="shoppingCart"></div>
 			
 
 			<h3>您购物车中的其它商品</h3>
 		 
 
 <div class="total">
-共<strong id="skuCount">6</strong>件商品<br>
-金额总计：<strong>￥234.00</strong>
+共<strong id="skuCount"></strong>件商品<br>
+金额总计：<strong id="total"></strong>
 </div>
 <div class="btns"><a href="#" class="btn-pay">去结算</a></div>    
 <input value="234.00" id="shoppingmoney" type="hidden">
@@ -108,6 +103,35 @@
 
 
   <!--#include virtual="footer.html"-->
+
+<script type="text/javascript">
+xyzAjax({
+	url:"/ShoppingCartWS/queryShoppingCartList.cus",
+	success:function(data){
+		if(data.status==1){
+			var carts=data.content.rows;
+			var html="";
+			var total=0;
+			for(var i=0;i<carts.length;i++){
+				html+='<dl class="new">';
+				html+='<dt class="p-img"><a href="product_detail.html?product='+carts[i].product+'" target"_blank"=""><img src="'+carts[i].image+'" alt="" width="50" height="50"></a></dt>';
+				html+='<dd class="p-info">';
+				html+='<div class="p-name"><a href="product_detail.html?product='+carts[i].product+'" target"_blank"="">'+carts[i].productName+'</a></div>';
+				html+='<div class="p-price"><span style="font-weight:bold;color:red">'+carts[i].price.toFixed(2)+'</span>×'+carts[i].count+'</div>';
+				html+='</dd>';
+				html+='</dl>';
+				total+=carts[i].price*carts[i].count;
+			}
+			$("#shoppingCart").html(html);
+			$("#skuCount").html(carts.length);
+			$("#total").html("￥"+total.toFixed(2));
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+
+</script>
 
 </body>
 </html>

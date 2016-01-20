@@ -93,7 +93,7 @@ public class ProductSvcImp implements ProductSvc {
 
 	@Override
 	public Map<String, Object> editProduct(String numberCode, String name,String special,
-			String type, BigDecimal price, BigDecimal basePrice,int stock, String content,String images,String deleteImages) {
+			String type, BigDecimal price, BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages) {
 		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
 		if(product==null){
 			return ReturnUtil.returnMap(0, "产品不存在");
@@ -104,13 +104,14 @@ public class ProductSvcImp implements ProductSvc {
 		product.setPrice(price);
 		product.setBasePrice(basePrice);
 		product.setStock(stock);
+		product.setImage(image);
 		product.setContent(content);
 		commonDao.update(product);
 		
 		
 		if(deleteImages!=null&&!deleteImages.equals("")){
-			for(String image:deleteImages.split(",")){
-				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", image);
+			for(String deleteImage:deleteImages.split(",")){
+				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", deleteImage);
 				if(productImage!=null){
 					commonDao.delete(productImage);
 				}
@@ -118,8 +119,8 @@ public class ProductSvcImp implements ProductSvc {
 		}
 		
 		if(images!=null&&!images.equals("")){
-			for(String image:images.split(",")){
-				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", image);
+			for(String img:images.split(",")){
+				ProductImage productImage=(ProductImage) commonDao.getObjectByUniqueCode("ProductImage", "numberCode", img);
 				productImage.setProduct(product.getNumberCode());
 				commonDao.update(productImage);
 			}

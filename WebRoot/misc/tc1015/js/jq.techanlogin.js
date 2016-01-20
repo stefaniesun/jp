@@ -63,7 +63,6 @@ techanuserlogin.dologin = function(e){
 		er.style.display = "block";
         er.innerHTML = '信息处理中...';
 	}
-	var url = 'http://localhost:8080/Jp/UserWS/loginOper.web';
 
     xyzAjax({
 		url : "UserWS/loginOper.web",
