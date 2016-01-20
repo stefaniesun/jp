@@ -33,7 +33,7 @@ visibility: hidden;
   <!--#include virtual="header.html"-->
   
   
-  <div class="flow_step_no1 flow_cart main">
+  <div class="flow_step_no1 flow_cart main" style="margin-top:50px">
   <ul>
     <li class="step_1">我的购物车</li>
     <li class="step_2">填写核对订单</li>
@@ -62,14 +62,14 @@ visibility: hidden;
   </div>
 </div>
 <input type="hidden" value="" id="del_id"><input type="hidden" value="" id="pro_id">
-    <form method="post" action="http://www.techan.com/cart/order.html" name="myform" onsubmit="return checkUserCartInfo();">
-	      <div class="techanBranch" id="pro_352">阿克苏仓库</div>
+    <form method="post" action="order.html" name="myform" onsubmit="return checkUserCartInfo();">
+	      <div class="techanBranch" id="pro_352">商品列表</div>
       <table border="0" cellpadding="0" cellspacing="0" id="g_352" class="cart-inner">
         <thead>
           <tr> 
             <!--th><div class="t_checkbox"><input type="checkbox" onclick="selectAll(this, 'checkboxes')" /><label>全选</label></div></th-->
             <th><div class="t_goods">商品名称</div></th>
-            <th><div class="t_promotion">积分</div></th>
+            <th><div class="t_promotion"></div></th>
             <th><div class="t_price">单价</div></th>
             <th><div class="t_quantity">数量</div></th>
             <th><div class="Preferential">优惠</div></th>
@@ -79,34 +79,16 @@ visibility: hidden;
         </thead>
         <tbody id="content">
         
-                <tr id="del_184924"> 
-		   <input type="hidden" id="goods_352" value="1">
-          <!--td><div class="t_checkbox"><input type="checkbox" value="184924" name="checkboxes[]" /></div></td-->
-          <td><div style="padding-left:30px;">
-              <div class="p_img"><a target="_blank" href="http://www.techan.com/i/11993.html"><img alt="2015年新货 吐鲁番野生黑桑椹干 500g" title="2015年新货 吐鲁番野生黑桑椹干 500g" src="/uploadfiles/usergoods/85/dd/1415263371923374092.jpg" width="48" height="48"></a></div>
-              <div class="p_name">
-                <h3><a target="_blank" title="2015年新货 吐鲁番野生黑桑椹干 500g" href="http://www.techan.com/i/11993.html">2015年新货 吐鲁番野生黑桑椹干 500g</a>  </h3>
-				                 </div>
-            </div></td>
-          <td id="jf_184924">39分</td>
-          <td>￥39.00元</td>
-          <td><div class="buyinfo1"> <a href="javascript:void(0);" onclick="chang_num(11993,184924,158,'cut',352,0)">-</a>
-              <input id="num_184924" type="text" onchange="chang_num(11993,184924,158,'change',352,0)" value="4">
-              <a href="javascript:void(0);" onclick="chang_num(11993,184924,158,'add',352,0)">+</a> </div></td>
-          <td id="yp_184924">￥0</td>
-          <td id="tp_184924">￥39元</td>
-          <td class="p_remove"><a href="javascript:;" onclick="userCollection(11993)">收藏</a><br>
-          <a href="javascript:;" id="del_goods" rel="184924" value="352" class="date">删除</a></td>
-        </tr>
-                  </tbody>
+                
+          </tbody>
         <!--tfoot>
                   </tfoot-->
       </table>
-      <div class="shop-bott" id="site_352">
+     <!--  <div class="shop-bott" id="site_352">
         <div class="shop-money"> 阿克苏仓库小计:<span><span class="money">￥</span><span id="t_352">39.00</span> </span> </div>
 		<input type="hidden" value="0">
-						        <!--div class="zongji"><b>重量总计：</b>0.290kg </div-->
-      </div>
+						        div class="zongji"><b>重量总计：</b>0.290kg </div
+      </div> -->
 	        
       <div class="promotion_list" style="display: none;">
         <h4 class="hd">您满足以下促销活动，请选择一个参加：<span>（每笔订单只能参加一个促销活动）</span></h4>
@@ -126,12 +108,12 @@ visibility: hidden;
         <div class="cart_toolbar">
           <dl>
             <dt>产品数量总计：</dt>
-            <dd><span id="total_nums">1件</span></dd>
+            <dd><span id="total_nums"></span></dd>
           </dl>
-          <dl>
+          <!-- <dl>
             <dt>赠送积分总计：</dt>
             <dd><span id="totle_give_integral">39分</span></dd>
-          </dl>
+          </dl> -->
           <input type="hidden" name="goods_integral" id="input_give_integral" value="39">
           <dl>
             <dt>优惠价格总计：</dt>
@@ -139,13 +121,14 @@ visibility: hidden;
           </dl>
           <dl>
             <dt><strong>商品总价</strong>(不含运费)：</dt>
-            <dd><span>￥<strong id="totle_price">39</strong></span></dd>
+            <dd><span>￥<strong id="totle_price"></strong></span></dd>
           </dl>
         </div>
         
       </div>
-      <div class="cart_button clearfix"> <a href="http://www.techan.com" class="continue">继续购物</a>
-        <input type="submit" name="dosubmit" value="去结算" class="checkout">
+      <div class="cart_button clearfix"> <a href="index.html" class="continue">继续购物</a>
+      <a href="index.html" class="checkout">去结算</a>
+        <!-- <input type="submit" name="dosubmit" value="去结算" class="checkout"> -->
         <span id="loading" style="display:none;float:right;"><img src="http://www.techan.com/images/loading.gif"></span> </div>
     </form>
   </div>
@@ -195,9 +178,39 @@ jQuery(function(){
 
   <!--#include virtual="footer.html"-->
 <script type="text/javascript">
-$(".wrap .nav").remove();
+var carts=eval(getCookie("JP_SHOPPING_CART"));
+if(carts.length>0){
+	var count=0;
+	var total=0;
+	var html='<ul>';
+	for(var i=0;i<carts.length;i++){
+		var perTotal=carts[i].price.toFixed(2)*carts[i].count;
+		html+='<tr id="'+carts[i].numberCode+'"> ';
+		html+='<td><div style="padding-left:30px;"> ';
+		html+='<div class="p_img"><a target="_blank" href="product_detail.html?product='+carts[i].product+'"><img  title="'+carts[i].productName+'" src="'+carts[i].image+'" width="48" height="48"></a></div>';
+		html+='<div class="p_name">';
+		html+=' <h3><a target="_blank" title="'+carts[i].productName+'" href="product_detail.html?product='+carts[i].product+'">'+carts[i].productName+'</a>  </h3></div></div></td>';
+		html+='<td></td>';
+		html+='  <td>￥'+carts[i].price.toFixed(2)+'元</td>';
+		html+=' <td><div class="buyinfo1"> <a href="javascript:void(0);">-</a>';
+		html+='<input  type="text"  value="'+carts[i].count+'">';
+		html+=' <a href="javascript:void(0);">+</a> </div></td>';
+		html+=' <td>￥0</td>';
+		html+=' <td>￥'+perTotal+'元</td>';
+		html+='<td class="p_remove">';
+		html+='<a href="javascript:;" id="del_goods" rel="184924" value="352" class="date">删除</a></td></tr>';
+		
+		count+=carts[i].count;
+		total+=carts[i].price*carts[i].count;
+	}
+	$("#content").html(html);
+	$("#total_nums").html(count+"件");
+	$("#totle_price").html(total.toFixed(2));
+}
+
+
 </script>
 
-
+   
 </body>
 </html>

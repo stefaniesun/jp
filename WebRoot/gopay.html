@@ -1,0 +1,157 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聚派商城_地区特产网购商城</title>
+<meta name="Keywords" content="聚派商城,,土特产,地方特产购物网" />
+<meta name="Description" content="聚派商城,,土特产,地方特产购物网" />
+<link href="misc/tc1015/css/index.css" rel="stylesheet" type="text/css" />
+<link href="misc/tc1015/css/new_cart.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/cart.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/user_area_select.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/orderprocess.js"></script>
+</head>
+<body>
+<style type="text/css">
+.header .logo {
+  width: 400px;
+}
+</style>
+
+  <!--#include virtual="header.html"-->
+  
+ <div class="flow_step_no3 flow_cart main" style="margin-top:50px">
+  <ul>
+	<li class="step_1">我的购物车</li>
+	<li class="step_2">填写核对订单</li>
+	<li class="step_3">订单提交成功</li>
+  </ul>
+</div>
+
+
+<div class="para_blo">
+  <div class="para_blo_title"><b class="icon icon_msg2"></b><strong class="tit">订单提交成功，请在下方选择支付方式！</strong><em>请您在24小时内完成付款，超过后系统将自动取消订单</em></div>
+  <div class="bd">
+	<ul class="info_list">
+	  <li>订单编号：2016012066615</li>
+	</ul>
+  </div>
+</div>
+
+
+<div class="paymentTop main">
+  <strong>支付方式：</strong>
+  <ul>
+    <li>在线支付</li>
+  </ul>
+  <p><b>167.00</b><span>元</span></p>
+</div>
+
+<form action="http://www.techan.com/orderpay.html?a=topay" method="post" name="theForm" id="theForm" onsubmit="return checkpay();">
+<div class="payment">
+  <h3>第三方支付平台</h3>
+  <ul class="clearfix">
+    <li>
+      <input type="radio" name="IdPaymentType" id="6" value="6">
+      <label for="6"><img alt="支付宝" src="http://img01.techan.com/images/payment/alipay.png"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="5" value="5">
+      <label for="5"><img alt="财付通" src="http://img01.techan.com/images/payment/tenpaylogo.png"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="27" value="27">
+      <label for="27"><img alt="中国银联在线支付" src="http://img01.techan.com/images/payment/chinapay.png"><span></span></label>
+    </li>
+  </ul>
+  <h3>网银支付</h3>
+  <ul class="Onlinepayment clearfix">
+    <li>
+      <input type="radio" name="IdPaymentType" id="11" value="11">
+      <label for="11"><img src="http://img01.techan.com/images/payment/cmb.png" alt="招商银行支付" title="招商银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="25" value="25">
+      <label for="25"><img src="http://img01.techan.com/images/payment/icbc.png" alt="工商银行支付" title="工商银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="24" value="24">
+      <label for="24"><img src="http://img01.techan.com/images/payment/ccb.png" alt="建设银行支付" title="建设银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="26" value="26">
+      <label for="26"><img src="http://img01.techan.com/images/payment/bcom.png" alt="交通银行支付" title="交通银行支付"><span></span></label>
+    </li>
+	<li>
+      <input type="radio" name="IdPaymentType" id="20" value="20">
+      <label for="20"><img src="http://img01.techan.com/images/payment/boc.png" alt="中国银行支付" title="中国银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="21" value="21">
+      <label for="21"><img src="http://img01.techan.com/images/payment/spdb.png" alt="上海浦东发展银行支付" title="上海浦东发展银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="14" value="14">
+      <label for="14"><img src="http://img01.techan.com/images/payment/pab.png" alt="平安银行支付" title="平安银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="17" value="17">
+      <label for="17"><img src="http://img01.techan.com/images/payment/cmbc.png" alt="中国民生银行支付" title="中国民生银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="9" value="9">
+      <label for="9"><img src="http://img01.techan.com/images/payment/abc.png" alt="农业银行支付" title="农业银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="12" value="12">
+      <label for="12"><img src="http://img01.techan.com/images/payment/ceb.png" alt="中国光大银行支付" title="中国光大银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="22" value="22">
+      <label for="22"><img src="http://img01.techan.com/images/payment/cib.png" alt="兴业银行支付" title="兴业银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="8" value="8">
+      <label for="8"><img src="http://img01.techan.com/images/payment/citic.png" alt="中信银行支付" title="中信银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="23" value="23">
+      <label for="23"><img src="http://img01.techan.com/images/payment/gdb.png" alt="广发银行支付" title="广发银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="19" value="19">
+      <label for="19"><img src="http://img01.techan.com/images/payment/post.png" alt="中国邮政储蓄银行支付" title="中国邮政储蓄银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="18" value="18">
+      <label for="18"><img src="http://img01.techan.com/images/payment/shb.png" alt="上海银行支付" title="上海银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="15" value="15">
+      <label for="15"><img src="http://img01.techan.com/images/payment/hxb.png" alt="华夏银行支付" title="华夏银行支付"><span></span></label>
+    </li>
+    <li>
+      <input type="radio" name="IdPaymentType" id="16" value="16">
+      <label for="16"><img src="http://img01.techan.com/images/payment/bob.png" alt="北京银行支付" title="北京银行支付"><span></span></label>
+    </li>
+  </ul>
+  <div class="paymentB">
+	<input type="hidden" name="oAm" value="167.00"><input type="hidden" name="oSN" value="2016012066615"><input type="hidden" name="oU" value="ZDY3Y2RlNGRhNGU2YmFjMDcwMGNjYTcyMmVhZWRjMjk=">
+    <input type="submit" value="" class="paymentBtn">
+  </div>
+</div>
+</form>
+
+
+
+  <!--#include virtual="footer.html"-->
+<script type="text/javascript">
+
+
+</script>
+
+   
+</body>
+</html>

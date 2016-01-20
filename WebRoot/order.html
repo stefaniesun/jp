@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聚派商城_地区特产网购商城</title>
+<meta name="Keywords" content="聚派商城,,土特产,地方特产购物网" />
+<meta name="Description" content="聚派商城,,土特产,地方特产购物网" />
+<link href="misc/tc1015/css/index.css" rel="stylesheet" type="text/css" />
+<link href="misc/tc1015/css/new_cart.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/cart.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/user_area_select.js"></script>
+<script type="text/javascript" src="misc/tc1015/js/orderprocess.js"></script>
+</head>
+<body>
+<style type="text/css">
+.header .logo {
+  width: 400px;
+}
+</style>
+
+  <!--#include virtual="header.html"-->
+  
+ <div class="flow_step_no2 flow_cart main" style="margin-top:50px">
+  <ul>
+	<li class="step_1">我的购物车</li>
+	<li class="step_2">填写核对订单</li>
+	<li class="step_3">订单提交成功</li>
+  </ul>
+</div>
+
+
+<div class="main margin">
+  <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#dcdfe4" class="cartTable">
+	<tbody><tr>
+      <td bgcolor="#FFFFFF">
+		<div class="cartTitle asds"><strong>收货地址</strong><span><a href="/myaddress.html" target="_blank">管理收货地址</a></span></div>
+        <div class="addressListBox" id="addressListBox">
+          <ul class="clearfix">
+			            <li class="newSlt" t="addAddress" style="display:none;">
+              <span></span>
+              <strong>添加新地址</strong>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="cartTable1" id="cartTable">
+		<script type="text/javascript">jQuery(function(){
+	LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val()); });
+</script>		  <dl>
+            <dt>收货人：</dt>
+            <dd><input name="name" value="" size="15" class="dizhiInput"></dd>
+          </dl>
+          <dl>
+            <dt>手机：</dt>
+            <dd><input name="mobile" value="" size="20" class="dizhiInput"></dd>
+          </dl>
+          <dl>
+            <dt>收货区域：</dt>
+            <dd>
+              <input id="provinceIdValue" class="dizhi" type="hidden" value="0"><input id="cityIdValue" class="dizhi" type="hidden" value="0"><input id="districtIdValue" class="dizhi" type="hidden" value="0"><select name="province" id="provinceId" class="sgcategory"><option value="">请选择省</option><option value="3">安徽</option><option value="34">澳门</option><option value="2">北京</option><option value="4">福建</option><option value="5">甘肃</option><option value="6">广东</option><option value="7">广西</option><option value="8">贵州</option><option value="9">海南</option><option value="10">河北</option><option value="11">河南</option><option value="12">黑龙江</option><option value="13">湖北</option><option value="14">湖南</option><option value="15">吉林</option><option value="16">江苏</option><option value="17">江西</option><option value="18">辽宁</option><option value="19">内蒙古</option><option value="20">宁夏</option><option value="21">青海</option><option value="22">山东</option><option value="23">山西</option><option value="24">陕西</option><option value="25">上海</option><option value="26">四川</option><option value="27">天津</option><option value="35">台湾</option><option value="28">西藏</option><option value="29">新疆</option><option value="33">香港</option><option value="30">云南</option><option value="31">浙江</option><option value="32">重庆</option></select><select name="city" id="cityId" class="sgcategory"><option value="">请选择城市</option></select><select name="district" id="districtId" class="sgcategory"><option value="">请选择区县</option></select>
+            </dd>
+          </dl>
+          <dl>
+            <dt>详细地址：</dt>
+            <dd><input name="address" value="" size="40" class="dizhiInput"></dd>
+          </dl>
+          <dl>
+            <dt>&nbsp;</dt>
+            <dd><input value="" type="button" t="add_save" class="dizhiBtn1"></dd>
+          </dl>
+		</div>
+      </td>
+	</tr>
+    <tr>
+      <td bgcolor="#f8f8f8">
+        <div class="cartTitle"><strong>购物清单</strong></div>
+		        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable">
+          <tbody><tr>
+            <td bgcolor="48b123" width="25" class="ShoppingListL"><div class="ShoppingListLB">阿克苏仓库</div></td>
+            <td bgcolor="ffffff" width="908" class="ShoppingListR" valign="top"><div class="ShoppingListBox">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable1">
+                <tbody><tr>
+                  <th align="left" width="555" class="tableFirst">商品名称</th>
+                  <th align="center" width="64">单价</th>
+                  <th align="center" width="170">商品重量</th>
+                  <th align="center" width="104">数量</th>
+                </tr>
+				                <tr>
+                  <td align="left" class="tableFirst"><a href="http://www.techan.com/i/11993.html" title="2015年新货 吐鲁番野生黑桑椹干 500g" target="_blank">2015年新货 吐鲁番野生黑桑椹干 500g</a></td>
+                  <td align="center">￥39.00元</td>
+                  <td align="center">2000g</td>
+                  <td align="center">4</td>
+                </tr>
+				              </tbody></table>
+            </div></td>
+          </tr>
+        </tbody></table>
+                
+        <div class="ReturnCart"><a href="/showcart.html" title="返回修改购物车">返回修改购物车</a></div>
+        
+      </td>
+	</tr>
+	<tr>
+      <td style="padding-bottom:20px;" bgcolor="#f8f8f8">
+        <div class="cartTitle"><strong>备注</strong></div>
+        <div class="statistiL" id="order_memo">
+			<textarea title="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" class="msgtosaler" placeholder="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" name="|memo" id="_memo" autocomplete="off"></textarea>
+        </div>        
+      </td>
+	</tr>
+    <tr>
+      <td bgcolor="#f8f8f8" style="border-bottom:4px solid #eeeeee;padding-bottom:20px;">
+        <div class="cartTitle"><strong>结算</strong></div>
+        
+     <!--    <div class="statistiL" id="statistiL">
+		          <dl class="off">
+            <dt><span></span><strong>使用现金券</strong></dt>
+            <dd id="cash_default_box">
+            
+              
+                              <div class="cashCoupon1"><label for="1"><a href="http://www.techan.com/help/317.html" target="_blank">您还没有现金券 (了解规则)</a></label></div>
+                            
+              <div class="cashCoupon2"><input name="use_cashmanye_no" value="请输入现金券号码" size="20" class="cartInput dd_mod_input_txt cashmanye_no"><input name="use_cashmanye_pwd" type="password" placeholder="请输入现金券密码" value="" size="15" class="cartInput dd_mod_input_txt"><input class="cartBtn" type="button" name="cartCashMoneyBtn" value="激活">
+			  </div>            </dd>
+          </dl>
+          <dl class="off">
+            <dt><span></span><strong>使用礼品卡</strong></dt>
+            <dd id="gift_default_box">
+              <div class="cashCoupon2"><input name="use_gift_no" value="请输入礼品卡号码" size="20" class="cartInput dd_mod_input_txt gift_no"><input name="use_gift_pwd" placeholder="请输入礼品卡密码" value="" type="password" size="15" class="cartInput dd_mod_input_txt"><input name="cartGiftBtn" class="cartBtn" type="button" value="充值"></div>
+            </dd>
+          </dl>
+        </div> -->
+        <div class="statistiR">
+		  <ul>
+			<li> <span><font style="color:red">4</font> 件商品，总商品金额：</span> <em>￥156.00</em> </li>
+			<li> <span>运费：</span>￥<a id="trans_fee">8.00</a> </li>
+			<li> <span>优惠券：</span>-￥<a id="promote_fee" style="color:red">0.00</a> </li>
+			<li style="display:none;"> <span>现金券：</span> <em>-￥<a id="cashcard_fee" style="color:red"></a></em> </li>
+						<li> <span>应付总额：</span> <em>￥<b id="order_money">164.00</b></em> </li>
+		  </ul>
+        </div>
+        
+      </td>
+	</tr>
+    <tr>
+      <td bgcolor="#ffffff" style="padding:8px 22px;" valign="top">
+        <div class="Delivery" id="DeliveryTip" style="display:none;"></div>
+        <div class="summaryForm" id="useBalance">
+          <strong>余额支付</strong>
+          <span><input name="Balance" type="checkbox" value="Balance" disabled="disabled"></span>
+          <label for="Balance">使用余额（账户当前余额：<em id="currentUserSur">0.00</em>元）</label>
+        </div>
+        <div class="checkout1">
+          <strong>应付总额：￥<b id="order_money2">164.00</b></strong>
+          <input type="button" value="" id="btn_order" class="checkoutInput">
+        </div>
+      </td>
+	</tr>
+  </tbody></table>
+</div>
+
+
+
+
+  <!--#include virtual="footer.html"-->
+<script type="text/javascript">
+
+
+</script>
+
+   
+</body>
+</html>
