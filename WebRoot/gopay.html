@@ -35,7 +35,7 @@
   <div class="para_blo_title"><b class="icon icon_msg2"></b><strong class="tit">订单提交成功，请在下方选择支付方式！</strong><em>请您在24小时内完成付款，超过后系统将自动取消订单</em></div>
   <div class="bd">
 	<ul class="info_list">
-	  <li>订单编号：2016012066615</li>
+	  <li>订单编号：<span id="orderNum"></span></li>
 	</ul>
   </div>
 </div>
@@ -46,10 +46,10 @@
   <ul>
     <li>在线支付</li>
   </ul>
-  <p><b>167.00</b><span>元</span></p>
+  <p><b id="total"></b><span>元</span></p>
 </div>
 
-<form action="http://www.techan.com/orderpay.html?a=topay" method="post" name="theForm" id="theForm" onsubmit="return checkpay();">
+<form action="" method="post" name="theForm" id="theForm" onsubmit="return checkpay();">
 <div class="payment">
   <h3>第三方支付平台</h3>
   <ul class="clearfix">
@@ -139,7 +139,7 @@
   </ul>
   <div class="paymentB">
 	<input type="hidden" name="oAm" value="167.00"><input type="hidden" name="oSN" value="2016012066615"><input type="hidden" name="oU" value="ZDY3Y2RlNGRhNGU2YmFjMDcwMGNjYTcyMmVhZWRjMjk=">
-    <input type="submit" value="" class="paymentBtn">
+    <input type="button" value="" class="paymentBtn">
   </div>
 </div>
 </form>
@@ -148,7 +148,46 @@
 
   <!--#include virtual="footer.html"-->
 <script type="text/javascript">
+var orderNum=getUrlParam('orderNum');
+xyzAjax({
+	url:"/OrderWS/getOrder.cus",
+	data:{
+		orderNum:orderNum
+	},
+	success:function(data){
+		if(data.status==1){
+			$("#orderNum").html(orderNum);
+			var orders=data.content.rows;
+			var total=0;
+			for(var i=0;i<orders.length;i++){
+				total+=orders[i].price*orders[i].count;
+			}
+			$("#total").html(total.toFixed(2));
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
 
+$(".paymentBtn").click(function(){
+	xyzAjax({
+		url:"/OrderWS/orderPayOper.cus",
+		data:{
+			orderNum:orderNum
+		},
+		success:function(data){
+
+			if(data.status==1){
+				
+				OpenWindow=window.open();
+				OpenWindow.document.charset = "UTF-8";
+				OpenWindow.document.write(data.content.sHtmlText);
+			}else{
+				top.$.messager.alert("警告",data.msg,"warning");
+			}
+		}
+	});
+});
 
 </script>
 

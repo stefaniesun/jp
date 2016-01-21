@@ -1,5 +1,8 @@
 package xyz.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 
 
@@ -7,16 +10,11 @@ public class StringUtil {
 	private StringUtil(){}
 	private static long orderNum = System.currentTimeMillis();//订单编号
 	private static long product = System.currentTimeMillis()/1000;//票号
+	private static SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
-	public static String get_new_orderNum(){
-		long curt = System.currentTimeMillis();
-		if(curt>orderNum){
-			orderNum=curt;
-		}else{
-			curt = ++orderNum;
-		}
-		String cOrderNum = "N"+String.valueOf(curt+1000000000000l);
-		return cOrderNum;
+	public static String getOrderNum(){
+		Date date=new Date();
+		return format.format(date);
 	}
 	
 	public static String get_new_product(String type){

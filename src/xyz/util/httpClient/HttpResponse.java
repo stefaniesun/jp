@@ -1,7 +1,12 @@
 package xyz.util.httpClient;
 
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.commons.httpclient.Header;
+
+import xyz.config.AlipayConfig;
+
 
 /* *
  *类名：HttpResponse
@@ -51,6 +56,16 @@ public class HttpResponse {
 
     public void setByteResult(byte[] byteResult) {
         this.byteResult = byteResult;
+    }
+
+    public String getStringResult() throws UnsupportedEncodingException {
+        if (stringResult != null) {
+            return stringResult;
+        }
+        if (byteResult != null) {
+            return new String(byteResult, AlipayConfig.input_charset);
+        }
+        return null;
     }
 
     public void setStringResult(String stringResult) {

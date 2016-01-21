@@ -1,7 +1,10 @@
 package xyz.svc.main.imp;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import xyz.dao.CommonDao;
 import xyz.filter.MyRequestUtil;
 import xyz.filter.ReturnUtil;
+import xyz.model.main.Address;
 import xyz.model.main.User;
 import xyz.model.member.XyzSessionLogin;
 import xyz.model.member.XyzSessionUtil;
@@ -90,6 +94,31 @@ public class UserSvcImp implements UserSvc {
 		XyzSessionUtil.logins.put(apikey, xyzSessionLogin);
 		
 		return ReturnUtil.returnMap(1, xyzSessionLogin);
+	}
+
+	@Override
+	public Map<String, Object> addAddress(String linkName, String linkPhone,
+			String address) {
+		XyzSessionLogin xyzSessionLogin = MyRequestUtil.getXyzSessionLogin();
+		
+		Address a=new Address();
+		a.setNumberCode(UUIDUtil.getUUIDStringFor32());
+		a.setUsername(xyzSessionLogin.getUsername());
+		a.setLinkName(linkName);
+		a.setLinkPhone(linkPhone);
+		commonDao.save(a);
+		return ReturnUtil.returnMap(1, a);
+	}
+
+	@Override
+	public Map<String, Object> queryAddressList() {
+		XyzSessionLogin xyzSessionLogin = MyRequestUtil.getXyzSessionLogin();
+		String hql="from Address where username='"+xyzSessionLogin.getUsername()+"'";
+		List<Address> addresses=commonDao.queryByHql(hql);
+		Map<String,Object> mapContent=new HashMap<String, Object>();
+		mapContent.put("total", addresses.size());
+		mapContent.put("rows",addresses);
+		return ReturnUtil.returnMap(1, mapContent);
 	}
 
 }

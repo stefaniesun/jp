@@ -184,89 +184,65 @@ orderprocess.init = function(a){
 				a['city'] = $("#cityId").val();
 				a['district'] = $("#districtId").val();
 			}
-			openNewMsgDiv('地址变化，正在重新确认信息...', 1);
-			var apost_param = '&';
-			$.each(a,function(x,y){
-				apost_param += 'al['+x+']='+y+'&';
-			});
-			$.ajax({type:'post', async: false, url:orderprocess.data.CART_URL,
-				data:'a=insert_my_address'+apost_param+(new Date).getTime(),
-				success:function(c){
-					delete orderprocess.status.address;
-					var c = eval("("+c+")");
-					if(c.error==0){
-						var a = {num:liL};
-						$.extend(c, a);
-						for(var f in c){
-							if(f == 'aid'){
-								o = o.replace(/{{&aid}}/g, c[f]);
-							}else if (f == 'num'){
-								o = o.replace(/{{&num}}/g, c[f]);
-							}else{
-								o = o.replace("{{&"+f+"}}", c[f]);
-							}
-						}
-						orderprocess.statusSet("address", c),orderprocess.status.address['address_id'] = c.aid, closeMast(),$("li:first", aL).before(o),$("div#cartTable").html('').hide();
-						$("li.addressBox").each(function(a){
-							$(this).removeClass("slt");
-						});
-						$("li[t=addAddress]", aL).show(100),$("li[id="+liL+"]", aL).addClass("slt"),orderprocess.init(),n.stopPropagation();
-					}else closeMast(),openNewMsgDiv(c.content, 1);return false;
-				}
-			});
-			var f = {}, addr = orderprocess.statusGet("address");
-			if(addr.has_exclud_goods){
-				var hase_str = '';
-				for (var hase in addr.has_exclud_goods){
-					if(addr.has_exclud_goods.length > hase+1){
-						hase_str += addr.has_exclud_goods[hase]+'，';
+			
+			
+			xyzAjax({
+				url:"/UserWS/addAddress.cus",
+				data:{
+					linkName:$("input[name='name']").val().trim(),
+					linkPhone:$("input[name='mobile']").val().trim(),
+					address:$("input[name='address']").val().trim()
+				},
+				success:function(data){
+					if(data.status==1){
+						var html='<li id="1" class="addressBox slt">';
+						html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
+						html+='<label for="18462">';
+						html+='<p><b>'+data.content.linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
+						html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
+						html+='<p class="listAddressShow">'+data.content.address+'</p>';
+						html+='<p class="listAddressShow">'+data.content.linkPhone+'</p><sub></sub>';
+						html+='</label>';
+						html+='</li>';
+						$("#addressList").prepend(html);
+						$(".newSlt").css("display","block");
+						$("#cartTable").css("display","none");
 					}else{
-						hase_str += addr.has_exclud_goods[hase];
+						top.$.messager.alert("警告",data.msg,"warning");
 					}
 				}
-				$("#DeliveryTip").show().html('您购买的（<font color=red>'+hase_str+'</font>）暂时不支持配送至您当前选择的收货地区，<a href="/cart.html" style="color:red"><u>修改购物车</u></a>或者<a href="#top" style="color:red"><u>使用收货地址</u></a>。');
-				$("#btn_order").attr("disabled","disabled").removeClass("checkoutInput").addClass("checkoutInput1");
-			}else{
-				$("#DeliveryTip").hide().html('');
-				$("#btn_order").attr("disabled",false).removeClass("checkoutInput1").addClass("checkoutInput");
-			}
-			f['cancel_action']=true,f['transFee'] = addr.trans_fee,f['cashMoney'] = orderprocess.data.infoDefault.cashMoney,orderprocess.data.infoDefault.surplusMoney.totalS = orderprocess.data.infoDefault.surplusMoney.useS,f['type_money']='0.00',f['total_goods_price'] = orderprocess.data.infoDefault.orderAmount;
-			f['total_order_money']=(parseFloat(f['total_goods_price'])+parseFloat(f['transFee'])-parseFloat(f['type_money'])-parseFloat(f['cashMoney'])).toFixed(2)
-			$("#promote_fee_list > li", $("#statistiL")).find("input[type=radio]").each(function(){this.checked=false}),$("#promote_fee_list").find("a[t=cancel_promote_use]").each(function(){$(this).hide()}),$("input[name=Balance]").attr('checked', false),orderprocess.addressShowEditData(f),n.stopPropagation();
+			});
 			
-			// $.post(orderprocess.data.CART_URL,{a:'insert_my_address',al:a,r:Math.random()},function(c){
-				// var c = eval("("+c+")");
-				// if(c.error==0){
-					// var a = {num:liL};
-					// $.extend(c, a);
-					// for(var f in c){
-						// if(f == 'aid'){
-							// o = o.replace(/{{&aid}}/g, c[f]);
-						// }else if (f == 'num'){
-							// o = o.replace(/{{&num}}/g, c[f]);
-						// }else{
-							// o = o.replace("{{&"+f+"}}", c[f]);
-						// }
-					// }
-					// orderprocess.status.address['address_id'] = c.aid, closeMast(),$("li:first", aL).before(o),$("div#cartTable").html('').hide();
-					// $("li.addressBox").each(function(a){
-						// $(this).removeClass("slt");
-					// });
-					// $("li[t=addAddress]", aL).show(100),$("li[id="+liL+"]", aL).addClass("slt"),orderprocess.init();
-				// }else closeMast(),openNewMsgDiv(c.content, 1);
-			// });
 		}
 	});
 	$("#btn_order").unbind("click").click(function(b) {
-		// console.log(orderprocess.statusGet('address'));
-		var addr = orderprocess.statusGet('address'),promote = orderprocess.statusGet('promote'),surplus = orderprocess.statusGet('surplus'), cM = orderprocess.statusGet('cashMoney');
-		openNewMsgDiv('请勿关闭当前页面，订单正在提交处理...', 1);
-
-		$.post(orderprocess.data.CREATE_CART_URL,{a:'create_order',addr:addr,promote:promote,surplus:surplus,cashmoney:cM, _memo: encodeURIComponent($("#_memo").val()), r:Math.random()},function(c){
-				var c = eval("("+c+")");closeMast();
-				if(c.error!=0) {openNewMsgDiv(c.content, 1);}
-				else{location.href = orderprocess.data.CREATE_CART_URL+"?a=dopay&sn="+c.order_info.sn+"&u="+c.order_info.u;}
-			});
+		
+		var rows=eval(getCookie("JP_SHOPPING_CART"));
+		var remark=$("#remark").html();
+		var carts="";
+		if(rows.length>0){
+			for(var i=0;i<rows.length;i++){
+				carts+=rows[i].numberCode+",";
+			}
+		}
+		var address=$(".slt").attr("id");
+		xyzAjax({
+			url:"/OrderWS/addOrder.cus",
+			data:{
+				carts:carts,
+				address:address,
+				remark:remark
+			},
+			success:function(data){
+				if(data.status==1){
+					initShoppingCartCookie();
+					window.location.href="gopay.html?orderNum="+data.content;
+				}else{
+					top.$.messager.alert("警告",data.msg,"warning");
+				}
+			}
+		});
+		
 	});
 };
 

@@ -37,7 +37,7 @@
       <td bgcolor="#FFFFFF">
 		<div class="cartTitle asds"><strong>收货地址</strong><span><a href="/myaddress.html" target="_blank">管理收货地址</a></span></div>
         <div class="addressListBox" id="addressListBox">
-          <ul class="clearfix">
+          <ul id="addressList" class="clearfix">
 			            <li class="newSlt" t="addAddress" style="display:none;">
               <span></span>
               <strong>添加新地址</strong>
@@ -50,11 +50,11 @@
 	LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val()); });
 </script>		  <dl>
             <dt>收货人：</dt>
-            <dd><input name="name" value="" size="15" class="dizhiInput"></dd>
+            <dd><input name="name" value="" size="15" class="dizhiInput"/></dd>
           </dl>
           <dl>
             <dt>手机：</dt>
-            <dd><input name="mobile" value="" size="20" class="dizhiInput"></dd>
+            <dd><input name="mobile" value="" size="20" class="dizhiInput"/></dd>
           </dl>
           <dl>
             <dt>收货区域：</dt>
@@ -78,22 +78,18 @@
         <div class="cartTitle"><strong>购物清单</strong></div>
 		        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable">
           <tbody><tr>
-            <td bgcolor="48b123" width="25" class="ShoppingListL"><div class="ShoppingListLB">阿克苏仓库</div></td>
+            <td bgcolor="48b123" width="25" class="ShoppingListL"><div class="ShoppingListLB">聚派商城</div></td>
             <td bgcolor="ffffff" width="908" class="ShoppingListR" valign="top"><div class="ShoppingListBox">
               <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable1">
-                <tbody><tr>
+                <tbody  id="carts"><tr>
                   <th align="left" width="555" class="tableFirst">商品名称</th>
                   <th align="center" width="64">单价</th>
-                  <th align="center" width="170">商品重量</th>
-                  <th align="center" width="104">数量</th>
+                  <th align="center" width="170">数量</th>
+                  <th align="center" width="104">商品总价</th>
                 </tr>
-				                <tr>
-                  <td align="left" class="tableFirst"><a href="http://www.techan.com/i/11993.html" title="2015年新货 吐鲁番野生黑桑椹干 500g" target="_blank">2015年新货 吐鲁番野生黑桑椹干 500g</a></td>
-                  <td align="center">￥39.00元</td>
-                  <td align="center">2000g</td>
-                  <td align="center">4</td>
-                </tr>
-				              </tbody></table>
+				             
+
+				  </tbody></table>
             </div></td>
           </tr>
         </tbody></table>
@@ -106,7 +102,7 @@
       <td style="padding-bottom:20px;" bgcolor="#f8f8f8">
         <div class="cartTitle"><strong>备注</strong></div>
         <div class="statistiL" id="order_memo">
-			<textarea title="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" class="msgtosaler" placeholder="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" name="|memo" id="_memo" autocomplete="off"></textarea>
+			<textarea title="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" class="msgtosaler" placeholder="选填：对本次交易的说明（建议填写已经和卖家达成一致的说明）" name="|memo" id="remark" autocomplete="off"></textarea>
         </div>        
       </td>
 	</tr>
@@ -134,11 +130,11 @@
         </div> -->
         <div class="statistiR">
 		  <ul>
-			<li> <span><font style="color:red">4</font> 件商品，总商品金额：</span> <em>￥156.00</em> </li>
+			<li> <span><font style="color:red" id="total_nums"></font> 件商品，总商品金额：</span> <em id="total_price"></em> </li>
 			<li> <span>运费：</span>￥<a id="trans_fee">8.00</a> </li>
 			<li> <span>优惠券：</span>-￥<a id="promote_fee" style="color:red">0.00</a> </li>
 			<li style="display:none;"> <span>现金券：</span> <em>-￥<a id="cashcard_fee" style="color:red"></a></em> </li>
-						<li> <span>应付总额：</span> <em>￥<b id="order_money">164.00</b></em> </li>
+						<li> <span>应付总额：</span> <em>￥<b id="order_money"></b></em> </li>
 		  </ul>
         </div>
         
@@ -153,7 +149,7 @@
           <label for="Balance">使用余额（账户当前余额：<em id="currentUserSur">0.00</em>元）</label>
         </div>
         <div class="checkout1">
-          <strong>应付总额：￥<b id="order_money2">164.00</b></strong>
+          <strong>应付总额：￥<b id="order_money2"></b></strong>
           <input type="button" value="" id="btn_order" class="checkoutInput">
         </div>
       </td>
@@ -166,6 +162,68 @@
 
   <!--#include virtual="footer.html"-->
 <script type="text/javascript">
+xyzAjax({
+	url:"/UserWS/queryAddressList.cus",
+	success:function(data){
+		if(data.status==1){
+			if(data.content.total>0){
+				var rows=data.content.rows;
+				var html='';
+				for(var i=0;i<rows.length;i++){
+					if(i==0){
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt">';
+					}else{
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
+					}
+					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
+					html+='<label for="18462">';
+					html+='<p><b>'+rows[i].linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
+					html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
+					html+='<p class="listAddressShow">'+rows[i].address+'</p>';
+					html+='<p class="listAddressShow">'+rows[i].linkPhone+'</p><sub></sub>';
+					html+='</label>';
+					html+='</li>';
+				}
+				$("#addressList").prepend(html);
+				$(".newSlt").css("display","block");
+				$("#cartTable").css("display","none");
+			}
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+
+
+var carts=eval(getCookie("JP_SHOPPING_CART"));
+if(carts.length>0){
+	var count=0;
+	var total=0;
+	var html='';
+	for(var i=0;i<carts.length;i++){
+		var perTotal=carts[i].price.toFixed(2)*carts[i].count;
+		html+='<tr> ';
+		html+='<td align="left" class="tableFirst"><a href=product_detail.html?product="'+carts[i].product+'" title="'+carts[i].productName+'" target="_blank">'+carts[i].productName+'</a></td> ';
+		html+='<td align="center">￥'+carts[i].price.toFixed(2)+'元</td>';
+		html+='<td align="center">'+carts[i].count+'</td>';
+		html+='<td align="center">'+perTotal.toFixed(2)+'</td>';
+		html+='</tr> ';
+		count+=carts[i].count;
+		total+=carts[i].price*carts[i].count;
+	}
+	$("#carts").append(html);
+	$("#total_nums").html(count+"件");
+	$("#total_price").html("￥"+total.toFixed(2));
+	$("#order_money").html(total.toFixed(2));
+	$("#order_money2").html(total.toFixed(2));
+	
+}
+
+
+
+
+
+
 
 
 </script>

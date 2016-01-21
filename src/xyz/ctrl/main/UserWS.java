@@ -46,4 +46,16 @@ public class UserWS {
 	public Map<String,Object> editPassword(String oldPassword,String newPassword){
 		return userSvc.editPassword(oldPassword,newPassword);
 	}
+	
+	@RequestMapping(value="addAddress")
+	@ResponseBody
+	public Map<String,Object> addAddress(String linkName,String linkPhone,String address){
+		return userSvc.addAddress(linkName,linkPhone,address);
+	}
+	
+	@RequestMapping(value="queryAddressList")
+	@ResponseBody
+	public Map<String,Object> queryAddressList(){
+		return userSvc.queryAddressList();
+	}
 }

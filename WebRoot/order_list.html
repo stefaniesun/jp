@@ -72,7 +72,44 @@ function selectPage(sel)
 
 
 <!--#include virtual="footer.html"-->
-	
+
+<script type="text/javascript">
+xyzAjax({
+	url:"/OrderWS/queryOrderList.cus",
+	data:{
+		status:'1'
+	},
+	success:function(data){
+		if(data.status==1){
+			if(data.content.total>0){
+				var rows=data.content.rows;
+				var html='';
+				for(var i=0;i<rows.length;i++){
+					if(i==0){
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt">';
+					}else{
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
+					}
+					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
+					html+='<label for="18462">';
+					html+='<p><b>'+rows[i].linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
+					html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
+					html+='<p class="listAddressShow">'+rows[i].address+'</p>';
+					html+='<p class="listAddressShow">'+rows[i].linkPhone+'</p><sub></sub>';
+					html+='</label>';
+					html+='</li>';
+				}
+				$("#addressList").prepend(html);
+				$(".newSlt").css("display","block");
+				$("#cartTable").css("display","none");
+			}
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+
+</script>
  
 </body>
 </html>

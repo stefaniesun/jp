@@ -74,6 +74,7 @@ techanuserlogin.dologin = function(e){
 			if(data.status==1){
 				addCookie("JP_LOGIN_KEY",data.content.apikey,7);
 				addCookie("JP_LOGIN_NAME",data.content.username,7);
+				initShoppingCartCookie();
 				$.prompt.close(),setTimeout(function(){window.location.reload()},300);
 			}else{
 				 er.innerHTML = data.msg;
