@@ -36,13 +36,20 @@
 				<a href="/myorderlist.html?type=2" >已收货</a>
 			</div>
 
-												<div class="ht_page">
+<div id="orderList">
+<span style="border: 1px solid #eeeeee;height: auto;margin: 15px 0 0;padding:20px;display:block;"><font color="#676342">尊敬的用户，您最近没有待收货的订单</font></span>
+</div>
+
+
+		<div class="ht_page">
 			
 <form name="selectPageForm" action="/home/TDindex.php" method="get">
 
 
  <div id="pager" class="pagebar">
-  <span class="f_l f6" style="margin-right:10px;">总计 <b>0</b>  个记录</span>
+ 
+ 
+  <span class="f_l f6" style="margin-right:10px;">总计 <b id="count">0</b>  个记录</span>
       
       </div>
 
@@ -82,32 +89,65 @@ xyzAjax({
 	success:function(data){
 		if(data.status==1){
 			if(data.content.total>0){
-				var rows=data.content.rows;
+				var contents=data.content.rows;
 				var html='';
-				for(var i=0;i<rows.length;i++){
-					if(i==0){
-						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt">';
-					}else{
-						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
+				for(var i=0;i<contents.length;i++){
+					var total=0;
+					html+='<div class="order_list">';
+					html+='<div class="order_left">';
+					html+='<div class="order_left_title"><span>订单号：'+contents[i].orderNum+'</span><span>下单日期：2016年01月21日</span><span>收货人：'+contents[i].linkman+'</span>';
+					if(contents[i].status==1){
+						html+='<p>未付款</p>';
+					}else if(contents[i].status==2){
+						html+='<p>已付款</p>';
 					}
-					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
-					html+='<label for="18462">';
-					html+='<p><b>'+rows[i].linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
-					html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
-					html+='<p class="listAddressShow">'+rows[i].address+'</p>';
-					html+='<p class="listAddressShow">'+rows[i].linkPhone+'</p><sub></sub>';
-					html+='</label>';
-					html+='</li>';
+					html+='</div>';
+					var orders=contents[i].orders;
+					for(var j=0;j<orders.length;j++){
+						html+='<dl><dt>';
+						html+='	<a target="_blank" href="product_detail.html?product='+orders[j].product+'" class="img"><i></i><img width="50px" height="50px" src="'+orders[j].productImage+'" alt="'+orders[j].productName+'" title="'+orders[j].productName+'"></a>';
+						html+='</dt>	<dd>';
+						html+='	<h4><a href="product_detail.html?product='+orders[j].product+'" target="_blank">'+orders[j].productName+'</a></h4>￥<em>'+orders[j].price+'</em>';
+						html+='<p>数量：<em>'+orders[j].count+'</em></p>';
+						html+='</dd></dl>';
+						total+=orders[j].count*orders[j].price;
+					}
+					html+='<div class="clear"></div>';
+					html+='<div class="order_right">';
+					html+='<span>￥'+total.toFixed(2)+'</span>';
+					html+='<a class="Payment btn" target="_blank" href="gopay.html?orderNum='+contents[i].orderNum+'">去付款</a>	';
+					html+='<a href="javascript:void(0)" class="cancel" data-ordernum='+contents[i].orderNum+'>取消订单</a>';
+				/* 	html+='<a href="/myorder-s14603.html" target="_blank">查看订单详情</a>'; */
+					html+='</div></div><div class="clear"></div></div>';
 				}
-				$("#addressList").prepend(html);
-				$(".newSlt").css("display","block");
-				$("#cartTable").css("display","none");
+				$("#orderList").html(html);
+				$("#count").html(contents.length);
+				
+				
+				$(".cancel").click(function(){
+				
+					xyzAjax({
+						url:"/OrderWS/cancelOrderOper.cus",
+						data:{
+							orderNum:$(this).data("ordernum")
+						},
+						success:function(data){
+							if(data.status==1){
+								window.location.reload();
+							}else{
+								top.$.messager.alert("警告",data.msg,"warning");
+							}
+						}
+					});
+				});
 			}
 		}else{
 			top.$.messager.alert("警告",data.msg,"warning");
 		}
 	}
 });
+
+
 
 </script>
  

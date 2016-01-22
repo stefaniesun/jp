@@ -33,4 +33,10 @@ public class ShoppingCartWS {
 	public Map<String,Object> deleteShoppingCart(String numberCode){
 		return shoppingCartSvc.deleteShoppingCart(numberCode);
 	}
+	
+	@RequestMapping(value="editShoppingCart")
+	@ResponseBody
+	public Map<String,Object> editShoppingCart(String numberCode,int count){
+		return shoppingCartSvc.editShoppingCart(numberCode,count);
+	}
 }

@@ -15,4 +15,6 @@ public interface OrderSvc {
 
 	Map<String, Object> queryOrderList(int status);
 
+	Map<String, Object> cancelOrderOper(String orderNum);
+
 }

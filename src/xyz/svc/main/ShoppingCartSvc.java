@@ -13,4 +13,6 @@ public interface ShoppingCartSvc {
 
 	Map<String, Object> deleteShoppingCart(String numberCode);
 
+	Map<String, Object> editShoppingCart(String numberCode, int count);
+
 }

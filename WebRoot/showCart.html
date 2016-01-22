@@ -132,46 +132,7 @@ visibility: hidden;
         <span id="loading" style="display:none;float:right;"><img src="http://www.techan.com/images/loading.gif"></span> </div>
     </form>
   </div>
-        <script type="text/javascript">
-/* jQuery(".BestItems").slide({mainCell:".bd .Scroll",effect:"leftLoop",vis:5,scroll:5,autoPlay:true,interTime:10000});
-function youhui(){
-    var id=jQuery("#district").val();
-	if (id==0){
-	    alert('亲，你没有选择优惠活动哦!');
-	}
-}
-
-jQuery.ajax({
-		type:'get',
-		url:'http://www.techan.com/plugins/tcActionMini.php?act=ajax_get_member_mininfo',
-		dataType:'jsonp',
-		success:ajaxMemInfoRequest
-	});
-function ajaxMemInfoRequest(data){
-	if(data!="0"){
-		//if(!data.memberminiinfo){
-		//	var data = eval("("+data+")");
-		//}
-		//document.getElementById("TECHAN_MEMBERPROMPT").innerHTML = data.memberprompt;
-	}
-};
-jQuery(function(){
-  jQuery(".cart-inner .p_remove").find("a.date").click(function(){
-	var thisTop = jQuery(this).offset().top;
-	var windocWidth = $(document.body).width();
-	var dialogRight = (windocWidth-980)/2;
-	var rec_id=$(this).attr('rel');
-	var pro_id=$(this).attr('value');
-	$("#del_id").val(rec_id);
-	$("#pro_id").val(pro_id);
-	jQuery(".dialog-inner").css({display:'block',top:thisTop+18,right:dialogRight+30});
-  });
-  jQuery(".dialog-inner .btn-cancel,.dialog-toolbar .dialog-close").click(function(){
-	jQuery(".dialog-inner").hide();
-  });
-}); */
-
-</script> 
+  
 </div>
 
 
@@ -192,9 +153,9 @@ if(carts.length>0){
 		html+=' <h3><a target="_blank" title="'+carts[i].productName+'" href="product_detail.html?product='+carts[i].product+'">'+carts[i].productName+'</a>  </h3></div></div></td>';
 		html+='<td></td>';
 		html+='  <td>￥'+carts[i].price.toFixed(2)+'元</td>';
-		html+=' <td><div class="buyinfo1"> <a href="javascript:void(0);">-</a>';
-		html+='<input  type="text"  value="'+carts[i].count+'">';
-		html+=' <a href="javascript:void(0);">+</a> </div></td>';
+		html+=' <td><div class="buyinfo1"> <a href="javascript:void(0);" class="decrease">-</a>';
+		html+='<input class="count" type="text"  value="'+carts[i].count+'">';
+		html+=' <a href="javascript:void(0);" class="add">+</a> </div></td>';
 		html+=' <td>￥0</td>';
 		html+=' <td>￥'+perTotal+'元</td>';
 		html+='<td class="p_remove">';
@@ -206,7 +167,38 @@ if(carts.length>0){
 	$("#content").html(html);
 	$("#total_nums").html(count+"件");
 	$("#totle_price").html(total.toFixed(2));
+	
+	
+	$(".decrease").click(function(){
+		var count=$(this).parents("tr").find(".count").val();
+		if(count>1){
+			$(this).parents("tr").find(".count").val(--count);
+		}
+	});
+
+	$(".add").click(function(){
+		var count=$(this).parents("tr").find(".count").val();
+		$(this).parents("tr").find(".count").val(++count);
+	});
+	
+	$(".count").change(function(){
+		xyzAjax({
+			url:"/ShoppingCartWS/editShoppingCart.cus",
+			data:{
+				orderNum:$(this).data("ordernum")
+			},
+			success:function(data){
+				if(data.status==1){
+					window.location.reload();
+				}else{
+					top.$.messager.alert("警告",data.msg,"warning");
+				}
+			}
+		});
+	});
 }
+
+
 
 
 </script>

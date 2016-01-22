@@ -65,7 +65,7 @@
 		<div class="itemSpan">
 			<h4><a href="javascript:void(0);" class="itemHistoryDel">清除</a>最近浏览</h4>
 			<ul class="itemLeftList historyBox">
-			<li><span><a href="#" target="_blank"><img title="2015年新货 吐鲁番野生黑桑椹干 500g" src="http://img01.techan.com/uploadfiles/usergoods/85/dd/1415263371923374092.jpg" alt="2015年新货 吐鲁番野生黑桑椹干 500g" class="B_blue" /></a></span><p><a href="http://www.techan.com/i/11993.html" target="_blank" title="2015年新货 吐鲁番野生黑桑椹干 500g">2015年新货 吐鲁番野生黑桑椹干 500g</a></p></li>			</ul>
+			<!-- <li><span><a href="#" target="_blank"><img title="2015年新货 吐鲁番野生黑桑椹干 500g" src="http://img01.techan.com/uploadfiles/usergoods/85/dd/1415263371923374092.jpg" alt="2015年新货 吐鲁番野生黑桑椹干 500g" class="B_blue" /></a></span><p><a href="http://www.techan.com/i/11993.html" target="_blank" title="2015年新货 吐鲁番野生黑桑椹干 500g">2015年新货 吐鲁番野生黑桑椹干 500g</a></p></li>	 -->		</ul>
 		</div>
 		<div class="itemSpan">
 			<h4>购买此商品的人还买了</h4>
@@ -144,15 +144,15 @@
 <div class="itemBar">
 	<div class="wrap">
 		<div class="itemBuy"><a href="addToCart.html" class="itemAddCart">加入购物车</a>	</div>
-		<div class="itemMin" title="2015年新货 吐鲁番野生黑桑椹干 500g">
-			<span><img src="/uploadfiles/usergoods/85/dd/1415263371923374092.jpg?70x70" /></span>
-			<p>2015年新货 吐鲁番野生黑桑椹干 500g</p>
+		<div class="itemMin" >
+			<span><img id="productImage" src="" /></span>
+			<p id="productName2"></p>
 		</div>
 		<ul class="itemContentHead" id="iteamBarHead">
 			<li id="H1" data-position="D1" class="itemContentHeadFocus"><a href="javascript:void(0);">产品介绍</a></li>
-			<li id="H2" data-position="D2"><a href="javascript:void(0);">规格参数</a></li>
+			<!-- <li id="H2" data-position="D2"><a href="javascript:void(0);">规格参数</a></li>
 			<li id="H3" data-position="D3"><a href="javascript:void(0);">评价 <em>(813)</em></a></li>
-			<li id="H4" data-position="D4"><a href="javascript:void(0);">售后服务</a></li>
+			<li id="H4" data-position="D4"><a href="javascript:void(0);">售后服务</a></li> -->
 		</ul>
 	</div>
 </div>
@@ -206,6 +206,9 @@ xyzAjax({
 			$("#linkType").html(linkType);
 			$("#linkname").html(data.content.name);
 			$("#productName").html(data.content.name);
+			$("#productName2").html(data.content.name);
+			$("#productImage").attr("src",data.content.image);
+			$(".itemMin").attr("title",data.content.name);
 			$("#productSpecial").html(data.content.special);
 			$("#price").html(data.content.price);
 			$("#basePrice").html("￥"+data.content.basePrice);

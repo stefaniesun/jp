@@ -66,4 +66,15 @@ public class ShoppingCartSvcImp implements ShoppingCartSvc {
 		return ReturnUtil.returnMap(1, null);
 	}
 
+	@Override
+	public Map<String, Object> editShoppingCart(String numberCode, int count) {
+		ShoppingCart cart=(ShoppingCart) commonDao.getObjectByUniqueCode("ShoppingCart", "numberCode", numberCode);
+		if(cart==null){
+			return ReturnUtil.returnMap(0, "商品不存在");
+		}
+		cart.setCount(count);
+		commonDao.update(cart);
+		return ReturnUtil.returnMap(1, null);
+	}
+
 }

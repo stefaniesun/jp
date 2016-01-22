@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,6 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="order_content")
 public class Order {
 
+	public static int ORDER_CANCEL=0;//已取消
 	public static int ORDER_UNPAY=1;//未付款
 	public static int ORDER_PAY=2;//已付款
 	
@@ -39,8 +41,11 @@ public class Order {
 	@Column(name="product")
 	private String product;
 	
-	@Column(name="product_name")
+	@Transient
 	private String productName;
+	
+	@Transient
+	private String productImage;
 	
 	@Column(name="count")
 	private int count;
@@ -50,6 +55,12 @@ public class Order {
 	
 	@Column(name="address")
 	private String address;
+	
+	@Column(name="linkman")
+	private String linkman;
+	
+	@Column(name="link_phone")
+	private String linkPhone;
 	
 	@Column(name="status")
 	private int status;
@@ -102,17 +113,10 @@ public class Order {
 	public String getProduct() {
 		return product;
 	}
+	
 
 	public void setProduct(String product) {
 		this.product = product;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
 	}
 
 	public int getCount() {
@@ -153,5 +157,37 @@ public class Order {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
+	}
+
+	public String getLinkman() {
+		return linkman;
+	}
+
+	public void setLinkman(String linkman) {
+		this.linkman = linkman;
+	}
+
+	public String getLinkPhone() {
+		return linkPhone;
+	}
+
+	public void setLinkPhone(String linkPhone) {
+		this.linkPhone = linkPhone;
 	}
 }

@@ -41,4 +41,10 @@ public class OrderWS {
 	public Map<String,Object> orderPayOper(String orderNum){
 		return orderSvc.orderPayOper(orderNum);
 	}
+	
+	@RequestMapping(value="cancelOrderOper")
+	@ResponseBody
+	public Map<String,Object> cancelOrderOper(String orderNum){
+		return orderSvc.cancelOrderOper(orderNum);
+	}
 }
