@@ -14,7 +14,7 @@ public interface UserSvc {
 	Map<String, Object> registerOper(String username, String password);
 
 	Map<String, Object> addAddress(String linkName, String linkPhone,
-			String address);
+			String address,String addressDistrict);
 
 	Map<String, Object> queryAddressList();
 

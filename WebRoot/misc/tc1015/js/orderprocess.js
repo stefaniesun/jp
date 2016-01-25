@@ -191,15 +191,18 @@ orderprocess.init = function(a){
 				data:{
 					linkName:$("input[name='name']").val().trim(),
 					linkPhone:$("input[name='mobile']").val().trim(),
-					address:$("input[name='address']").val().trim()
+					address:$("input[name='address']").val().trim(),
+					addressDistrict:$("#districtId").find("option:selected").text().trim()
 				},
 				success:function(data){
 					if(data.status==1){
+						
+						$("#addressList li").attr("class","addressBox");
 						var html='<li id="1" class="addressBox slt">';
 						html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
-						html+='<label for="18462">';
+						html+='<label>';
 						html+='<p><b>'+data.content.linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
-						html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
+						html+='<p class="listAddressShow">重庆市 重庆 '+data.content.addressDistrict+' </p>';
 						html+='<p class="listAddressShow">'+data.content.address+'</p>';
 						html+='<p class="listAddressShow">'+data.content.linkPhone+'</p><sub></sub>';
 						html+='</label>';

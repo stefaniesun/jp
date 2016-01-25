@@ -17,4 +17,6 @@ public interface OrderSvc {
 
 	Map<String, Object> cancelOrderOper(String orderNum);
 
+	Map<String, Object> orderPayConfirmOper(String orderNum);
+
 }

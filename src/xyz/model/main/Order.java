@@ -19,6 +19,8 @@ public class Order {
 	public static int ORDER_CANCEL=0;//已取消
 	public static int ORDER_UNPAY=1;//未付款
 	public static int ORDER_PAY=2;//已付款
+	public static int ORDER_DELIVERY=3;//已发货
+	public static int ORDER_FINISH=4;//已确认
 	
 	@Id
 	@Column(name="iidd",unique=true,nullable=false)
@@ -55,6 +57,9 @@ public class Order {
 	
 	@Column(name="address")
 	private String address;
+	
+	@Column(name="address_district")
+	private String addressDistrict;
 	
 	@Column(name="linkman")
 	private String linkman;
@@ -169,6 +174,14 @@ public class Order {
 
 	public String getProductImage() {
 		return productImage;
+	}
+
+	public String getAddressDistrict() {
+		return addressDistrict;
+	}
+
+	public void setAddressDistrict(String addressDistrict) {
+		this.addressDistrict = addressDistrict;
 	}
 
 	public void setProductImage(String productImage) {

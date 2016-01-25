@@ -81,7 +81,9 @@ public class UserSvcImp implements UserSvc {
 			return ReturnUtil.returnMap(0,"用户名已存在");
 		}
 		String passwordSe = EncryptionUtil.md5(password);
+		user =new User();
 		user.setUserName(username);
+		user.setNickName(username);
 		user.setPassword(passwordSe);
 		commonDao.save(user);
 		
@@ -98,7 +100,7 @@ public class UserSvcImp implements UserSvc {
 
 	@Override
 	public Map<String, Object> addAddress(String linkName, String linkPhone,
-			String address) {
+			String address,String addressDistrict) {
 		XyzSessionLogin xyzSessionLogin = MyRequestUtil.getXyzSessionLogin();
 		
 		Address a=new Address();
@@ -106,6 +108,8 @@ public class UserSvcImp implements UserSvc {
 		a.setUsername(xyzSessionLogin.getUsername());
 		a.setLinkName(linkName);
 		a.setLinkPhone(linkPhone);
+		a.setAddress(address);
+		a.setAddressDistrict(addressDistrict);
 		commonDao.save(a);
 		return ReturnUtil.returnMap(1, a);
 	}

@@ -23,6 +23,7 @@ public class MySpecialFilter implements Filter{
 		"/UserWS/logout.xyz",
 		"/InitWS/init_1239127awdasd_api.xyz",
 		"/CustomerWS/recoverPassword.app",
+		"/AccountWS/aliPayConfirmOper.xyz"
 	};
 	
 	@Override

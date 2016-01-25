@@ -42,6 +42,12 @@ public class OrderWS {
 		return orderSvc.orderPayOper(orderNum);
 	}
 	
+	@RequestMapping(value="orderPayConfirmOper")
+	@ResponseBody
+	public Map<String,Object> orderPayConfirmOper(String orderNum){
+		return orderSvc.orderPayConfirmOper(orderNum);
+	}
+	
 	@RequestMapping(value="cancelOrderOper")
 	@ResponseBody
 	public Map<String,Object> cancelOrderOper(String orderNum){

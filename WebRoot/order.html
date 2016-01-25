@@ -94,7 +94,7 @@
           </tr>
         </tbody></table>
                 
-        <div class="ReturnCart"><a href="/showcart.html" title="返回修改购物车">返回修改购物车</a></div>
+        <div class="ReturnCart"><a href="/showCart.html" title="返回修改购物车">返回修改购物车</a></div>
         
       </td>
 	</tr>
@@ -176,9 +176,9 @@ xyzAjax({
 						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
 					}
 					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
-					html+='<label for="18462">';
+					html+='<label>';
 					html+='<p><b>'+rows[i].linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
-					html+='<p class="listAddressShow">河南省 焦作市 博爱县 </p>';
+					html+='<p class="listAddressShow">重庆市 重庆 '+rows[i].addressDistrict+' </p>';
 					html+='<p class="listAddressShow">'+rows[i].address+'</p>';
 					html+='<p class="listAddressShow">'+rows[i].linkPhone+'</p><sub></sub>';
 					html+='</label>';

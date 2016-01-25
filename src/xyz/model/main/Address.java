@@ -33,6 +33,9 @@ public class Address {
 	
 	@Column(name="address")
 	private String address;
+	
+	@Column(name="address_district")
+	private String addressDistrict;
 
 	public String getIidd() {
 		return iidd;
@@ -80,6 +83,14 @@ public class Address {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getAddressDistrict() {
+		return addressDistrict;
+	}
+
+	public void setAddressDistrict(String addressDistrict) {
+		this.addressDistrict = addressDistrict;
 	}
 	
 	

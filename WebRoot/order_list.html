@@ -31,13 +31,14 @@
 	<div class="ht_right"> 
 		<div class="order">
 			<div class="order_title order_bottom">
-				<a href="/notpayorder.html" class="cta">待付款</a>
-				<a href="/myorderlist.html?type=1" >待收货</a>
-				<a href="/myorderlist.html?type=2" >已收货</a>
+				<a href="order_list.html?status=1" >待付款</a>
+				<a href="order_list.html?status=2" >已付款</a>
+				<a href="order_list.html?status=3" >已发货</a>
+				<a href="order_list.html?status=4" >已确认</a>
 			</div>
 
 <div id="orderList">
-<span style="border: 1px solid #eeeeee;height: auto;margin: 15px 0 0;padding:20px;display:block;"><font color="#676342">尊敬的用户，您最近没有待收货的订单</font></span>
+<span style="border: 1px solid #eeeeee;height: auto;margin: 15px 0 0;padding:20px;display:block;"><font color="#676342">尊敬的用户，您最近没有查询的订单</font></span>
 </div>
 
 
@@ -81,10 +82,15 @@ function selectPage(sel)
 <!--#include virtual="footer.html"-->
 
 <script type="text/javascript">
+var status=getUrlParam('status');
+if(xyzIsNull(status)){
+	status=1;
+}
+$(".order_title a:eq("+(status-1)+")").attr("class","cta");
 xyzAjax({
 	url:"/OrderWS/queryOrderList.cus",
 	data:{
-		status:'1'
+		status:status
 	},
 	success:function(data){
 		if(data.status==1){
@@ -95,11 +101,15 @@ xyzAjax({
 					var total=0;
 					html+='<div class="order_list">';
 					html+='<div class="order_left">';
-					html+='<div class="order_left_title"><span>订单号：'+contents[i].orderNum+'</span><span>下单日期：2016年01月21日</span><span>收货人：'+contents[i].linkman+'</span>';
+					html+='<div class="order_left_title"><span>订单号：'+contents[i].orderNum+'</span><span>下单日期：'+new Date(contents[i].addDate).Format("yyyy年MM月dd日")+'</span><span>收货人：'+contents[i].linkman+'</span>';
 					if(contents[i].status==1){
 						html+='<p>未付款</p>';
 					}else if(contents[i].status==2){
 						html+='<p>已付款</p>';
+					}else if(contents[i].status==3){
+						html+='<p>已发货</p>';
+					}else if(contents[i].status==4){
+						html+='<p>已确认</p>';
 					}
 					html+='</div>';
 					var orders=contents[i].orders;

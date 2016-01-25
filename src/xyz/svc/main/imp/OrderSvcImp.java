@@ -15,6 +15,7 @@ import xyz.config.AlipaySubmit;
 import xyz.dao.CommonDao;
 import xyz.filter.MyRequestUtil;
 import xyz.filter.ReturnUtil;
+import xyz.model.main.Address;
 import xyz.model.main.Order;
 import xyz.model.main.Product;
 import xyz.model.main.ShoppingCart;
@@ -39,9 +40,14 @@ public class OrderSvcImp implements OrderSvc{
 			
 			ShoppingCart cart=(ShoppingCart) commonDao.getObjectByUniqueCode("ShoppingCart", "numberCode", c);
 			
+			Address a=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", address);
+			
 			Order order=new Order();
 			order.setAddDate(new Date());
-			order.setAddress(address);
+			order.setAddress(a.getAddress());
+			order.setAddressDistrict(a.getAddressDistrict());
+			order.setLinkman(a.getLinkName());
+			order.setLinkPhone(a.getLinkPhone());
 			order.setNumberCode(UUIDUtil.getUUIDStringFor32());	
 			order.setPrice(cart.getPrice());
 			order.setProduct(cart.getProduct());
@@ -165,6 +171,17 @@ public class OrderSvcImp implements OrderSvc{
 		List<Order> orders=commonDao.queryByHql(hql);
 		for(Order order:orders){
 			order.setStatus(Order.ORDER_CANCEL);
+			commonDao.update(order);
+		}
+		return ReturnUtil.returnMap(1, null);
+	}
+
+	@Override
+	public Map<String, Object> orderPayConfirmOper(String orderNum) {
+		String hql="from Order where orderNum='"+orderNum+"'";
+		List<Order> orders=commonDao.queryByHql(hql);
+		for(Order order:orders){
+			order.setStatus(Order.ORDER_PAY);
 			commonDao.update(order);
 		}
 		return ReturnUtil.returnMap(1, null);

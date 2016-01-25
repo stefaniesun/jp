@@ -49,8 +49,8 @@ public class UserWS {
 	
 	@RequestMapping(value="addAddress")
 	@ResponseBody
-	public Map<String,Object> addAddress(String linkName,String linkPhone,String address){
-		return userSvc.addAddress(linkName,linkPhone,address);
+	public Map<String,Object> addAddress(String linkName,String linkPhone,String address,String addressDistrict){
+		return userSvc.addAddress(linkName,linkPhone,address,addressDistrict);
 	}
 	
 	@RequestMapping(value="queryAddressList")

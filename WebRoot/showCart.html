@@ -42,6 +42,11 @@ visibility: hidden;
 </div>
 
 <div>
+
+<div class="cart_inner">
+    <div class="message">购物车内暂时没有商品，您可以<a href="index.html">去首页</a>挑选喜欢的商品</div>
+  </div>
+
    <!--div class="group main">
     <h3></h3>
     <span id="TECHAN_MEMBERPROMPT"><strong><em class="red">温馨提示：</em>现在</strong><a href="#"><img src="themes/techan/images/btn2.jpg" /></a><strong>您的商品将永久保存在"购物车"中</strong></span>
@@ -139,65 +144,105 @@ visibility: hidden;
 
   <!--#include virtual="footer.html"-->
 <script type="text/javascript">
-var carts=eval(getCookie("JP_SHOPPING_CART"));
-if(carts.length>0){
-	var count=0;
-	var total=0;
-	var html='<ul>';
-	for(var i=0;i<carts.length;i++){
-		var perTotal=carts[i].price.toFixed(2)*carts[i].count;
-		html+='<tr id="'+carts[i].numberCode+'"> ';
-		html+='<td><div style="padding-left:30px;"> ';
-		html+='<div class="p_img"><a target="_blank" href="product_detail.html?product='+carts[i].product+'"><img  title="'+carts[i].productName+'" src="'+carts[i].image+'" width="48" height="48"></a></div>';
-		html+='<div class="p_name">';
-		html+=' <h3><a target="_blank" title="'+carts[i].productName+'" href="product_detail.html?product='+carts[i].product+'">'+carts[i].productName+'</a>  </h3></div></div></td>';
-		html+='<td></td>';
-		html+='  <td>￥'+carts[i].price.toFixed(2)+'元</td>';
-		html+=' <td><div class="buyinfo1"> <a href="javascript:void(0);" class="decrease">-</a>';
-		html+='<input class="count" type="text"  value="'+carts[i].count+'">';
-		html+=' <a href="javascript:void(0);" class="add">+</a> </div></td>';
-		html+=' <td>￥0</td>';
-		html+=' <td>￥'+perTotal+'元</td>';
-		html+='<td class="p_remove">';
-		html+='<a href="javascript:;" id="del_goods" rel="184924" value="352" class="date">删除</a></td></tr>';
-		
-		count+=carts[i].count;
-		total+=carts[i].price*carts[i].count;
-	}
-	$("#content").html(html);
-	$("#total_nums").html(count+"件");
-	$("#totle_price").html(total.toFixed(2));
-	
-	
-	$(".decrease").click(function(){
-		var count=$(this).parents("tr").find(".count").val();
-		if(count>1){
-			$(this).parents("tr").find(".count").val(--count);
-		}
-	});
 
-	$(".add").click(function(){
-		var count=$(this).parents("tr").find(".count").val();
-		$(this).parents("tr").find(".count").val(++count);
-	});
-	
-	$(".count").change(function(){
-		xyzAjax({
-			url:"/ShoppingCartWS/editShoppingCart.cus",
-			data:{
-				orderNum:$(this).data("ordernum")
-			},
-			success:function(data){
-				if(data.status==1){
-					window.location.reload();
-				}else{
-					top.$.messager.alert("警告",data.msg,"warning");
-				}
+init();
+
+
+function init(){
+	var carts=eval(getCookie("JP_SHOPPING_CART"));
+	if(carts.length>0){
+		$(".cart_inner").css("display","none");
+		var count=0;
+		var total=0;
+		var html='<ul>';
+		for(var i=0;i<carts.length;i++){
+			var perTotal=carts[i].price.toFixed(2)*carts[i].count;
+			html+='<tr id="'+carts[i].numberCode+'"> ';
+			html+='<td><div style="padding-left:30px;"> ';
+			html+='<div class="p_img"><a target="_blank" href="product_detail.html?product='+carts[i].product+'"><img  title="'+carts[i].productName+'" src="'+carts[i].image+'" width="48" height="48"></a></div>';
+			html+='<div class="p_name">';
+			html+=' <h3><a target="_blank" title="'+carts[i].productName+'" href="product_detail.html?product='+carts[i].product+'">'+carts[i].productName+'</a>  </h3></div></div></td>';
+			html+='<td></td>';
+			html+='  <td>￥'+carts[i].price.toFixed(2)+'元</td>';
+			html+=' <td><div class="buyinfo1"> <a href="javascript:void(0);" class="decrease">-</a>';
+			html+='<input class="count" type="text"  value="'+carts[i].count+'">';
+			html+=' <a href="javascript:void(0);" class="add">+</a> </div></td>';
+			html+=' <td>￥0</td>';
+			html+=' <td>￥'+perTotal+'元</td>';
+			html+='<td class="p_remove">';
+			html+='<a href="javascript:;"  class="date">删除</a></td></tr>';
+			
+			count+=carts[i].count;
+			total+=carts[i].price*carts[i].count;
+		}
+		$("#content").html(html);
+		$("#total_nums").html(count+"件");
+		$("#totle_price").html(total.toFixed(2));
+		
+		
+		$(".decrease").click(function(){
+			var count=$(this).parents("tr").find(".count").val();
+			if(count>1){
+				$(this).parents("tr").find(".count").val(--count);
+				
+				xyzAjax({
+					url:"/ShoppingCartWS/editShoppingCart.cus",
+					data:{
+						numberCode:$(this).parents("tr").attr("id"),
+						count:count
+					},
+					success:function(data){
+						if(data.status==1){
+							initShoppingCartCookie();
+							init();
+						}else{
+							top.$.messager.alert("警告",data.msg,"warning");
+						}
+					}
+				});
 			}
 		});
-	});
-}
 
+		$(".add").click(function(){
+			var count=$(this).parents("tr").find(".count").val();
+			$(this).parents("tr").find(".count").val(++count);
+			xyzAjax({
+				url:"/ShoppingCartWS/editShoppingCart.cus",
+				data:{
+					numberCode:$(this).parents("tr").attr("id"),
+					count:count
+				},
+				success:function(data){
+					if(data.status==1){
+						initShoppingCartCookie();
+						init();
+					}else{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+		
+		
+		
+		$(".date").click(function(){
+			xyzAjax({
+				url:"/ShoppingCartWS/deleteShoppingCart.cus",
+				data:{
+					numberCode:$(this).parents("tr").attr("id")
+				},
+				success:function(data){
+					if(data.status==1){
+						initShoppingCartCookie();
+						init();
+					}else{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+	}
+}
 
 
 
