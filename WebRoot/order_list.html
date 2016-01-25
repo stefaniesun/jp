@@ -145,14 +145,14 @@ xyzAjax({
 							if(data.status==1){
 								window.location.reload();
 							}else{
-								top.$.messager.alert("警告",data.msg,"warning");
+								layer.alert(data.msg);
 							}
 						}
 					});
 				});
 			}
 		}else{
-			top.$.messager.alert("警告",data.msg,"warning");
+			layer.alert(data.msg);
 		}
 	}
 });
