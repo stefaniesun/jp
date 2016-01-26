@@ -125,4 +125,13 @@ public class UserSvcImp implements UserSvc {
 		return ReturnUtil.returnMap(1, mapContent);
 	}
 
+	@Override
+	public Map<String, Object> getUser(String username) {
+		User user=(User) commonDao.getObjectByUniqueCode("User", "userName", username);
+		if(user==null){
+			return ReturnUtil.returnMap(0, "用户不存在");
+		}
+		return ReturnUtil.returnMap(1, user);
+	}
+
 }

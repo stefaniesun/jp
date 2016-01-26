@@ -37,6 +37,12 @@ public class UserWS {
 		return userSvc.registerOper(username,password);
 	}
 	
+	@RequestMapping(value="getUser")
+	@ResponseBody
+	public Map<String,Object> getUser(String username){
+		return userSvc.getUser(username);
+	}
+	
 	
 	/**
 	 * 修改密码

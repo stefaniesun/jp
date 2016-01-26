@@ -1,7 +1,7 @@
 $(function(){
 	var username = getCookie("JP_LOGIN_NAME");
 	if(!xyzIsNull(username)){
-		var html='<a href="/myhome.html" rel="nofollow">我的特产</a>|';
+		var html='<a href="home.html" rel="nofollow">我的特产</a>|';
 		html+='<a href="order_list.html" rel="nofollow">我的订单</a>|';
 		html+='	<a href="#" id="logout" rel="nofollow">退出</a>';
 		$(".uInfo").html(html);	

@@ -18,4 +18,6 @@ public interface UserSvc {
 
 	Map<String, Object> queryAddressList();
 
+	Map<String, Object> getUser(String username);
+
 }
