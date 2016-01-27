@@ -50,7 +50,9 @@
 	</function>
 
 	
-	
+	<function isApi="0"  groupCn="管理" numberCode="orderManager" nameCn="订单" url="/jsp_base/orderManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160127161900" nameCn="查询订单" url="/BaseOrderWS/queryOrderList.do"/>
+	</function>
 	
 	
 	
