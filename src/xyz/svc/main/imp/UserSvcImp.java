@@ -78,8 +78,10 @@ public class UserSvcImp implements UserSvc {
 		String hql ="from User  where username='"+username+"'";
 		User user =  (User) commonDao.queryUniqueByHql(hql);
 		if(user!=null){
+			System.out.println("1111111");
 			return ReturnUtil.returnMap(0,"用户名已存在");
 		}
+		System.out.println("22222222222");
 		String passwordSe = EncryptionUtil.md5(password);
 		user =new User();
 		user.setUserName(username);

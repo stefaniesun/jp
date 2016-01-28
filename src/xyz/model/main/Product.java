@@ -49,6 +49,12 @@ public class Product {
 	@Column(name="image")
 	private String image;
 	
+	@Column(name="area_flag")
+	private int areaFlag;//0不限 1只限大重庆区售卖
+	
+	@Column(name="postage_price")
+	private BigDecimal postagePrice;
+	
 	@Transient
 	private String images;
 
@@ -138,6 +144,22 @@ public class Product {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getAreaFlag() {
+		return areaFlag;
+	}
+
+	public void setAreaFlag(int areaFlag) {
+		this.areaFlag = areaFlag;
+	}
+
+	public BigDecimal getPostagePrice() {
+		return postagePrice;
+	}
+
+	public void setPostagePrice(BigDecimal postagePrice) {
+		this.postagePrice = postagePrice;
 	}
 	
 	

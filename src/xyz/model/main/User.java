@@ -28,6 +28,15 @@ public class User {
 	@Column(name="NickName")
 	private String nickName;
 	
+	@Column(name="isRobot")
+	private int isRobot;
+	
+	@Column(name="sex")
+	private int sex;
+	
+	@Column(name="disabled")
+	private int disabled;
+	
 
 	public int getUserID() {
 		return userID;
@@ -59,6 +68,30 @@ public class User {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public int getIsRobot() {
+		return isRobot;
+	}
+
+	public void setIsRobot(int isRobot) {
+		this.isRobot = isRobot;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public int getDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(int disabled) {
+		this.disabled = disabled;
 	}
 	
 	

@@ -51,13 +51,13 @@ function initTable(){
 		height:'auto',
 		columns : [[
             {field:'checkboxTemp',checkbox:true},
-			{field:'orderNum',title:'产品编号',hidden:true},
+			{field:'orderNum',title:'产品编号'},
 			{field:'productName',title:'产品名称',width:200},
 			{field:'price',title:'单价',width:100},
 			{field:'count',title:'数量',width:100},
 			{field:'username',title:'买家',width:100},
-			{field:'username',title:'买家',width:100},
-			{field:'type',title:'订单状态',width:100,
+			{field:'addDate',title:'下单时间',width:100},
+			{field:'status',title:'订单状态',width:100,
 				formatter:function(val,rec){
 					if(val=="0"){
 						return "已取消";

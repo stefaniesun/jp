@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.svc.base.BaseOrderSvc;
-
+import xyz.svc.base.BaseUserSvc;
 
 @Controller
-@RequestMapping(value="/BaseOrderWS")
-public class BaseOrderWS {
+@RequestMapping(value="/BaseUserWS")
+public class BaseUserWS {
 
 	@Autowired
-	BaseOrderSvc baseOrderSvc;
+	BaseUserSvc baseUserSvc;
 	
-	@RequestMapping(value="queryOrderList")
+	@RequestMapping(value="queryUserList")
 	@ResponseBody
-	public Map<String,Object> queryOrderList(BigDecimal status){
-		return baseOrderSvc.queryOrderList(status);
+	public Map<String,Object> queryUserList(){
+		return baseUserSvc.queryUserList();
 	}
 }

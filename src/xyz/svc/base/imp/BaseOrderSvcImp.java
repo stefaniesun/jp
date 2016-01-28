@@ -1,11 +1,13 @@
 package xyz.svc.base.imp;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import xyz.dao.CommonDao;
 import xyz.filter.MyRequestUtil;
@@ -17,15 +19,22 @@ import xyz.model.util.OrderContent;
 import xyz.svc.base.BaseOrderSvc;
 import xyz.util.StringTool;
 
+@Service
 public class BaseOrderSvcImp implements BaseOrderSvc {
 
 	@Autowired
 	CommonDao commonDao;
 	
 	@Override
-	public Map<String, Object> queryOrderList(int status) {
+	public Map<String, Object> queryOrderList(BigDecimal status) {
 
-		String hql="from Order where  status="+status+" order by orderNum";
+		String hql="from Order where  1=1 ";
+		
+		if(status!=null){
+			hql+=" and status="+status.intValue();
+		}
+		
+		hql+=" order by orderNum";
 		List<Order> orders=commonDao.queryByHql(hql);
 		
 		String products="";

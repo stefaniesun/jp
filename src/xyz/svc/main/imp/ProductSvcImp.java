@@ -55,7 +55,7 @@ public class ProductSvcImp implements ProductSvc {
 	}
 
 	@Override
-	public Map<String, Object> addProduct(String name, String special,String type, BigDecimal price,BigDecimal basePrice, int stock,String content,String images) {
+	public Map<String, Object> addProduct(String name, String special,String type, BigDecimal price,BigDecimal basePrice, int stock,String content,String images,int areaFlag,BigDecimal postagePrice) {
 		Product product =new Product();
 		product.setNumberCode(UUIDUtil.getUUIDStringFor32());
 		product.setName(name);
@@ -65,6 +65,8 @@ public class ProductSvcImp implements ProductSvc {
 		product.setBasePrice(basePrice);
 		product.setStock(stock);
 		product.setContent(content);
+		product.setAreaFlag(areaFlag);
+		product.setPostagePrice(postagePrice);
 		commonDao.save(product);
 		
 		if(images!=null&&!images.equals("")){
@@ -93,7 +95,7 @@ public class ProductSvcImp implements ProductSvc {
 
 	@Override
 	public Map<String, Object> editProduct(String numberCode, String name,String special,
-			String type, BigDecimal price, BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages) {
+			String type, BigDecimal price, BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages,int areaFlag,BigDecimal postagePrice) {
 		Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
 		if(product==null){
 			return ReturnUtil.returnMap(0, "产品不存在");
@@ -106,6 +108,8 @@ public class ProductSvcImp implements ProductSvc {
 		product.setStock(stock);
 		product.setImage(image);
 		product.setContent(content);
+		product.setAreaFlag(areaFlag);
+		product.setPostagePrice(postagePrice);
 		commonDao.update(product);
 		
 		

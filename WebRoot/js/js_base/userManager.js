@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$("#productButton").click(function(){
+	$("#orderButton").click(function(){
 		loadTable();
 	});
 	
@@ -40,34 +40,28 @@ function initTable(){
 	}	
 	
 	xyzgrid({
-		table : 'productManagerTable',
-		title : '产品列表',
-		url:'../ProductWS/queryProductList.do',
+		table : 'userManagerTable',
+		title : '用户列表',
+		url:'../BaseUserWS/queryUserList.do',
 		pageList : [5,10,15,30,50],
 		pageSize : 10,
 		toolbar:toolbar,
 		singleSelect : false,
-		idField : 'numberCode',
+		idField : 'userName',
 		height:'auto',
 		columns : [[
             {field:'checkboxTemp',checkbox:true},
-			{field:'numberCode',title:'产品编号',hidden:true},
-			{field:'name',title:'产品名称',width:200},
-			{field:'special',title:'产品特色',width:100},
-			{field:'type',title:'产品类别',width:100,
+			{field:'userName',title:'用户名'},
+			{field:'nickName',title:'用户昵称',width:200},
+			{field:'sex',title:'性别',width:100,
 				formatter:function(val,rec){
-					if(val=="1"){
-						return "肉类海鲜";
-					}else if(val=="2"){
-						return "南北干货";
-					}else if(val=="3"){
-						return "酒水饮料";
+					if(val=="0"){
+						return "男";
+					}else if(val=="1"){
+						return "女";
 					}
 				}
-			},
-			{field:'price',title:'单价',width:100},
-			{field:'basePrice',title:'原价',width:100},
-			{field:'stock',title:'剩余库存',width:100}
+			}
 		]]
 	});
 	
@@ -148,10 +142,6 @@ function editProductButton(title){
 						$("#priceForm").val(data.content.price);
 						$("#basePriceForm").val(data.content.basePrice);
 						$("#stockForm").val(data.content.stock);
-						if(data.content.areaFlag==1){
-							$("#areaFlagForm").attr("checked","checked");
-						}
-						$("#postagePriceForm").val(data.content.postagePrice);
 						UM.getEditor('editor').setContent(data.content.content, true);
 					
 						var images=eval("{"+data.content.images+"}"); 
@@ -182,8 +172,6 @@ function addProductSubmit(){
 	var price=$("#priceForm").val();
 	var basePrice=$("#basePriceForm").val();
 	var stock=$("#stockForm").val();
-	var areaFlag=$("#areaFlagForm").attr("checked")=="checked"?1:0;
-	var postagePrice=$("#postagePriceForm").val();
 	var content=UM.getEditor('editor').getContent();
 	var images="";
 	$(".filelist li[class='state-complete']").each(function(){
@@ -203,9 +191,7 @@ function addProductSubmit(){
 			basePrice:basePrice,
 			stock:stock,
 			content:content,
-			images:images,
-			areaFlag:areaFlag,
-			postagePrice:postagePrice
+			images:images
 		},
 		success:function(data){
 			if(data.status==1){
@@ -242,8 +228,6 @@ function editProductSubmit(numberCode){
 			deleteImages+=$(this).attr("id")+",";
 		}
 	});
-	var areaFlag=$("#areaFlagForm").attr("checked")=="checked"?1:0;
-	var postagePrice=$("#postagePriceForm").val();
 
 	xyzAjax({
 		url:"../ProductWS/editProduct.do",
@@ -258,9 +242,7 @@ function editProductSubmit(numberCode){
 			image:image,
 			content:content,
 			images:images,
-			deleteImages:deleteImages,
-			areaFlag:areaFlag,
-			postagePrice:postagePrice
+			deleteImages:deleteImages
 		},
 		success:function(data){
 			if(data.status==1){
