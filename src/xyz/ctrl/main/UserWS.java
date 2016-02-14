@@ -59,6 +59,24 @@ public class UserWS {
 		return userSvc.addAddress(linkName,linkPhone,address,addressDistrict);
 	}
 	
+	@RequestMapping(value="editAddress")
+	@ResponseBody
+	public Map<String,Object> editAddress(String numberCode,String linkName,String linkPhone,String address,String addressDistrict){
+		return userSvc.editAddress(numberCode,linkName,linkPhone,address,addressDistrict);
+	}
+	
+	@RequestMapping(value="deleteAddress")
+	@ResponseBody
+	public Map<String,Object> deleteAddress(String numberCode){
+		return userSvc.deleteAddress(numberCode);
+	}
+	
+	@RequestMapping(value="getAddress")
+	@ResponseBody
+	public Map<String,Object> getAddress(String numberCode){
+		return userSvc.getAddress(numberCode);
+	}
+	
 	@RequestMapping(value="queryAddressList")
 	@ResponseBody
 	public Map<String,Object> queryAddressList(){

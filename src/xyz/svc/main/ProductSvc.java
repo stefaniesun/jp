@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProductSvc {
 
-	Map<String, Object> queryProductList(String nameCn, int offset, int pagesize);
+	Map<String, Object> queryProductList(String nameCn, int offset, int pagesize,String type);
 
 	Map<String, Object> addProduct(String name, String special,String type, BigDecimal price, BigDecimal basePrice,int stock,String content,String images);
 
@@ -18,5 +18,7 @@ public interface ProductSvc {
 			String type, BigDecimal price,  BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages);
 
 	Map<String, Object> getProduct(String numberCode);
+
+	Map<String, Object> calculatePostalPriceOper(String products);
 
 }

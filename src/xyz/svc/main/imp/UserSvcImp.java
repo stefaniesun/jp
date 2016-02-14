@@ -1,5 +1,6 @@
 package xyz.svc.main.imp;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -80,8 +81,13 @@ public class UserSvcImp implements UserSvc {
 		if(user!=null){
 			return ReturnUtil.returnMap(0,"用户名已存在");
 		}
+		
+		String sql="select max(UserID) from  TUsers ";
+		List<Object> list=commonDao.getSqlQuery(sql).list();
+		
 		String passwordSe = EncryptionUtil.md5(password);
 		user =new User();
+		user.setUserID(new BigDecimal(list.get(0).toString()).add(new BigDecimal(1)).intValue());
 		user.setUserName(username);
 		user.setNickName(username);
 		user.setPassword(passwordSe);
@@ -132,6 +138,40 @@ public class UserSvcImp implements UserSvc {
 			return ReturnUtil.returnMap(0, "用户不存在");
 		}
 		return ReturnUtil.returnMap(1, user);
+	}
+
+	@Override
+	public Map<String, Object> deleteAddress(String numberCode) {
+		Address address=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", numberCode);
+		if(address==null){
+			return ReturnUtil.returnMap(0, "地址不存在");
+		}
+		commonDao.delete(address);
+		return ReturnUtil.returnMap(1, null);
+	}
+
+	@Override
+	public Map<String, Object> editAddress(String numberCode, String linkName, String linkPhone, String address,
+			String addressDistrict) {
+		Address a=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", numberCode);
+		if(a==null){
+			return ReturnUtil.returnMap(0, "地址不存在");
+		}
+		a.setAddress(address);
+		a.setAddressDistrict(addressDistrict);
+		a.setLinkName(linkName);
+		a.setLinkPhone(linkPhone);
+		commonDao.save(a);
+		return ReturnUtil.returnMap(1, null);
+	}
+
+	@Override
+	public Map<String, Object> getAddress(String numberCode) {
+		Address a=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", numberCode);
+		if(a==null){
+			return ReturnUtil.returnMap(0, "地址不存在");
+		}
+		return ReturnUtil.returnMap(1, a);
 	}
 
 }

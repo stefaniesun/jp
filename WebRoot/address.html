@@ -10,10 +10,6 @@
 <script type="text/javascript" src="misc/tc1015/js/header.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/ht_index.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/formvalidator.js"></script>
-<script type="text/javascript" src="misc/tc1015/js/user_area_select.js"></script>
-<script type="text/javascript">jQuery(function(){
-	LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val()); });
-</script>
 </head>
 
 <body>
@@ -37,7 +33,7 @@
 		 
 		
 		<div class="order">
-			<div class="order_title order_bottom"> <a href="##" class="tjdz" onclick="address_bt_add();">+添加地址</a><a href="javasicrp" class="cta">常用地址</a></div>
+			<div class="order_title order_bottom"> <a href="##" class="tjdz" onclick="addAddress();">+添加地址</a><a href="javasicrp" class="cta">常用地址</a></div>
 		</div>
 <div class=" clear"></div>
 
@@ -45,27 +41,24 @@
 		
 
 <div class="add_adds" style="display:block;" id="adress_add">
-<form id="theForm" onsubmit="return checkConsignee(this);" name="theForm" method="post" action="/myhome.html">
+<form id="theForm"  name="theForm" method="post" >
 <div id="test1"><span>省市县</span>
-	<input id="provinceIdValue" class="dizhi" type="hidden" value="">
-	<input id="cityIdValue" class="dizhi" type="hidden" value="">
-	<input id="districtIdValue" class="dizhi" type="hidden" value="">
-	<select name="province" id="provinceId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择省</option><option value="32">重庆</option></select>
-	<select name="city" id="cityId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择城市</option></select>
-	<select name="district" id="districtId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px"><option value="">请选择区县</option></select>
+	<select name="district" id="districtId" class="sgcategory" style="width:200px;height:35px; padding:0 0 0 10px">
+	<option value="">请选择区县</option><option value="南川区(主城)">南川区(主城)</option><option value="南川区(区县)">南川区(区县)</option><option value="北碚区">北碚区</option><option value="巴南区">巴南区</option><option value="璧山县">璧山县</option><option value="长寿区">长寿区</option><option value="城口县">城口县</option><option value="大渡口区">大渡口区</option><option value="大足县">大足县</option><option value="垫江县">垫江县</option><option value="涪陵区">涪陵区</option><option value="丰都县">丰都县</option><option value="奉节县">奉节县</option><option value="合川区">合川区</option><option value="江津区">江津区</option><option value="江北区">江北区</option><option value="九龙坡区">九龙坡区</option><option value="开县">开县</option><option value="梁平县">梁平县</option><option value="南岸区">南岸区</option><option value="彭水">彭水</option><option value="黔江开发区">黔江开发区</option><option value="綦江县">綦江县</option><option value="荣昌县">荣昌县</option><option value="沙坪坝区">沙坪坝区</option><option value="双桥区">双桥区</option><option value="石柱">石柱</option><option value="潼南县">潼南县</option><option value="铜梁县">铜梁县</option><option value="万盛区">万盛区</option><option value="万州区">万州区</option><option value="武隆县">武隆县</option><option value="巫溪县">巫溪县</option><option value="巫山县">巫山县</option><option value="秀山">秀山</option><option value="永川区">永川区</option><option value="渝北区">渝北区</option><option value="渝中区">渝中区</option><option value="云阳县">云阳县</option><option value="酉阳">酉阳</option><option value="忠县">忠县</option>
+	</select>
 </div>
 <div class="clear"></div>
 <ul>
-<li><span>街道地址</span><input id="address" name="address" type="text" class="chang"><font id="addressTip" class="onError">不能为空</font></li>
-<li><span>姓 名</span><input id="linkname" name="consignee" type="text"><font id="realnameTip" class="onShow">请输入收货人</font></li>
-<li><span>联系电话</span><input id="mobile" name="mobile" type="text"><font id="mobileTip" class="onShow">请输入手机号码</font></li>
+<li><span>街道地址</span><input id="address" name="address" type="text" class="chang"></li>
+<li><span>姓 名</span><input id="linkname" name="consignee" type="text"></li>
+<li><span>联系电话</span><input id="mobile" name="mobile" type="text"></li>
 
 
 </ul>
 	<div class="add_adds_btn">
 	<input type="hidden" value="act_edit_address" name="act">
 	<input type="button" value="保存地址" class="userBtn">
-		<a href="/myaddress.html" class="sc">取消</a>
+		<a href="address.html" class="sc">取消</a>
 	</div>	
 </form>
 </div>		
@@ -81,34 +74,158 @@
 <!--#include virtual="footer.html"-->
 	
  <script type="text/javascript">
-address_bt_add = function(){
-	$("#adress_add").toggle();
-	$(".order").toggle();
-};
-$(document).ready(function() {
-	
-	$.formValidator.initConfig({formid:"theForm",debug:false,submitonce:true,
-		onerror:function(msg,obj,errorlist){
-			//$.map(errorlist,function(msg1){alert(msg1)});
-			alert(msg);
-			return false;
+
+ xyzAjax({
+		url:"/UserWS/queryAddressList.cus",
+		success:function(data){
+			if(data.status==1){
+				var rows=data.content.rows;
+				if(rows.length>0){
+					var html="";
+					for(var i=0;i<rows.length;i++){
+						html+='<div class="order_list" id="remove_18476">';
+						html+='<div class="order_left add">';
+						html+='	<ul class="delivery_ul">';
+						html+='<li><span>姓 名：</span>';
+						html+='<p>'+rows[i].linkName+'</p></li>';
+						html+='<li><span>收货地址：</span>';
+						html+='<p>重庆市 重庆 '+rows[i].addressDistrict+' '+rows[i].address+'</p>';
+						html+='	</li>';
+						html+='<li><span>联系电话：</span>';
+						html+='<p>'+rows[i].linkPhone+'</p>';
+						html+='</li>';
+						html+='</ul>';
+						html+='<div class="adds_right adds_sg"><a class="btn" onclick="editAddress(\''+rows[i].numberCode+'\');">修改地址</a> <a href="#" class="adds" onclick="deleteAddress(\''+rows[i].numberCode+'\');">删除</a> </div>';
+						html+='<div class="clear"></div>';
+						html+='</div>';
+						html+='<div class="clear"></div></div>';
+					}
+					$(".order_title").append(html);
+					$(".add_adds").css("display","none");
+				}
+			}else{
+				top.$.messager.alert("警告",data.msg,"warning");
+			}
 		}
 	});
-	//$.formValidator.initConfig({formid:"theForm",alertmessage:true,onerror:function(msg){alert(msg)}});  
-	  
-	$("#linkname").formValidator({tipid:"realnameTip",empty:false,onshow:"请输入收货人",onfocus:"请输入中文汉字"}).inputValidator({min:2,max:8,onerrormin:"收货人不能为空！",onerror:"收货人名在四个字以内"}).regexValidator({regexp:"chinese",datatype:"enum",onerror:"收货人名必须是汉字"});
+ 
+ 
+ 
+ function deleteAddress(numberCode){
+	 xyzAjax({
+			url:"/UserWS/deleteAddress.cus",
+			data:{
+				numberCode:numberCode
+			},
+			success:function(data){
+				if(data.status==1){
+					window.location.reload();
+				}else{
+					top.$.messager.alert("警告",data.msg,"warning");
+				}
+			}
+		});
+ }
+ 
+ function addAddress(){
+	 $(".order_list").css("display","none");
+	 $(".add_adds").css("display","block");
+	 $(".add_adds").data("numberCode","");
+ }
+ 
+ 
+ function editAddress(numberCode){
+	 $(".order_list").css("display","none");
+	 $(".add_adds").css("display","block");
+	 $(".add_adds").data("numberCode",numberCode);
+	 
+	 xyzAjax({
+			url:"/UserWS/getAddress.cus",
+			data:{
+				numberCode:numberCode
+			},
+			success:function(data){
+				if(data.status==1){
+					$("#districtId").find("option[value='"+data.content.addressDistrict+"']").attr("selected",true);
+					$("#address").val(data.content.address);
+					$("#linkname").val(data.content.linkName);
+					$("#mobile").val(data.content.linkPhone);
+				}else{
+					top.$.messager.alert("警告",data.msg,"warning");
+				}
+			}
+		}); 
+	 
+ }
+ 
+ $(".userBtn").click(function(){
+	 
+	 var addressDistrict=$("#districtId").find("option:selected").text();
+	 var address=$("#address").val();
+	 var linkName=$("#linkname").val();
+	 var linkPhone=$("#mobile").val();
+	 var numberCode=$(".add_adds").data("numberCode");
+	 
+	 
+	 if(addressDistrict=="请选择区县"){
+		 layer.tips("请选择区县","#districtId");
+		 return;
+	 }
+	 if(xyzIsNull(address)){
+		 layer.tips("请输入详细地址","#address");
+		 return;
+	 }
+	 if(xyzIsNull(linkName)){
+		 layer.tips("请输入姓名","#linkname");
+		 return;
+	 }
+	 if(xyzIsNull(linkPhone)){
+		 layer.tips("请输入联系电话","#mobile");
+		 return;
+	 }
+	 
+	 
+	 if(xyzIsNull(numberCode)){
+		 xyzAjax({
+				url:"/UserWS/addAddress.cus",
+				data:{
+					addressDistrict:addressDistrict,
+					address:address,
+					linkName:linkName,
+					linkPhone:linkPhone
+				},
+				success:function(data){
+					if(data.status==1){
+						window.location.reload();
+					}else{
+						top.$.messager.alert("警告",data.msg,"warning");
+					}
+				}
+			}); 
+	 }else{
+		 xyzAjax({
+				url:"/UserWS/editAddress.cus",
+				data:{
+					numberCode:numberCode,
+					addressDistrict:addressDistrict,
+					address:address,
+					linkName:linkName,
+					linkPhone:linkPhone
+				},
+				success:function(data){
+					if(data.status==1){
+						window.location.reload();
+					}else{
+						top.$.messager.alert("警告",data.msg,"warning");
+					}
+				}
+			}); 
+	 }
+	 
+	 
+	 
+ });
 	
-	
-	$("#mobile").formValidator({tipid:"mobileTip",empty:false,onshow:"请输入手机号码",onfocus:"请正确填写手机号码！",oncorrect:"手机号正确"}).inputValidator({min:1,max:18,onerrormin:"请输入手机号码",onerror:"手机的格式不正确！"}).regexValidator({regexp:"mobile",datatype:"enum",onerror:"手机的格式不正确！"});
-
-
-	$("#address").formValidator({tipid:"addressTip",empty:false,onshow:"不能为空",onfocus:"详细地址",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"不能为空"});
-	
-  });
-  
-  $(".userBtn").click(function(){
-	  
-  });
 </script>
  
 </body>

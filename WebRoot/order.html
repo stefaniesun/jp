@@ -10,7 +10,6 @@
 <link href="misc/tc1015/css/new_cart.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/cart.js"></script>
-<script type="text/javascript" src="misc/tc1015/js/user_area_select.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/orderprocess.js"></script>
 
 
@@ -37,7 +36,7 @@
   <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#dcdfe4" class="cartTable">
 	<tbody><tr>
       <td bgcolor="#FFFFFF">
-		<div class="cartTitle asds"><strong>收货地址</strong><span><a href="/myaddress.html" target="_blank">管理收货地址</a></span></div>
+		<div class="cartTitle asds"><strong>收货地址</strong><span><a href="address.html" target="_blank">管理收货地址</a></span></div>
         <div class="addressListBox" id="addressListBox">
           <ul id="addressList" class="clearfix">
 			            <li class="newSlt" t="addAddress" style="display:none;">
@@ -48,9 +47,7 @@
         </div>
         
         <div class="cartTable1" id="cartTable">
-		<script type="text/javascript">jQuery(function(){
-	LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val()); });
-</script>		  <dl>
+            <dl>
             <dt>收货人：</dt>
             <dd><input name="name" value="" size="15" class="dizhiInput"/></dd>
           </dl>
@@ -61,7 +58,9 @@
           <dl>
             <dt>收货区域：</dt>
             <dd>
-              <input id="provinceIdValue" class="dizhi" type="hidden" value="0"><input id="cityIdValue" class="dizhi" type="hidden" value="0"><input id="districtIdValue" class="dizhi" type="hidden" value="0"><select name="province" id="provinceId" class="sgcategory"><option value="">请选择省</option><option value="3">安徽</option><option value="34">澳门</option><option value="2">北京</option><option value="4">福建</option><option value="5">甘肃</option><option value="6">广东</option><option value="7">广西</option><option value="8">贵州</option><option value="9">海南</option><option value="10">河北</option><option value="11">河南</option><option value="12">黑龙江</option><option value="13">湖北</option><option value="14">湖南</option><option value="15">吉林</option><option value="16">江苏</option><option value="17">江西</option><option value="18">辽宁</option><option value="19">内蒙古</option><option value="20">宁夏</option><option value="21">青海</option><option value="22">山东</option><option value="23">山西</option><option value="24">陕西</option><option value="25">上海</option><option value="26">四川</option><option value="27">天津</option><option value="35">台湾</option><option value="28">西藏</option><option value="29">新疆</option><option value="33">香港</option><option value="30">云南</option><option value="31">浙江</option><option value="32">重庆</option></select><select name="city" id="cityId" class="sgcategory"><option value="">请选择城市</option></select><select name="district" id="districtId" class="sgcategory"><option value="">请选择区县</option></select>
+              <select name="district" id="districtId" class="sgcategory">
+              	<option value="">请选择区县</option><option value="南川区(主城)">南川区(主城)</option><option value="南川区(区县)">南川区(区县)</option><option value="北碚区">北碚区</option><option value="巴南区">巴南区</option><option value="璧山县">璧山县</option><option value="长寿区">长寿区</option><option value="城口县">城口县</option><option value="大渡口区">大渡口区</option><option value="大足县">大足县</option><option value="垫江县">垫江县</option><option value="涪陵区">涪陵区</option><option value="丰都县">丰都县</option><option value="奉节县">奉节县</option><option value="合川区">合川区</option><option value="江津区">江津区</option><option value="江北区">江北区</option><option value="九龙坡区">九龙坡区</option><option value="开县">开县</option><option value="梁平县">梁平县</option><option value="南岸区">南岸区</option><option value="彭水">彭水</option><option value="黔江开发区">黔江开发区</option><option value="綦江县">綦江县</option><option value="荣昌县">荣昌县</option><option value="沙坪坝区">沙坪坝区</option><option value="双桥区">双桥区</option><option value="石柱">石柱</option><option value="潼南县">潼南县</option><option value="铜梁县">铜梁县</option><option value="万盛区">万盛区</option><option value="万州区">万州区</option><option value="武隆县">武隆县</option><option value="巫溪县">巫溪县</option><option value="巫山县">巫山县</option><option value="秀山">秀山</option><option value="永川区">永川区</option><option value="渝北区">渝北区</option><option value="渝中区">渝中区</option><option value="云阳县">云阳县</option><option value="酉阳">酉阳</option><option value="忠县">忠县</option>
+              </select>
             </dd>
           </dl>
           <dl>
@@ -96,7 +95,24 @@
           </tr>
         </tbody></table>
                 
-        <div class="ReturnCart"><a href="/showCart.html" title="返回修改购物车">返回修改购物车</a></div>
+         <div class="cartTitle"><strong><img style="float:left;cursor:pointer;margin-top:16px" src="image/other/addPage.gif"/>添加代买商品</strong></div>
+         
+         
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable">
+          <tbody><tr>
+            <td bgcolor="48b123" width="25" class="ShoppingListL"><div class="ShoppingListLB">代买产品</div></td>
+            <td bgcolor="ffffff" width="908" class="ShoppingListR" valign="top"><div class="ShoppingListBox">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ShoppingListTable1">
+                <tbody  id="purchasing"><tr>
+                  <th align="left" width="555" class="tableFirst">商品名称</th>
+                  <th align="center" width="64">单价</th>
+                  <th align="center" width="170">数量</th>
+                  <th align="center" width="104">商品总价</th>
+                </tr>
+				  </tbody></table>
+            </div></td>
+          </tr>
+        </tbody></table>
         
       </td>
 	</tr>
@@ -173,13 +189,13 @@ xyzAjax({
 				var html='';
 				for(var i=0;i<rows.length;i++){
 					if(i==0){
-						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt">';
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt" data-addressDistrict="'+rows[i].addressDistrict+'">';
 					}else{
 						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
 					}
 					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
 					html+='<label>';
-					html+='<p><b>'+rows[i].linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
+					html+='<p><b>'+rows[i].linkName+'</b><em>收</em></p>';
 					html+='<p class="listAddressShow">重庆市 重庆 '+rows[i].addressDistrict+' </p>';
 					html+='<p class="listAddressShow">'+rows[i].address+'</p>';
 					html+='<p class="listAddressShow">'+rows[i].linkPhone+'</p><sub></sub>';
@@ -189,6 +205,10 @@ xyzAjax({
 				$("#addressList").prepend(html);
 				$(".newSlt").css("display","block");
 				$("#cartTable").css("display","none");
+				
+				//计算邮费
+				calculatePostalPrice();
+				
 			}
 		}else{
 			top.$.messager.alert("警告",data.msg,"warning");
@@ -198,6 +218,8 @@ xyzAjax({
 
 
 var carts=eval(getCookie("JP_SHOPPING_CART"));
+var productCount=0;
+var productTotal=0;
 if(carts.length>0){
 	var count=0;
 	var total=0;
@@ -218,11 +240,91 @@ if(carts.length>0){
 	$("#total_price").html("￥"+total.toFixed(2));
 	$("#order_money").html(total.toFixed(2));
 	$("#order_money2").html(total.toFixed(2));
-	
+	productCount=count;
+	productTotal=total;
 }
 
 
 
+xyzAjax({
+	url:"/ProductWS/queryProductList.cus",
+	data:{
+		page:'1',
+		rows:'100',
+		type:'4'
+	},
+	success:function(data){
+		if(data.status==1){
+			if(data.content.total>0){
+				var html='';
+				var carts=data.content.rows;
+				for(var i=0;i<carts.length;i++){
+					var perTotal=carts[i].price.toFixed(2)*carts[i].count;
+					html+='<tr data-price="'+carts[i].price+'"> ';
+					html+='<td align="left" class="tableFirst"><a>'+carts[i].name+'</a></td> ';
+					html+='<td align="center">￥'+carts[i].price.toFixed(2)+'元</td>';
+					html+='<td align="center"><select class="select"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></td>';
+					html+='<td align="center">0</td>';
+					html+='</tr> ';
+				}
+				$("#purchasing").append(html);
+			}
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+
+function calculatePostalPrice(){
+	
+	 var carts=eval(getCookie("JP_SHOPPING_CART"));
+	var address=$(".slt").data("addressdistrict"); 
+	
+	/* xyzAjax({
+		url:"/ProductWS/calculatePostalPriceOper.cus",
+		data:{
+			products:products
+		},
+		success:function(data){
+			if(data.status==1){
+				console.log(data);
+			}else{
+				top.$.messager.alert("警告",data.msg,"warning");
+			}
+		}
+	}); */
+}
+
+
+$(".select").change(function(){
+	var basePrice=$(this).parents("tr").data("price");
+	var count=$(this).val();
+	var amount=basePrice*count;
+	$(this).parents("tr").children("td:eq(3)").html(amount.toFixed(2));
+	
+	recalculate();
+});
+
+function recalculate(){
+	var count=0;
+	var total=0;
+	
+	$("#purchasing tr").each(function(index){
+		if(index>0){
+			count+=$(this).find("select").val();
+			total+=$(this).find("select").val()*$(this).data("price");
+		}
+		
+	});
+	
+	count+=productCount;
+	total+=productTotal;
+	$("#total_nums").html(count+"件");
+	$("#total_price").html("￥"+total.toFixed(2));
+	$("#order_money").html(total.toFixed(2));
+	$("#order_money2").html(total.toFixed(2));
+	
+}
 
 
 

@@ -44,7 +44,7 @@ function initTable(){
 		title : '产品列表',
 		url:'../ProductWS/queryProductList.do',
 		pageList : [5,10,15,30,50],
-		pageSize : 5,
+		pageSize : 10,
 		toolbar:toolbar,
 		singleSelect : false,
 		idField : 'numberCode',
@@ -62,6 +62,8 @@ function initTable(){
 						return "南北干货";
 					}else if(val=="3"){
 						return "酒水饮料";
+					}else if(val=="4"){
+						return "代买产品";
 					}
 				}
 			},
@@ -148,6 +150,10 @@ function editProductButton(title){
 						$("#priceForm").val(data.content.price);
 						$("#basePriceForm").val(data.content.basePrice);
 						$("#stockForm").val(data.content.stock);
+						if(data.content.areaFlag==1){
+							$("#areaFlagForm").attr("checked","checked");
+						}
+						$("#postagePriceForm").val(data.content.postagePrice);
 						UM.getEditor('editor').setContent(data.content.content, true);
 					
 						var images=eval("{"+data.content.images+"}"); 
@@ -178,6 +184,8 @@ function addProductSubmit(){
 	var price=$("#priceForm").val();
 	var basePrice=$("#basePriceForm").val();
 	var stock=$("#stockForm").val();
+	var areaFlag=$("#areaFlagForm").attr("checked")=="checked"?1:0;
+	var postagePrice=$("#postagePriceForm").val();
 	var content=UM.getEditor('editor').getContent();
 	var images="";
 	$(".filelist li[class='state-complete']").each(function(){
@@ -197,7 +205,9 @@ function addProductSubmit(){
 			basePrice:basePrice,
 			stock:stock,
 			content:content,
-			images:images
+			images:images,
+			areaFlag:areaFlag,
+			postagePrice:postagePrice
 		},
 		success:function(data){
 			if(data.status==1){
@@ -234,6 +244,8 @@ function editProductSubmit(numberCode){
 			deleteImages+=$(this).attr("id")+",";
 		}
 	});
+	var areaFlag=$("#areaFlagForm").attr("checked")=="checked"?1:0;
+	var postagePrice=$("#postagePriceForm").val();
 
 	xyzAjax({
 		url:"../ProductWS/editProduct.do",
@@ -248,7 +260,9 @@ function editProductSubmit(numberCode){
 			image:image,
 			content:content,
 			images:images,
-			deleteImages:deleteImages
+			deleteImages:deleteImages,
+			areaFlag:areaFlag,
+			postagePrice:postagePrice
 		},
 		success:function(data){
 			if(data.status==1){

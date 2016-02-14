@@ -563,18 +563,10 @@ orderprocess.addressValidCheck = function(a) {
 		msg: "收货人不能为空，请填写",
 		pos: $("input[name=name]", b)
 	};
-	if (!$("#provinceId").val()) return {
-		msg: "请选择收货省份",
-		pos: $("#provinceId", b)
-	};
-	if (!$("#cityId").val()) return {
-		msg: "请选择收货城市",
-		pos: $("#cityId", b)
-	};
-	/*if (!$("#districtId").val()) return {
+	if (!$("#districtId").val()) return {
 		msg: "请选择收货县/区",
 		pos: $("#districtId", b)
-	};*/
+	};
 	if (20 < a.name.length) return {
 		msg: "收货人不能超过10个汉字或者20个字母，请重新填写",
 		pos: $("input[name=name]", b)

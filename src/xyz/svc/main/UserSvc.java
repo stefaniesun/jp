@@ -20,4 +20,11 @@ public interface UserSvc {
 
 	Map<String, Object> getUser(String username);
 
+	Map<String, Object> deleteAddress(String numberCode);
+
+	Map<String, Object> editAddress(String numberCode, String linkName, String linkPhone, String address,
+			String addressDistrict);
+
+	Map<String, Object> getAddress(String numberCode);
+
 }

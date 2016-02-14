@@ -143,8 +143,6 @@ techanuserlogin.doreg = function(e){
 		er.style.display = "block";
         er.innerHTML = '信息处理中...';
 	}
-	
-	var url = 'http://localhost:8080/Jp/UserWS/registerOper.web';
 
     xyzAjax({
 		url : "UserWS/registerOper.web",
@@ -156,7 +154,9 @@ techanuserlogin.doreg = function(e){
 			if(data.status==1){
 				addCookie("JP_LOGIN_KEY",data.content.apikey,7);
 				addCookie("JP_LOGIN_NAME",data.content.username,7);
-				$.prompt.close(),setTimeout(function(){window.location.reload()},300);
+				layer.alert("注册成功",function(){
+					$.prompt.close(),setTimeout(function(){window.location.reload()},300);
+				});
 			}else{
 				 er.innerHTML = data.msg;
 			      return;

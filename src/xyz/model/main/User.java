@@ -15,8 +15,6 @@ public class User {
 	
 	@Id
 	@Column(name="UserID",unique=true,nullable=false)
-	@GeneratedValue(generator = "paymentableGenerator")
-    @GenericGenerator(name = "paymentableGenerator", strategy = "identity")
 	private int userID;//主键
 	
 	@Column(name="UserName")

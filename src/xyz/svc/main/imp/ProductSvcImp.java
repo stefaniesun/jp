@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.persistence.criteria.From;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -30,11 +32,14 @@ public class ProductSvcImp implements ProductSvc {
 	CommonDao commonDao;
 	
 	@Override
-	public Map<String, Object> queryProductList(String nameCn, int offset, int pagesize) {
+	public Map<String, Object> queryProductList(String nameCn, int offset, int pagesize,String type) {
 
 		String hql=" from Product where 1=1 ";
 		if(!"".equals(nameCn)&&nameCn!=null){
 			hql+=" and nameCn like '%"+nameCn+"%'";
+		}
+		if(!"".equals(type)&&type!=null){
+			hql+=" and type="+type;
 		}
 		
 		String countHql = "select count(numberCode) "+hql;
@@ -144,6 +149,22 @@ public class ProductSvcImp implements ProductSvc {
 		
 		product.setImages(jsonArray.toString());
 		return ReturnUtil.returnMap(1, product);
+	}
+
+
+	@Override
+	public Map<String, Object> calculatePostalPriceOper(String products) {
+		if(products==null||products.equals("")){
+			return ReturnUtil.returnMap(0, "参数错误");
+		}
+		BigDecimal amount=new BigDecimal(0);
+		for(String product:products.split(",")){
+			Product p= (Product) commonDao.getObjectByUniqueCode("Product", "numberCode", product);
+			if(p.getAreaFlag()==1){
+				/*amount.add(p.get)*/
+			}
+		}
+		return null;
 	}
 
 }

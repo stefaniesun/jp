@@ -29,10 +29,11 @@ public class ProductWS{
 	@ResponseBody
 	public Map<String,Object> queryProductList(String nameCn,String provider,
 			int page,
-			int rows){
+			int rows,
+			String type){
 		int pagesize = rows;
 		int offset = (page-1)*pagesize;
-		return productSvc.queryProductList(nameCn,offset, pagesize);
+		return productSvc.queryProductList(nameCn,offset, pagesize,type);
 	}
 	
 	@RequestMapping(value="getProduct")
@@ -62,6 +63,13 @@ public class ProductWS{
 	@ResponseBody
 	public Map<String,Object> deleteProduct(String numberCode){
 		return productSvc.deleteProduct(numberCode);
+	}
+	
+	
+	@RequestMapping(value="calculatePostalPriceOper")
+	@ResponseBody
+	public Map<String,Object> calculatePostalPriceOper(String products){
+		return productSvc.calculatePostalPriceOper(products);
 	}
 	
 	
