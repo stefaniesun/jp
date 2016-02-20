@@ -40,35 +40,25 @@ function initTable(){
 	}	
 	
 	xyzgrid({
-		table : 'orderManagerTable',
-		title : '产品列表',
-		url:'../BaseOrderWS/queryOrderList.do',
+		table : 'userManagerTable',
+		title : '用户列表',
+		url:'../BaseUserWS/queryUserList.do',
 		pageList : [5,10,15,30,50],
-		pageSize : 5,
+		pageSize : 10,
 		toolbar:toolbar,
 		singleSelect : false,
-		idField : 'numberCode',
+		idField : 'userName',
 		height:'auto',
 		columns : [[
             {field:'checkboxTemp',checkbox:true},
-			{field:'orderNum',title:'产品编号'},
-			{field:'productName',title:'产品名称',width:200},
-			{field:'price',title:'单价',width:100},
-			{field:'count',title:'数量',width:100},
-			{field:'username',title:'买家',width:100},
-			{field:'addDate',title:'下单时间',width:100},
-			{field:'status',title:'订单状态',width:100,
+			{field:'userName',title:'用户名'},
+			{field:'nickName',title:'用户昵称',width:200},
+			{field:'sex',title:'性别',width:100,
 				formatter:function(val,rec){
 					if(val=="0"){
-						return "已取消";
+						return "男";
 					}else if(val=="1"){
-						return "未付款";
-					}else if(val=="2"){
-						return "已付款";
-					}else if(val=="3"){
-						return "已发货";
-					}else if(val=="4"){
-						return "已确认";
+						return "女";
 					}
 				}
 			}

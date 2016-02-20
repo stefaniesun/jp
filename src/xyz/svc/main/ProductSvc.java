@@ -10,12 +10,12 @@ public interface ProductSvc {
 
 	Map<String, Object> queryProductList(String nameCn, int offset, int pagesize,String type);
 
-	Map<String, Object> addProduct(String name, String special,String type, BigDecimal price, BigDecimal basePrice,int stock,String content,String images);
+	Map<String, Object> addProduct(String name, String special,String type, BigDecimal price, BigDecimal basePrice,int stock,String content,String images,int areaFlag,BigDecimal postagePrice);
 
 	Map<String, Object> deleteProduct(String numberCode);
 
 	Map<String, Object> editProduct(String numberCode, String name,String special,
-			String type, BigDecimal price,  BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages);
+			String type, BigDecimal price,  BigDecimal basePrice,int stock, String image,String content,String images,String deleteImages,int areaFlag,BigDecimal postagePrice);
 
 	Map<String, Object> getProduct(String numberCode);
 

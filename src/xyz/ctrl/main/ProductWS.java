@@ -46,16 +46,16 @@ public class ProductWS{
 	@ResponseBody
 	public Map<String,Object> addProduct(String name,String special,String type,
 			BigDecimal price,BigDecimal basePrice,
-			int stock,String content,String images){
-		return productSvc.addProduct(name,special,type, price,basePrice,stock,content,images);
+			int stock,String content,String images,int areaFlag,BigDecimal postagePrice){
+		return productSvc.addProduct(name,special,type, price,basePrice,stock,content,images,areaFlag,postagePrice);
 	}
 	
 	@RequestMapping(value="editProduct")
 	@ResponseBody
 	public Map<String,Object> editProduct(String numberCode,String name,String special,String type,
 			BigDecimal price,BigDecimal basePrice,
-			int stock,String image,String content,String images,String deleteImages){
-		return productSvc.editProduct(numberCode,name,special,type, price,basePrice,stock,image,content,images,deleteImages);
+			int stock,String image,String content,String images,String deleteImages,int areaFlag,BigDecimal postagePrice){
+		return productSvc.editProduct(numberCode,name,special,type, price,basePrice,stock,image,content,images,deleteImages,areaFlag,postagePrice);
 	}
 	
 	

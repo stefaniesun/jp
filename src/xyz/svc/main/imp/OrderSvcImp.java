@@ -32,15 +32,15 @@ public class OrderSvcImp implements OrderSvc{
 	@Autowired
 	CommonDao commonDao;
 	
-	public Map<String, Object> addProduct(String carts, String address,String remark) {
+	public Map<String, Object> addOrder(String carts, String address,String purchasing,String remark) {
 		XyzSessionLogin xyzSessionLogin = MyRequestUtil.getXyzSessionLogin();
 		
 		String orderNum=StringUtil.getOrderNum();
+		Address a=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", address);
+		
 		for(String c:carts.split(",")){
 			
 			ShoppingCart cart=(ShoppingCart) commonDao.getObjectByUniqueCode("ShoppingCart", "numberCode", c);
-			
-			Address a=(Address) commonDao.getObjectByUniqueCode("Address", "numberCode", address);
 			
 			Order order=new Order();
 			order.setAddDate(new Date());
@@ -58,6 +58,30 @@ public class OrderSvcImp implements OrderSvc{
 			order.setRemark(remark);
 			commonDao.save(order);
 			commonDao.delete(cart);
+		}
+		
+		for(String pur:purchasing.split(",")){
+			
+			String numberCode=pur.split("-")[0]; 
+			String count=pur.split("-")[1]; 
+			
+			Product product=(Product) commonDao.getObjectByUniqueCode("Product", "numberCode", numberCode);
+			
+			Order order=new Order();
+			order.setAddDate(new Date());
+			order.setAddress(a.getAddress());
+			order.setAddressDistrict(a.getAddressDistrict());
+			order.setLinkman(a.getLinkName());
+			order.setLinkPhone(a.getLinkPhone());
+			order.setNumberCode(UUIDUtil.getUUIDStringFor32());	
+			order.setPrice(product.getPrice());
+			order.setProduct(product.getNumberCode());
+			order.setCount(new BigDecimal(count).intValue());
+			order.setStatus(Order.ORDER_UNPAY);
+			order.setUsername(xyzSessionLogin.getUsername());
+			order.setOrderNum(orderNum);
+			order.setRemark(remark);
+			commonDao.save(order);
 		}
 		return ReturnUtil.returnMap(1, orderNum);
 	}

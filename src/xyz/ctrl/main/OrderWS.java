@@ -19,8 +19,8 @@ public class OrderWS {
 	
 	@RequestMapping(value="addOrder")
 	@ResponseBody
-	public Map<String,Object> addOrder(String carts,String address,String remark){
-		return orderSvc.addProduct(carts,address,remark);
+	public Map<String,Object> addOrder(String carts,String address,String purchasing,String remark){
+		return orderSvc.addOrder(carts,address,purchasing,remark);
 	}
 	
 	@RequestMapping(value="getOrder")

@@ -49,10 +49,15 @@
 		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160117134100" nameCn="查询WEB关联模块" url="/WebModelWS/queryModelList.do"/>
 	</function>
 
+	<function isApi="0"  groupCn="管理" numberCode="userManager" nameCn="用户" url="/jsp_base/userManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160127161900" nameCn="查询用户" url="/BaseUserWS/queryUserList.do"/>
+	</function>
 	
 	<function isApi="0"  groupCn="管理" numberCode="orderManager" nameCn="订单" url="/jsp_base/orderManager.html">
-		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160127161900" nameCn="查询订单" url="/BaseOrderWS/queryOrderList.do"/>
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160127161901" nameCn="查询订单" url="/BaseOrderWS/queryOrderList.do"/>
 	</function>
+	
+	
 	
 	
 	

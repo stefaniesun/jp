@@ -41,12 +41,15 @@ orderprocess.init = function(a){
 		b.stopPropagation();
 	});
 	$("li.addressBox", aL).unbind("click").click(function(b) {
+			
 		$("li.addressBox").each(function(a){
 			$(this).removeClass("slt");
 		});
 		$(this).addClass("slt");
 		$("div#cartTable").html('').hide();
-		var numid = $(this).attr("id"),aid = $("#userAddr_"+numid).val();
+		
+		calculatePostalPrice();
+		/*var numid = $(this).attr("id"),aid = $("#userAddr_"+numid).val();
 		openNewMsgDiv('地址变化，正在重新确认信息...', 1);
 		$.ajax({type:'post', async: false, url:orderprocess.data.CART_URL,data:{a:'select_my_address',aid:encodeURIComponent(aid),r:Math.random()},success:function(c){
 			//delete orderprocess.status.address;
@@ -74,8 +77,9 @@ orderprocess.init = function(a){
 		f['cancel_action']=true,f['transFee'] = addr.trans_fee,f['cashMoney'] = orderprocess.data.infoDefault.cashMoney,orderprocess.data.infoDefault.surplusMoney.totalS = orderprocess.data.infoDefault.surplusMoney.useS,f['type_money']='0.00',f['total_goods_price'] = orderprocess.data.infoDefault.orderAmount;
 		f['total_order_money']=(parseFloat(f['total_goods_price'])+parseFloat(f['transFee'])-parseFloat(f['type_money'])-parseFloat(f['cashMoney'])).toFixed(2)
 		$("#promote_fee_list > li", $("#statistiL")).find("input[type=radio]").each(function(){this.checked=false}),$("#promote_fee_list").find("a[t=cancel_promote_use]").each(function(){$(this).hide()}),$("input[name=Balance]").attr('checked', false),orderprocess.addressShowEditData(f),b.stopPropagation();
-	});
+	*/});
 	$("span[t=editing]", aL).unbind("click").click(function(n){
+
 		$("li.addressBox").each(function(a){
 			$(this).removeClass("slt");
 		});
@@ -87,19 +91,25 @@ orderprocess.init = function(a){
 		LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val()),orderprocess.init(),n.stopPropagation();
 	});
 	$("li[t=addAddress]", aL).unbind("click").click(function(){
-		if($("div#cartTable").css("display") != 'none'){
+		
+		
+		if($("#cartTable").css("display") != 'none'){
+			$("#cartTable").hide();
+		}else{
+			$("#cartTable").show(100);
+		}
+		
+		/*if($("div#cartTable").css("display") != 'none'){
 			if($("input[name=name]").val()){
 				$("#cartTable").show(100).html(orderprocess.tpl.new_addr);
-				LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val());
 				orderprocess.init();
 			}else{
 				$("div#cartTable").html('').hide();
 			}
 		}else{
 			$("#cartTable").show(100).html(orderprocess.tpl.new_addr);
-			LoadArea(jQuery("#provinceIdValue").val(),jQuery("#cityIdValue").val(),jQuery("#districtIdValue").val());
 			orderprocess.init();
-		}
+		}*/
 	});
 	$("input[t=edit_save]", cT).click(function(n) {
 		var a = orderprocess.addressGetEditData(cT);
@@ -198,7 +208,7 @@ orderprocess.init = function(a){
 					if(data.status==1){
 						
 						$("#addressList li").attr("class","addressBox");
-						var html='<li id="1" class="addressBox slt">';
+						var html='<li id="1" class="addressBox slt" data-addressdistrict='+data.content.addressDistrict+'>';
 						html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
 						html+='<label>';
 						html+='<p><b>'+data.content.linkName+'</b><em>收</em><span class="editBt" t="editing" aid="18462">编缉</span></p>';
@@ -210,6 +220,7 @@ orderprocess.init = function(a){
 						$("#addressList").prepend(html);
 						$(".newSlt").css("display","block");
 						$("#cartTable").css("display","none");
+						calculatePostalPrice();
 					}else{
 						top.$.messager.alert("警告",data.msg,"warning");
 					}
@@ -229,11 +240,24 @@ orderprocess.init = function(a){
 			}
 		}
 		var address=$(".slt").attr("id");
+		
+		//添加代购产品
+		var purchasing="";
+		$("#purchasing tr").each(function(index){
+			if(index>0){
+				var count=parseInt($(this).find("select").val());
+				if(count>0){
+					purchasing+=$(this).data("numbercode")+"-"+count;
+				}
+			}
+		});
+		
 		xyzAjax({
 			url:"/OrderWS/addOrder.cus",
 			data:{
 				carts:carts,
 				address:address,
+				purchasing:purchasing,
 				remark:remark
 			},
 			success:function(data){

@@ -101,7 +101,7 @@ xyzAjax({
 					var total=0;
 					html+='<div class="order_list">';
 					html+='<div class="order_left">';
-					html+='<div class="order_left_title"><span>订单号：'+contents[i].orderNum+'</span><span>下单日期：'+new Date(contents[i].addDate).Format("yyyy年MM月dd日")+'</span><span>收货人：'+contents[i].linkman+'</span>';
+					html+='<div class="order_left_title"><span>订单号：'+contents[i].orderNum+'</span><span>下单日期：'+new Date(contents[i].addDate).Format("yyyy年MM月dd日 hh:mm")+'</span><span>收货人：'+contents[i].linkman+'</span>';
 					if(contents[i].status==1){
 						html+='<p>未付款</p>';
 					}else if(contents[i].status==2){

@@ -148,11 +148,12 @@
         </div> -->
         <div class="statistiR">
 		  <ul>
+		  <input id="postagePrice"  value="0" type="hidden"/>
 			<li> <span><font style="color:red" id="total_nums"></font> 件商品，总商品金额：</span> <em id="total_price"></em> </li>
-			<li> <span>运费：</span>￥<a id="trans_fee">8.00</a> </li>
+			<li> <span>运费：</span>￥<a id="trans_fee">0.00</a> </li>
 			<li> <span>优惠券：</span>-￥<a id="promote_fee" style="color:red">0.00</a> </li>
 			<li style="display:none;"> <span>现金券：</span> <em>-￥<a id="cashcard_fee" style="color:red"></a></em> </li>
-						<li> <span>应付总额：</span> <em>￥<b id="order_money"></b></em> </li>
+			<li> <span>应付总额：</span> <em>￥<b id="order_money"></b></em> </li>
 		  </ul>
         </div>
         
@@ -191,7 +192,7 @@ xyzAjax({
 					if(i==0){
 						html+='<li id="'+rows[i].numberCode+'" class="addressBox slt" data-addressDistrict="'+rows[i].addressDistrict+'">';
 					}else{
-						html+='<li id="'+rows[i].numberCode+'" class="addressBox">';
+						html+='<li id="'+rows[i].numberCode+'" class="addressBox" data-addressDistrict="'+rows[i].addressDistrict+'">';
 					}
 					html+=' <input type="radio" name="address" id="userAddr_1" value="18462" class="addressinput">';
 					html+='<label>';
@@ -260,7 +261,7 @@ xyzAjax({
 				var carts=data.content.rows;
 				for(var i=0;i<carts.length;i++){
 					var perTotal=carts[i].price.toFixed(2)*carts[i].count;
-					html+='<tr data-price="'+carts[i].price+'"> ';
+					html+='<tr data-price="'+carts[i].price+'" data-numbercode="'+carts[i].numberCode+'"> ';
 					html+='<td align="left" class="tableFirst"><a>'+carts[i].name+'</a></td> ';
 					html+='<td align="center">￥'+carts[i].price.toFixed(2)+'元</td>';
 					html+='<td align="center"><select class="select"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></td>';
@@ -277,22 +278,29 @@ xyzAjax({
 
 function calculatePostalPrice(){
 	
-	 var carts=eval(getCookie("JP_SHOPPING_CART"));
 	var address=$(".slt").data("addressdistrict"); 
 	
-	/* xyzAjax({
-		url:"/ProductWS/calculatePostalPriceOper.cus",
-		data:{
-			products:products
-		},
-		success:function(data){
-			if(data.status==1){
-				console.log(data);
-			}else{
-				top.$.messager.alert("警告",data.msg,"warning");
-			}
+	if(address=="南川区(主城)"){
+		if(productTotal<20){
+			$("#postagePrice").val(10);
+		}else{
+			$("#postagePrice").val(0);
 		}
-	}); */
+	}else if(address=="南川区(区县)"){
+		if(productTotal<200){
+			$("#postagePrice").val(20);
+		}else{
+			$("#postagePrice").val(0);
+		}
+	}else{
+		if(productTotal<40){
+			$("#postagePrice").val(25);
+		}else{
+			$("#postagePrice").val(0);
+		}
+	}
+	
+	recalculate();
 }
 
 
@@ -308,19 +316,21 @@ $(".select").change(function(){
 function recalculate(){
 	var count=0;
 	var total=0;
+	var postagePrice=parseFloat($("#postagePrice").val());
 	
 	$("#purchasing tr").each(function(index){
 		if(index>0){
-			count+=$(this).find("select").val();
+			count+=parseInt($(this).find("select").val());
 			total+=$(this).find("select").val()*$(this).data("price");
 		}
 		
 	});
-	
-	count+=productCount;
+	count+=parseInt(productCount);
+	$("#total_nums").html(count);
+	$("#trans_fee").html(postagePrice.toFixed(2));
 	total+=productTotal;
-	$("#total_nums").html(count+"件");
 	$("#total_price").html("￥"+total.toFixed(2));
+	total+=postagePrice;
 	$("#order_money").html(total.toFixed(2));
 	$("#order_money2").html(total.toFixed(2));
 	
