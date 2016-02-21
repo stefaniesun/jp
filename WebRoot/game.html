@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        聚派网络游戏世界___最专业的棋牌游戏平台
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta name="Description" content="聚派游戏平台是中国最专业的网络棋牌游戏中心之一，是聚派网络旗下最主要的棋牌游戏平台，拥有各类棋牌游戏累计达100多种，包括人们熟知的斗地主、升级、麻将、围棋、四国军棋等。" />
+    <meta name="Keywords" content="棋牌游戏,聚派游戏,聚派,棋牌,双扣,麻将,斗地主,牛牛,三扣一,连连看,四国军旗,象棋,棋牌比赛,休闲游戏,小游戏" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link href="css/public.css" rel="stylesheet" type="text/css" />
+    <link href="css/global.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/game.css" />
+    
+   <script type="text/javascript" src="misc/tc1015/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        //图片按比例缩放
+        var flag = false;
+        function DrawImage(ImgD, iwidth, iheight) {
+            //参数(图片,允许的宽度,允许的高度)
+            var image = new Image();
+            image.src = ImgD.src;
+            if (image.width > 0 && image.height > 0) {
+                flag = true;
+                if (image.width / image.height >= iwidth / iheight) {
+                    if (image.width > iwidth) {
+                        ImgD.width = iwidth;
+                        ImgD.height = (image.height * iwidth) / image.width;
+                    } else {
+                        ImgD.width = image.width;
+                        ImgD.height = image.height;
+                    }
+                    ImgD.alt = image.width + "×" + image.height;
+                }
+                else {
+                    if (image.height > iheight) {
+                        ImgD.height = iheight;
+                        ImgD.width = (image.width * iheight) / image.height;
+                    } else {
+                        ImgD.width = image.width;
+                        ImgD.height = image.height;
+                    }
+                    ImgD.alt = image.width + "×" + image.height;
+                }
+            }
+        } 
+    </script>
+    <script type="text/javascript" src="/js/Common.js"></script>
+</head>
+<body>
+    <form name="form1" method="post" action="Index.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEyMzIwMTg0MzQPZBYCZg9kFgoCAQ9kFgICAQ8WAh4EVGV4dAVyICA8bGk+PGEgaHJlZj0iL2Rvd25sb2FkL2pwZ2FtZS5leGUiPsK35a6M5pW054mIPC9hPiA8L2xpPiA8bGk+PGEgaHJlZj0iL2Rvd25sb2FkL2pwZ2FtZS5leGUiPsK357K+57yW54mIPC9hPjwvbGk+ZAICDxYCHgtfIUl0ZW1Db3VudGZkAgMPFgIfAWZkAgUPFgIfAQIFFgpmD2QWAmYPFQQKMjAxNS0wNC0xNgzlhazlj7jnroDku4sCMTIM5YWs5Y+4566A5LuLZAIBD2QWAmYPFQQKMjAxNS0wNC0xNgzmlrDpl7vliqjmgIECMTAM5paw6Ze75Yqo5oCBZAICD2QWAmYPFQQKMjAxNS0wNC0xNgzns7vnu5/mlrDpl7sBMwzns7vnu5/nu7TmiqRkAgMPZBYCZg8VBAoyMDE1LTA0LTE2DOa4uOaIj+aWsOmXuwEyDOacgOaWsOa4uOaIj2QCBA9kFgJmDxUECjIwMTUtMDQtMTYM5rS75Yqo5paw6Ze7ATEM5pyA5paw5rS75YqoZAIGDxYCHwFmZGSsPCzmhxC3ZIjbM+oh4K2gupThTEguJfRLggXQznbCQA==" />
+
+    <!--头部开始-->
+    <div class="main">
+        <div class="top">
+            <div class="left">
+                <img src="images/logo.png" height="78" /></div>
+            <div class="right mtop13 lan">
+                
+<ul>
+    <li class="top1"><a id="lnkuchomePage" href="javascript:void(0);" 
+        class="ll">设为首页</a></li>
+    <li class="top3"><a href="javascript:void(0);" 
+        class="ll">加入收藏</a></li>
+</ul>
+
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="navLeft">
+            </div>
+            <div class="navCenter">
+                <ul>
+                    <li class="current"><a href="/Index.aspx" hidefocus="true">首页</a></li>
+                    <li class=""><a href="/NewsListP.aspx" hidefocus="true">资讯中心</a></li>
+                    <li class=""><a href="/Manage/index.aspx" hidefocus="true">会员中心</a></li>
+                    <li class=""><a href="/Manage/Pay/Yeepay2/Default.aspx" hidefocus="true">充值中心</a></li>
+                    <li class=""><a href="index.html" hidefocus="true" targrt="_blank">游戏商场</a></li>
+                    <li class=""><a href="/Services.aspx" hidefocus="true">客服中心</a></li>
+                    <li class=""><a href="/abc.html" hidefocus="true" target="_blank">家长监护</a></li>
+                    <li class=""><a href="/index.aspx" hidefocus="true" target="_blank">平台简介</a></li>
+                </ul>
+            </div>
+            <div class="navRight">
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <!--头部结束-->
+    <!--[if IE 6]> 
+<script>
+function correctPNG() 
+{
+for(var i=0; i<document.images.length; i++)
+{
+var img = document.images[i];
+var imgName = img.src.toUpperCase();
+if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
+{
+var imgID = (img.id) ? "id='" + img.id + "' " : "";
+var imgClass = (img.className) ? "class='" + img.className + "' " : "";
+var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' ";
+var imgStyle = "display:inline-block;" + img.style.cssText;
+if (img.align == "left") imgStyle = "float:left;" + imgStyle;
+if (img.align == "right") imgStyle = "float:right;" + imgStyle;
+if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle;
+var strNewHTML = "<span "+ imgID + imgClass + imgTitle + "style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";" 
++ "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader" + "(src='" + img.src + "', sizingMethod='scale');\"></span>";
+img.outerHTML = strNewHTML;
+i = i-1;
+}
+}
+}
+window.attachEvent("onload", correctPNG);
+</script>
+<![endif]-->
+    ​
+    <!--页面主体开始-->
+    <div class="main mtop8">
+        <!--左边部分开始-->
+        <div class="mainLeft">
+            <div class="LeftSide">
+                <!--按钮部分开始-->
+                
+<div class="gameDown">
+    <ul>
+          <li><a href="download/jpgame.exe">·完整版</a> </li> <li><a href="download/jpgame.exe">·精编版</a></li>
+    </ul>
+</div>
+<div style=" clear:both;width:215px; height:95px; ">
+
+
+    <ul class="joinSearch">
+          <li><a target="_blank" href="#"><img alt="微博" src="images/usejoin_23.gif"></a></li>
+          <li><a target="_blank" href="/QueryPunish.aspx"><img alt="封号查询" src="images/fhsearch_25.gif"></a></li>
+        </ul>
+
+</div>
+<div class="clear">
+</div>
+
+                <!--下载-->
+                <div class="left_cont">
+                    <div class="left_cont_title1">
+                    </div>
+                    
+                    <ul class="leftList">
+                        
+                    </ul>
+                    
+                    <div class="left_cont_title2">
+                    </div>
+                    <ul class="leftList">
+                        
+                    </ul>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="RightSide">
+                <!--banner开始-->
+                <div align="center">
+                    
+                </div>
+                <!--banner结束-->
+                <!--资讯中心开始-->
+                <div class="news mtop10">
+                    <div class="news1">
+                        <div class="bold hui3 left">
+                            资讯中心</div>
+                        <span><a href="/NewsListp.aspx" target="_self" class="lh6">更多</a></span></div>
+                    <div class="shopBg">
+                        <ul>
+                            
+                                    <li><span class="hui6">
+                                        2015-04-16</span>[公司简介]&nbsp;
+                                        <a href='/NewsPage.aspx?id=12' class="lh" target="_blank">
+                                            公司简介</a></li>
+                                
+                                    <li><span class="hui6">
+                                        2015-04-16</span>[新闻动态]&nbsp;
+                                        <a href='/NewsPage.aspx?id=10' class="lh" target="_blank">
+                                            新闻动态</a></li>
+                                
+                                    <li><span class="hui6">
+                                        2015-04-16</span>[系统新闻]&nbsp;
+                                        <a href='/NewsPage.aspx?id=3' class="lh" target="_blank">
+                                            系统维护</a></li>
+                                
+                                    <li><span class="hui6">
+                                        2015-04-16</span>[游戏新闻]&nbsp;
+                                        <a href='/NewsPage.aspx?id=2' class="lh" target="_blank">
+                                            最新游戏</a></li>
+                                
+                                    <li><span class="hui6">
+                                        2015-04-16</span>[活动新闻]&nbsp;
+                                        <a href='/NewsPage.aspx?id=1' class="lh" target="_blank">
+                                            最新活动</a></li>
+                                
+                        </ul>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <!--资讯中心结束-->
+                <!--常见问题开始-->
+                <div class="serve mtop10">
+                    <div class="news1">
+                        <div class="bold hui3 left">
+                            常见问题</div>
+                        <span><a href="/NewsListp.aspx?tid=7" class="lh6">更多</a></span></div>
+                    <div class="shopBg">
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!--常见问题结束-->
+           
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <!--左边部分结束-->
+        <div class="mainRight">
+            <div class="rightTel">
+                <ul>
+                    <li>
+                        2483776006<br />
+                        
+                    </li>
+                    <li style="padding-top: 15px; padding-left: 80px;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2483776006&site=qq&menu=yes">
+                        <img src="images/wpa_a05.png" alt="qq" width="126" height="42" style="border: none" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear">
+            </div>
+          
+            <div class="serve mtop10">
+                <div class="serve1 bold hui3 " style="font-size: 14px; font-family: 微软雅黑">
+                   牌类游戏
+                </div>
+                <div class="shopBg4">
+                    <div class="scrollbody">
+                        <div class="scrollpages">
+                            <div class="quadruple ">
+                                <ul class="dtk-list"  id="game1list">
+                                    <li><img src="images/3.gif" alt="欢乐五张" width="16" height="16"><a href="#" title="欢乐五张">欢乐五张</a></li>
+                                    <li><img src="images/1.gif" alt="双扣" width="16" height="16"><a href="#" title="双扣">双扣</a></li>
+                                    <li> <img src="images/2.gif" alt="斗牛" width="16" height="16"><a href="#" title="斗牛">斗牛</a></li>
+                                    <li> <img src=".images/6.gif" alt="斗地主" width="16" height="16"><a href="#" title="斗地主">斗地主</a></li>
+                                    <li><img src=".images/32.gif" alt="德州扑克" width="16" height="16"><a href="#"  title="德州扑克">德州扑克</a></li>                                       
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="serve4">
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+
+            <div class="serve mtop10">
+                <div class="serve1 bold hui3 " style="font-size: 14px; font-family: 微软雅黑">
+                    棋类游戏
+                </div>
+                <div class="shopBg4">
+                    <div class="scrollbody">
+                        <div class="scrollpages">
+                            <div class="quadruple ">
+                                <ul class="dtk-list" id="game1list2">
+                  <li><span><img src="images/11.gif" alt="中国象棋" width="16" height="16"></span><a href="#" title="中国象棋">中国象棋</a></li>
+                  <li><span><img src="images/18.gif" alt="四国军棋" width="16" height="16"></span><a href="#" title="四国军棋">四国军棋</a></li>
+                  <li><span><img src="images/22.gif" alt="军旗翻翻旗" width="16" height="16"></span><a href="#" title="军旗翻翻旗">军旗翻翻旗</a></li>
+                  <li><span><img src="images/37.ico" alt="象棋翻翻棋" width="16" height="16"></span><a href="#" title="象棋翻翻棋">象棋翻翻棋</a></li>  
+                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="serve4">
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+
+            <div class="serve mtop10">
+                <div class="serve1 bold hui3 " style="font-size: 14px; font-family: 微软雅黑">
+                   麻将类游戏
+                </div>
+                <div class="shopBg4">
+                    <div class="scrollbody">
+                        <div class="scrollpages">
+                            <div class="quadruple ">
+                                <ul class="dtk-list" id="game1list3">
+ <li><span><img src="images/9.gif" alt="温州麻将" width="16" height="16"></span><a href="#" title="温州麻将">温州麻将</a></li>
+ <li><span><img src="images/20.gif" alt="杭州麻将" width="16" height="16"></span><a href="#" title="杭州麻将">杭州麻将</a></li>
+ <li><span><img src="images/29.gif" alt="四川麻将" width="16" height="16"></span><a href="#" title="四川麻将">四川麻将</a></li>
+ <li><span><img src="images/30.gif" alt="宁波麻将" width="16" height="16"></span><a href="#" title="宁波麻将">宁波麻将</a></li>                 
+                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="serve4">
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+
+            <div class="serve mtop10">
+                <div class="serve1 bold hui3 " style="font-size: 14px; font-family: 微软雅黑">
+                   休闲类游戏
+                </div>
+                <div class="shopBg4">
+                    <div class="scrollbody">
+                        <div class="scrollpages">
+                            <div class="quadruple ">
+                                <ul class="dtk-list" id="game1list4">
+<li><span><img src="images/25.gif" alt="飞行棋" width="16" height="16"></span><a href="#" title="飞行棋">飞行棋</a></li>
+<li><span><img src="images/27.gif" alt="连连看" width="16" height="16"></span><a href="#" title="连连看">连连看</a></li>
+<li><span><img src="images/28.gif" alt="黄金矿工" width="16" height="16"></span><a href="#" title="黄金矿工">黄金矿工</a></li>
+<li><span><img src="images/33.gif" alt="龙珠" width="16" height="16"></span><a href="#" title="龙珠">龙珠</a></li>
+            
+                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="serve4">
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <!--客服中心开始-->
+            <div class="clear">
+            </div>
+        </div>
+        <!--客服中心结束-->
+        <!--游戏列表结束-->
+    </div>
+    <div class="clear">
+    </div>
+    <!--页面主体结束-->
+    <!--底部开始-->
+    
+<div class="copyrightBg">
+        <div class="main">
+            <ul>
+                <li><span><a  style=" color:#333333" target="_blank" href="http://www.miitbeian.gov.cn/" >   网站备案号: </a></span></li>
+                <li><span>  &nbsp;&nbsp;版权所有 《网络文化经营许可证》编号： </span></li>
+                <li><span>禁止任何利用本平台游戏进行赌博的行为，让我们共同净化游戏环境，一旦发现有违反用户协议的行为，我们将立即封闭账号处理！<script type="text/javascript">                                                                                        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1993360'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/stat.php%3Fid%3D1993360%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></span></li>
+                <li><span><a target="_blank" href="http://www.nbnetcop.gov.cn/index.cgi">
+                    <img height="30" style="border: 0px none;" src="images/pp.gif" />
+                </a><a target="_blank" href="http://www.nbnetcop.gov.cn/index.cgi">
+                    <img height="30" style="border: 0px none;" src="images/gt.gif" />
+                </a><a target="_blank" href="http://www.nbnetcop.gov.cn/index.cgi">
+                    <img height="30" style="border: 0px none;" src="images/aa.gif" />
+                </a>
+                <a href="http://webscan.360.cn/">
+                    <img height="30" width="83" border="0" src="http://img.webscan.360.cn/status/pai/hash/120fc90414076cf750634f67817c5649" /></a>
+                    <a target="_blank" href="/">
+                        <img height="30" style="border: 0px none;" src="images/83x30.png"
+                            width="83" />
+                    </a></span></li>
+            </ul>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+
+    <!--底部结束-->
+    </form>
+   </body>
+</html>
