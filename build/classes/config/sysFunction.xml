@@ -58,6 +58,16 @@
 	</function>
 	
 	
+	<function isApi="0"  groupCn="配置" numberCode="configManager" nameCn="系统参数配置" url="/jsp_config/configManager.html">
+		<api flagServer="0" isWork="0" buttonCode="buttonCode_h20160226213200" nameCn="查询参数列表" url="/ConfigWS/queryConfigList.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160226213203" nameCn="获取系统参数" url="/ConfigWS/getConfig.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160226213201" nameCn="修改系统参数" url="/ConfigWS/editConfig.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160226213202" nameCn="新增系统参数" url="/ConfigWS/addConfig.do"/>
+		<api flagServer="0" isWork="1" buttonCode="buttonCode_h20160226213203" nameCn="删除系统参数" url="/ConfigWS/deleteConfig.do"/>
+		
+	</function>
+	
+	
 	
 	
 	
