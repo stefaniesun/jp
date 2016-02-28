@@ -123,7 +123,7 @@ public class OrderSvcImp implements OrderSvc{
 		sParaTemp.put("seller_email", AlipayConfig.seller_email);
 		sParaTemp.put("out_trade_no",orderNum);
 		sParaTemp.put("subject", "订单支付"+orderNum);
-		sParaTemp.put("total_fee", "0.01");
+		sParaTemp.put("total_fee", amout.setScale(2).toString());
 		sParaTemp.put("body", "订单支付"+orderNum);
 		
 		sParaTemp.put("paymethod", "directPay");

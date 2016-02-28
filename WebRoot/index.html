@@ -16,6 +16,7 @@
 <script type="text/javascript" src="misc/tc1015/js/impromptu.js"></script>
 <script type="text/javascript" src="misc/tc1015/js/jq.techanlogin.js"></script>
 <script type="text/javascript" src="js/library/qq/cs_q.js"></script>
+
 </head>
 <body>
 
@@ -169,7 +170,7 @@
 			<ul class="consult-list">
 				<li class="clearfix">
 					<span style="font-size:12px"></span>
-					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1468063688&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1468063688:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+					<a target="_blank"  id="configQQ" href="http://wpa.qq.com/msgrd?v=3&uin=1468063688&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1468063688:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
 				</li>		
 				<li class="clearfix"><span class="tel-icon" style="font-size:12px">400-123-12320</span></li> 
 			</ul>
@@ -181,7 +182,23 @@
 
   <!--#include virtual="footer.html"-->
 
+<script type="text/javascript">
 
+	xyzAjax({
+		url:"/ConfigWS/getConfig.web",
+		data:{
+			key:'KEY_SERVICE_QQ'
+		},
+		success:function(data){
+			if(data.status==1){
+				$("#configQQ").attr("href","com/msgrd?v=3&uin="+data.content.value+"&site=qq&menu=yes");
+			}else{
+				top.$.messager.alert("警告",data.msg,"warning");
+			}
+		}
+	});
+
+</script>
 
 
 </body>

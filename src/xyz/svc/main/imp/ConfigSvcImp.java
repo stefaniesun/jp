@@ -80,12 +80,23 @@ public class ConfigSvcImp implements ConfigSvc {
 	}
 
 	@Override
-	public Map<String, Object> getConfig(String numberCode) {
-		Config config=(Config) commonDao.getObjectByUniqueCode("Config", "numberCode", numberCode);
+	public Map<String, Object> getConfig(String key) {
+		Config config=(Config) commonDao.getObjectByUniqueCode("Config", "key", key);
 		if(config==null){
 			return ReturnUtil.returnMap(0,"对象不存在");
 		}
 		return ReturnUtil.returnMap(1, config);
+	}
+
+	@Override
+	public Map<String, Object> getPostalConfig() {
+		String hql="from Config where key in ('KEY_NCC_PRICE','KEY_NCC_FREEPRICE','KEY_NCX_PRICE','KEY_NCX_FREEPRICE','KEY_CQ_PRICE','KEY_CQ_FREEPRICE')";
+		List<Config> configs=commonDao.queryByHql(hql);
+		Map<String,Object> mapContent=new HashMap<String, Object>();
+		for(Config config:configs){
+			mapContent.put(config.getKey(), config.getValue());
+		}
+		return ReturnUtil.returnMap(1, mapContent);
 	}
 
 }

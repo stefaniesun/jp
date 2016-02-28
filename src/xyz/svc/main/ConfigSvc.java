@@ -17,4 +17,6 @@ public interface ConfigSvc {
 
 	Map<String, Object> getConfig(String numberCode);
 
+	Map<String, Object> getPostalConfig();
+
 }

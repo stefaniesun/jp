@@ -28,8 +28,14 @@ public class ConfigWS {
 	
 	@RequestMapping(value="getConfig")
 	@ResponseBody
-	public Map<String,Object> getConfig(String numberCode){
-		return configSvc.getConfig(numberCode);
+	public Map<String,Object> getConfig(String key){
+		return configSvc.getConfig(key);
+	}
+	
+	@RequestMapping(value="getPostalConfig")
+	@ResponseBody
+	public Map<String,Object> getPostalConfig(){
+		return configSvc.getPostalConfig();
 	}
 	
 	@RequestMapping(value="addConfig")

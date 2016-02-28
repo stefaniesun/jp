@@ -181,6 +181,30 @@
 
   <!--#include virtual="footer.html"-->
 <script type="text/javascript">
+var nccPrice=0;
+var nccFreePrice=0;
+var ncxPrice=0;
+var ncxFreePrice=0;
+var cqPrice=0;
+var cqFreePrice=0;
+xyzAjax({
+	url:"/ConfigWS/getPostalConfig.web",
+	success:function(data){
+		if(data.status==1){
+			nccPrice=data.content.KEY_NCC_PRICE;
+			nccFreePrice=data.content.KEY_NCC_FREEPRICE;
+			ncxPrice=data.content.KEY_NCX_PRICE;
+			ncxFreePrice=data.content.KEY_NCX_FREEPRICE;
+			cqPrice=data.content.KEY_CQ_PRICE;
+			cqFreePrice=data.content.KEY_CQ_FREEPRICE;
+		}else{
+			top.$.messager.alert("警告",data.msg,"warning");
+		}
+	}
+});
+
+
+
 xyzAjax({
 	url:"/UserWS/queryAddressList.cus",
 	success:function(data){
@@ -281,20 +305,20 @@ function calculatePostalPrice(){
 	var address=$(".slt").data("addressdistrict"); 
 	
 	if(address=="南川区(主城)"){
-		if(productTotal<20){
-			$("#postagePrice").val(10);
+		if(productTotal<nccFreePrice){
+			$("#postagePrice").val(nccPrice);
 		}else{
 			$("#postagePrice").val(0);
 		}
 	}else if(address=="南川区(区县)"){
-		if(productTotal<200){
-			$("#postagePrice").val(20);
+		if(productTotal<ncxFreePrice){
+			$("#postagePrice").val(ncxPrice);
 		}else{
 			$("#postagePrice").val(0);
 		}
 	}else{
-		if(productTotal<40){
-			$("#postagePrice").val(25);
+		if(productTotal<cqFreePrice){
+			$("#postagePrice").val(cqPrice);
 		}else{
 			$("#postagePrice").val(0);
 		}
